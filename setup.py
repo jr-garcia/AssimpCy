@@ -20,6 +20,8 @@ if platform == 'win32':
 elif platform == 'linux2':
     rldirs = ["$ORIGIN"]
     extrac.extend(["-w", "-O3"])
+else:
+    rldirs = []
 
 setup(
     name="assimpcy",

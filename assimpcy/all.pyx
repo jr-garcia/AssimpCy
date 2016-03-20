@@ -525,7 +525,7 @@ def aiReleaseImport(aiScene pScene):
      warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed since it is handled by '
                              '\'aiImportFile\'.'))
 
-class AssimpError(StandardError):
+class AssimpError(BaseException):
     pass
 
 
@@ -599,4 +599,3 @@ class aiPostProcessSteps:
     aiProcess_FlipWindingOrder = cPostprocess.aiProcess_FlipWindingOrder
     aiProcess_SplitByBoneCount = cPostprocess.aiProcess_SplitByBoneCount
     aiProcess_Debone = cPostprocess.aiProcess_Debone
-
