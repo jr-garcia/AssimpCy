@@ -21,7 +21,7 @@ if scene.HasMeshes and scene.mMeshes[0].HasPositions:
 
 Matrices, quaternions and vectors are returned as numpy arrays, as usual.
 
-It has been tested with **Python 2.7**, but it *should* work on Python 3 too.
+It has been tested with **Python 2.7** and **Python 3.4**.
 
 ---
 
