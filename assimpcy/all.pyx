@@ -525,7 +525,7 @@ def aiReleaseImport(aiScene pScene):
      warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed since it is handled by '
                              '\'aiImportFile\'.'))
 
-class AssimpError(BaseException):
+class AssimpError(Exception):
     pass
 
 
