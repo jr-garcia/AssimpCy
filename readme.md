@@ -66,6 +66,10 @@ python setup.py install
 
 Those might be added in the future.
 
+#### Warning:
+
+No checks for memory leaks have been made.
+
 ---
 
 And what about the name? Well, [cyassimp](https://github.com/menpo/cyassimp) was already taken :smirk:.
