@@ -1,4 +1,4 @@
-from distutils.core import Extension, setup
+from setuptools import Extension, setup
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 from sys import platform
@@ -17,11 +17,11 @@ extrac = []
 if platform == 'win32':
     rldirs = []
     extrac.append('/EHsc')
-elif platform == 'linux2':
+elif platform == 'darwin':
+    rldirs = []
+else:
     rldirs = ["$ORIGIN"]
     extrac.extend(["-w", "-O3"])
-else:
-    rldirs = []
 
 setup(
     name="assimpcy",
