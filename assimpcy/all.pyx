@@ -489,7 +489,7 @@ cdef aiScene buildScene(const cScene.aiScene *cs):
 
 # -----------------------------------------------------
 
-def aiImportFile(const char* path, unsigned int flags=0):
+def aiImportFile(str path, unsigned int flags=0):
     """
     Usage:
         scene = aiImportFile(path, flags)
@@ -503,8 +503,10 @@ def aiImportFile(const char* path, unsigned int flags=0):
     :rtype: aiScene
     """
     cdef const cScene.aiScene* csc
+    bpath = path.encode()
+    cdef const char* cpath = bpath
     with nogil:
-        csc = cImporter.aiImportFile(path, flags)
+        csc = cImporter.aiImportFile(cpath, flags)
     if csc:
         try:
             return buildScene(csc)
@@ -518,6 +520,8 @@ def aiImportFile(const char* path, unsigned int flags=0):
     else:
         csc = NULL
         del csc
+        # cpath = NULL
+        # del cpath  # << Error (Deletion of non-Python, non-C++ object)
         raise AssimpError(cImporter.aiGetErrorString())
 
 
