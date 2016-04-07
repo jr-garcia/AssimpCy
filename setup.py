@@ -1,4 +1,4 @@
-from setuptools import Extension, setup
+from setuptools import Extension, setup, command
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 from sys import platform
