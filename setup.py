@@ -20,6 +20,7 @@ if platform == 'win32':
 elif platform == 'darwin':
     rldirs = []
 else:
+    incl.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
     rldirs = ["$ORIGIN"]
     extrac.extend(["-w", "-O3"])
 
