@@ -1,5 +1,8 @@
+/assimp_include
+/libs
 **/*.pyc
 **/*.cpp
+/examples/base_test_build.py
+/examples/build.py
+/examples/vs_test_build.py
 /build
-*.so
-*.pyd
