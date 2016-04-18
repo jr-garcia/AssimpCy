@@ -1,13 +1,18 @@
 from __future__ import print_function
+import setpath
 
 from timeit import Timer
 
 from assimpcy import aiImportFile, aiPostProcessSteps as pp
 
+from os import path as pt
+
+home = pt.dirname(__file__)
+
 path = './models/cil/cil.x'
-# path = './models/dragon.obj'
-# path = './models/shadow room/lightmapped.x'
-# path = './models/sponza/sponza.3DS'
+# path = '/models/dragon.obj'
+# path = '/models/shadow room/lightmapped.x'
+# path = '/models/sponza/sponza.3DS'
 
 scene = None
 
@@ -19,7 +24,7 @@ def doImport():
             pp.aiProcess_FixInfacingNormals | pp.aiProcess_GenUVCoords | \
             pp.aiProcess_LimitBoneWeights | pp.aiProcess_SortByPType | pp.aiProcess_RemoveRedundantMaterials
 
-    scene = aiImportFile(path, flags)
+    scene = aiImportFile(pt.join(home, path), flags)
 
 
 def main():

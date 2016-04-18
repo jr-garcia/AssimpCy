@@ -3,6 +3,7 @@
 **/*.pyc
 **/*.cpp
 /examples/base_test_build.py
+/assimpcy/*.so
 /examples/build.py
 /examples/vs_test_build.py
 /build

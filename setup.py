@@ -28,7 +28,7 @@ setup(
     name="assimpcy",
     packages=["assimpcy"],
     ext_modules=cythonize([
-        Extension('*', ["assimpcy/*.pyx"],
+        Extension('*', ["./assimpcy/all.pyx"],
                   libraries=["assimp"],
                   include_dirs=incl,
                   runtime_library_dirs=rldirs,
