@@ -383,15 +383,16 @@ cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):
 @cython.nonecheck(False)
 cdef aiKey buildKey(anykey* key):
     cdef aiKey pykey = aiKey()
-    pykey.mTime = key.mTime
-    if anykey == cAnim.aiVectorKey:
-        pykey.mValue = np.empty((3), dtype=NUMPYFLOAT)
-        with nogil:
-            memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, 3 * sizeof(NUMPYFLOAT_t))
-    else:
-        pykey.mValue = np.empty((4), dtype=NUMPYFLOAT)
-        with nogil:
-            memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, 4 * sizeof(NUMPYFLOAT_t))
+    cdef int kl
+    with nogil:
+        pykey.mTime = key.mTime
+        if anykey == cAnim.aiVectorKey:
+            kl = 3
+        else:
+            kl = 4
+    pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
+    with nogil:
+        memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))
     return pykey
 
 cdef class aiAnimation:
