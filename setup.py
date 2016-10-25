@@ -7,6 +7,8 @@ from numpy import get_include
 from distutils.sysconfig import get_config_vars
 import os
 
+os.chdir('./assimpcy')
+
 (opt,) = get_config_vars('OPT')
 if opt:
     os.environ['OPT'] = " ".join(flag for flag in opt.split() if flag != '-Wstrict-prototypes')
@@ -28,12 +30,12 @@ setup(
     name="assimpcy",
     packages=["assimpcy"],
     ext_modules=cythonize([
-        Extension('*', ["./assimpcy/all.pyx"],
+        Extension('all', ["./all.pyx"],
                   libraries=["assimp"],
                   include_dirs=incl,
                   runtime_library_dirs=rldirs,
                   extra_compile_args=extrac,
                   language="c++")
     ]),
-    cmdclass={'build_ext': build_ext},
+    cmdclass={'build_ext': build_ext}, requires=['numpy']
 )
