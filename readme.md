@@ -1,5 +1,5 @@
 # AssimpCy
-Faster and almost complete Python bindings for [Assimp](http://assimp.sourceforge.net/), Cython-based, BSD license.
+Faster (than PyAssimp, at least acording to me) and almost complete Python bindings for [Assimp](http://assimp.sourceforge.net/), Cython-based, BSD3 license.
 
 It uses the same naming as the original library, so examples from the official docs can be used directly (minus C sintaxis, of course).
     
