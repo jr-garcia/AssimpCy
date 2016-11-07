@@ -1,5 +1,4 @@
 from __future__ import print_function
-import setpath
 
 from timeit import Timer
 
@@ -10,9 +9,6 @@ from os import path as pt
 home = pt.dirname(__file__)
 
 path = './models/cil/cil.x'
-# path = '/models/dragon.obj'
-# path = '/models/shadow room/lightmapped.x'
-# path = '/models/sponza/sponza.3DS'
 
 scene = None
 

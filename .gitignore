@@ -2,9 +2,6 @@
 /libs
 **/*.cpp
 **/*.c
-/examples/base_test_build.py
-/examples/build_ext.py
-/examples/vs_test_build.py
 **/build/
 .idea/
 __pycache__/
@@ -25,7 +22,6 @@ sdist/
 var/
 *.egg-info/
 .installed.cfg
-*.egg
 *.manifest
 *.spec
 pip-log.txt
