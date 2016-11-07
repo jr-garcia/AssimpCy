@@ -1,4 +1,5 @@
-__author__ = 'jrg'
+# cython: c_string_type=bytes
+# cython: c_string_encoding=utf8
 
 cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess
 import numpy as np
@@ -292,7 +293,7 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
             elif ptype == cMaterial.aiPTI_Integer:
                 pvalsize = sizeof(dataStorageI)
                 res =  cMaterial.aiGetMaterialIntegerArray(mat, prop.mKey.data, -1, 0, <int*>&pvalI, &pvalsize)
-            elif cMaterial.aiPTI_String:
+            elif ptype == cMaterial.aiPTI_String:
                 pvalS = new cTypes.aiString()
                 res =  cMaterial.aiGetMaterialString(mat, prop.mKey.data, -1, 0, pvalS)
             else:
@@ -303,7 +304,7 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
         elif res == cTypes.aiReturn_OUTOFMEMORY:
             raise MemoryError('Out of memory.')
 
-        sname = str(prop.mKey.data)
+        sname = str(prop.mKey.data.decode())
         if ptype == cMaterial.aiPTI_Float:
             if pvalsize == 1:
                 propval = pvalF.data[0]
@@ -317,7 +318,7 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
                 pvalI.validLenght = pvalsize
                 propval = asNumpyArray(&pvalI)
         elif ptype == cMaterial.aiPTI_String:
-            propval = str(pvalS.data)
+            propval = str(pvalS.data.decode())
 
         nMat.properties[propertyNames.get(sname, sname)] = propval
 

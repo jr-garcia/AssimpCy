@@ -1,13 +1,10 @@
 from setuptools import Extension, setup, command
-from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 from sys import platform
 from numpy import get_include
 
 from distutils.sysconfig import get_config_vars
 import os
-
-os.chdir('./assimpcy')
 
 (opt,) = get_config_vars('OPT')
 if opt:
@@ -27,15 +24,15 @@ else:
     extrac.extend(["-w", "-O3"])
 
 setup(
-    name="assimpcy",
+    name="AssimpCy",
     packages=["assimpcy"],
     ext_modules=cythonize([
-        Extension('all', ["./all.pyx"],
+        Extension('assimpcy.all', ["./assimpcy/all.pyx"],
                   libraries=["assimp"],
                   include_dirs=incl,
                   runtime_library_dirs=rldirs,
                   extra_compile_args=extrac,
                   language="c++")
     ]),
-    cmdclass={'build_ext': build_ext}, requires=['numpy']
+    requires=['numpy']
 )
