@@ -10,10 +10,7 @@ from os import path as pt
 
 home = pt.dirname(__file__)
 
-# path = 'models/cil/cil.x'
-# path = 'models/dragon.obj'
-path = 'models/shadow room/lightmapped.x'
-# path = 'models/sponza/sponza.3DS'
+path = 'models/cil/cil.x'
 
 path = pt.join(home, path)
 
