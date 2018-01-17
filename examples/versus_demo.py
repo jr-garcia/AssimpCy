@@ -1,17 +1,15 @@
 from __future__ import print_function
-
 from timeit import Timer
+from os import path as pt
 
 from pyassimp import postprocess as pp2, release, load
 
+import _setpath
+_setpath.setAssimpPath()
 from assimpcy import aiImportFile, aiPostProcessSteps as pp
 
-from os import path as pt
-
 home = pt.dirname(__file__)
-
 path = 'models/cil/cil.x'
-
 path = pt.join(home, path)
 
 scene = None
