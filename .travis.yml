@@ -4,7 +4,7 @@ sudo: false
 addons:
   apt:
     packages:
-      - libassimp
+      - libassimp3v5
       - libassimp-dev
 
 before_install:
