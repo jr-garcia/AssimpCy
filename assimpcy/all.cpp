@@ -1202,7 +1202,7 @@ struct __pyx_t_8assimpcy_3all_dataStorageF;
 struct __pyx_t_8assimpcy_3all_dataStorageI;
 struct __pyx_t_8assimpcy_3all_dataStorageF {
 
-  /* "assimpcy/all.pyx":538
+  /* "assimpcy/all.pyx":550
  * 
  * 
  * cdef cppclass dataStorageF nogil:             # <<<<<<<<<<<<<<
@@ -1218,7 +1218,7 @@ struct __pyx_t_8assimpcy_3all_dataStorageF {
 };
 struct __pyx_t_8assimpcy_3all_dataStorageI {
 
-  /* "assimpcy/all.pyx":544
+  /* "assimpcy/all.pyx":556
  *         validLenght = 0
  * 
  * cdef cppclass dataStorageI nogil:             # <<<<<<<<<<<<<<
@@ -1298,7 +1298,7 @@ struct __pyx_obj_8assimpcy_3all_aiMesh {
 };
 
 
-/* "assimpcy/all.pyx":223
+/* "assimpcy/all.pyx":226
  * 
  * 
  * cdef class aiNode:             # <<<<<<<<<<<<<<
@@ -1317,7 +1317,7 @@ struct __pyx_obj_8assimpcy_3all_aiNode {
 };
 
 
-/* "assimpcy/all.pyx":262
+/* "assimpcy/all.pyx":267
  * # -----------------------------------------------------
  * 
  * cdef class aiMaterial:             # <<<<<<<<<<<<<<
@@ -1330,7 +1330,7 @@ struct __pyx_obj_8assimpcy_3all_aiMaterial {
 };
 
 
-/* "assimpcy/all.pyx":333
+/* "assimpcy/all.pyx":338
  * 
  * # -----------------------------------------------------
  * cdef class aiKey:             # <<<<<<<<<<<<<<
@@ -1344,7 +1344,7 @@ struct __pyx_obj_8assimpcy_3all_aiKey {
 };
 
 
-/* "assimpcy/all.pyx":342
+/* "assimpcy/all.pyx":347
  *         return '{:0>5}->{}'.format(self.mTime, self.mValue)
  * 
  * cdef class aiNodeAnim:             # <<<<<<<<<<<<<<
@@ -1360,7 +1360,7 @@ struct __pyx_obj_8assimpcy_3all_aiNodeAnim {
 };
 
 
-/* "assimpcy/all.pyx":399
+/* "assimpcy/all.pyx":407
  *     return pykey
  * 
  * cdef class aiAnimation:             # <<<<<<<<<<<<<<
@@ -1376,7 +1376,7 @@ struct __pyx_obj_8assimpcy_3all_aiAnimation {
 };
 
 
-/* "assimpcy/all.pyx":427
+/* "assimpcy/all.pyx":436
  * # -----------------------------------------------------
  * 
  * cdef class aiScene:             # <<<<<<<<<<<<<<
@@ -2400,6 +2400,8 @@ static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
 static PyTypeObject *__pyx_memoryviewslice_type = 0;
+static int __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS;
+static int __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_COLOR_SETS;
 static PyObject *generic = 0;
 static PyObject *strided = 0;
 static PyObject *indirect = 0;
@@ -2670,14 +2672,12 @@ static const char __pyx_k_aiProcess_GenSmoothNormals[] = "aiProcess_GenSmoothNor
 static const char __pyx_k_aiProcess_LimitBoneWeights[] = "aiProcess_LimitBoneWeights";
 static const char __pyx_k_aiProcess_SplitByBoneCount[] = "aiProcess_SplitByBoneCount";
 static const char __pyx_k_aiProcess_SplitLargeMeshes[] = "aiProcess_SplitLargeMeshes";
-static const char __pyx_k_AI_MAX_NUMBER_OF_COLOR_SETS[] = "AI_MAX_NUMBER_OF_COLOR_SETS";
 static const char __pyx_k_aiProcess_TransformUVCoords[] = "aiProcess_TransformUVCoords";
 static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.array";
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_pyx_unpickle_aiVertexWeight[] = "__pyx_unpickle_aiVertexWeight";
 static const char __pyx_k_aiProcess_FixInfacingNormals[] = "aiProcess_FixInfacingNormals";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
-static const char __pyx_k_AI_MAX_NUMBER_OF_TEXTURECOORDS[] = "AI_MAX_NUMBER_OF_TEXTURECOORDS";
 static const char __pyx_k_aiProcess_ImproveCacheLocality[] = "aiProcess_ImproveCacheLocality";
 static const char __pyx_k_aiProcess_PreTransformVertices[] = "aiProcess_PreTransformVertices";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
@@ -2715,8 +2715,6 @@ static const char __pyx_k_Format_string_allocated_too_shor_2[] = "Format string 
 static PyObject *__pyx_kp_b_;
 static PyObject *__pyx_kp_s_;
 static PyObject *__pyx_kp_s_0_5;
-static PyObject *__pyx_n_s_AI_MAX_NUMBER_OF_COLOR_SETS;
-static PyObject *__pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS;
 static PyObject *__pyx_n_s_ASCII;
 static PyObject *__pyx_n_s_AssimpError;
 static PyObject *__pyx_n_s_BLEND_FUNC;
@@ -4178,7 +4176,6 @@ static int __pyx_pf_8assimpcy_3all_6aiMesh___init__(struct __pyx_obj_8assimpcy_3
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
   /* "assimpcy/all.pyx":110
@@ -4188,24 +4185,20 @@ static int __pyx_pf_8assimpcy_3all_6aiMesh___init__(struct __pyx_obj_8assimpcy_3
  *         self.mTextureCoords = [None] * AI_MAX_NUMBER_OF_TEXTURECOORDS
  *         self.mColors = [None] * AI_MAX_NUMBER_OF_COLOR_SETS
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1 * ((__pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS<0) ? 0:__pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(__pyx_int_0);
-  __Pyx_GIVEREF(__pyx_int_0);
-  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_int_0);
-  { PyObject* __pyx_temp = PyNumber_InPlaceMultiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_temp)) __PYX_ERR(0, 110, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_temp);
-    __Pyx_DECREF(__pyx_t_2);
-    __pyx_t_2 = __pyx_temp;
+  { Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS; __pyx_temp++) {
+      __Pyx_INCREF(__pyx_int_0);
+      __Pyx_GIVEREF(__pyx_int_0);
+      PyList_SET_ITEM(__pyx_t_1, __pyx_temp, __pyx_int_0);
+    }
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GIVEREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mNumUVComponents);
   __Pyx_DECREF(__pyx_v_self->mNumUVComponents);
-  __pyx_v_self->mNumUVComponents = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_v_self->mNumUVComponents = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
 
   /* "assimpcy/all.pyx":111
  *     def __init__(self):
@@ -4214,19 +4207,15 @@ static int __pyx_pf_8assimpcy_3all_6aiMesh___init__(struct __pyx_obj_8assimpcy_3
  *         self.mColors = [None] * AI_MAX_NUMBER_OF_COLOR_SETS
  *         self.mName = ''
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1 * ((__pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS<0) ? 0:__pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(Py_None);
-  __Pyx_GIVEREF(Py_None);
-  PyList_SET_ITEM(__pyx_t_1, 0, Py_None);
-  { PyObject* __pyx_temp = PyNumber_InPlaceMultiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_temp)) __PYX_ERR(0, 111, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_temp);
-    __Pyx_DECREF(__pyx_t_1);
-    __pyx_t_1 = __pyx_temp;
+  { Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS; __pyx_temp++) {
+      __Pyx_INCREF(Py_None);
+      __Pyx_GIVEREF(Py_None);
+      PyList_SET_ITEM(__pyx_t_1, __pyx_temp, Py_None);
+    }
   }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mTextureCoords);
   __Pyx_DECREF(__pyx_v_self->mTextureCoords);
@@ -4240,24 +4229,20 @@ static int __pyx_pf_8assimpcy_3all_6aiMesh___init__(struct __pyx_obj_8assimpcy_3
  *         self.mName = ''
  *         self.mMaterialIndex = -1
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_COLOR_SETS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1 * ((__pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_COLOR_SETS<0) ? 0:__pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_COLOR_SETS)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(Py_None);
-  __Pyx_GIVEREF(Py_None);
-  PyList_SET_ITEM(__pyx_t_2, 0, Py_None);
-  { PyObject* __pyx_temp = PyNumber_InPlaceMultiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_temp)) __PYX_ERR(0, 112, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_temp);
-    __Pyx_DECREF(__pyx_t_2);
-    __pyx_t_2 = __pyx_temp;
+  { Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_COLOR_SETS; __pyx_temp++) {
+      __Pyx_INCREF(Py_None);
+      __Pyx_GIVEREF(Py_None);
+      PyList_SET_ITEM(__pyx_t_1, __pyx_temp, Py_None);
+    }
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GIVEREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mColors);
   __Pyx_DECREF(__pyx_v_self->mColors);
-  __pyx_v_self->mColors = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_v_self->mColors = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
 
   /* "assimpcy/all.pyx":113
  *         self.mTextureCoords = [None] * AI_MAX_NUMBER_OF_TEXTURECOORDS
@@ -4288,13 +4273,13 @@ static int __pyx_pf_8assimpcy_3all_6aiMesh___init__(struct __pyx_obj_8assimpcy_3
  * 
  *     def __str__(self):
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mBones);
   __Pyx_DECREF(__pyx_v_self->mBones);
-  __pyx_v_self->mBones = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_v_self->mBones = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
 
   /* "assimpcy/all.pyx":109
  *     cdef readonly bool HasBones
@@ -4309,7 +4294,6 @@ static int __pyx_pf_8assimpcy_3all_6aiMesh___init__(struct __pyx_obj_8assimpcy_3
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("assimpcy.all.aiMesh.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
@@ -5828,7 +5812,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiMesh_6__setstate_cython__(struct __p
  * @cython.nonecheck(False)
  * cdef aiMesh buildMesh(cMesh.aiMesh* mesh):             # <<<<<<<<<<<<<<
  *     cdef bint val, hasanycoord, hasanycolor = 0
- *     cdef unsigned int i, j = 0
+ *     cdef unsigned int i, j = 0, k
  */
 
 static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(aiMesh *__pyx_v_mesh) {
@@ -5837,6 +5821,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   int __pyx_v_hasanycolor;
   unsigned int __pyx_v_i;
   unsigned int __pyx_v_j;
+  unsigned int __pyx_v_k;
   struct __pyx_obj_8assimpcy_3all_aiBone *__pyx_v_bone = 0;
   struct __pyx_obj_8assimpcy_3all_aiVertexWeight *__pyx_v_vertW = 0;
   struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_v_rMesh = 0;
@@ -5846,23 +5831,22 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   unsigned int __pyx_t_3;
-  long __pyx_t_4;
+  unsigned int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
-  unsigned int __pyx_t_7;
-  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  unsigned int __pyx_t_8;
   unsigned int __pyx_t_9;
   unsigned int __pyx_t_10;
-  unsigned int __pyx_t_11;
-  float __pyx_t_12;
-  PyObject *__pyx_t_13 = NULL;
+  float __pyx_t_11;
+  PyObject *__pyx_t_12 = NULL;
   __Pyx_RefNannySetupContext("buildMesh", 0);
 
   /* "assimpcy/all.pyx":124
  * @cython.nonecheck(False)
  * cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
  *     cdef bint val, hasanycoord, hasanycolor = 0             # <<<<<<<<<<<<<<
- *     cdef unsigned int i, j = 0
+ *     cdef unsigned int i, j = 0, k
  *     cdef aiBone bone
  */
   __pyx_v_hasanycolor = 0;
@@ -5870,7 +5854,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   /* "assimpcy/all.pyx":125
  * cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
  *     cdef bint val, hasanycoord, hasanycolor = 0
- *     cdef unsigned int i, j = 0             # <<<<<<<<<<<<<<
+ *     cdef unsigned int i, j = 0, k             # <<<<<<<<<<<<<<
  *     cdef aiBone bone
  *     cdef aiVertexWeight vertW
  */
@@ -5992,8 +5976,8 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  *     rMesh.HasTangentsAndBitangents = mesh.HasTangentsAndBitangents()
  * 
  *     rMesh.HasVertexColors = []             # <<<<<<<<<<<<<<
- *     for i in range(int(AI_MAX_NUMBER_OF_COLOR_SETS)):
- *         val = mesh.HasVertexColors(i)
+ *     k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *     for i in range(k):
  */
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -6006,31 +5990,34 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   /* "assimpcy/all.pyx":141
  * 
  *     rMesh.HasVertexColors = []
- *     for i in range(int(AI_MAX_NUMBER_OF_COLOR_SETS)):             # <<<<<<<<<<<<<<
+ *     k = AI_MAX_NUMBER_OF_COLOR_SETS             # <<<<<<<<<<<<<<
+ *     for i in range(k):
+ *         val = mesh.HasVertexColors(i)
+ */
+  __pyx_v_k = __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_COLOR_SETS;
+
+  /* "assimpcy/all.pyx":142
+ *     rMesh.HasVertexColors = []
+ *     k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *     for i in range(k):             # <<<<<<<<<<<<<<
  *         val = mesh.HasVertexColors(i)
  *         if val:
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_COLOR_SETS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_2); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
+  __pyx_t_3 = __pyx_v_k;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
 
-    /* "assimpcy/all.pyx":142
- *     rMesh.HasVertexColors = []
- *     for i in range(int(AI_MAX_NUMBER_OF_COLOR_SETS)):
+    /* "assimpcy/all.pyx":143
+ *     k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *     for i in range(k):
  *         val = mesh.HasVertexColors(i)             # <<<<<<<<<<<<<<
  *         if val:
  *             hasanycolor = val
  */
     __pyx_v_val = __pyx_v_mesh->HasVertexColors(__pyx_v_i);
 
-    /* "assimpcy/all.pyx":143
- *     for i in range(int(AI_MAX_NUMBER_OF_COLOR_SETS)):
+    /* "assimpcy/all.pyx":144
+ *     for i in range(k):
  *         val = mesh.HasVertexColors(i)
  *         if val:             # <<<<<<<<<<<<<<
  *             hasanycolor = val
@@ -6039,7 +6026,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
     __pyx_t_5 = (__pyx_v_val != 0);
     if (__pyx_t_5) {
 
-      /* "assimpcy/all.pyx":144
+      /* "assimpcy/all.pyx":145
  *         val = mesh.HasVertexColors(i)
  *         if val:
  *             hasanycolor = val             # <<<<<<<<<<<<<<
@@ -6048,8 +6035,8 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
       __pyx_v_hasanycolor = __pyx_v_val;
 
-      /* "assimpcy/all.pyx":143
- *     for i in range(int(AI_MAX_NUMBER_OF_COLOR_SETS)):
+      /* "assimpcy/all.pyx":144
+ *     for i in range(k):
  *         val = mesh.HasVertexColors(i)
  *         if val:             # <<<<<<<<<<<<<<
  *             hasanycolor = val
@@ -6057,7 +6044,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
     }
 
-    /* "assimpcy/all.pyx":145
+    /* "assimpcy/all.pyx":146
  *         if val:
  *             hasanycolor = val
  *         rMesh.HasVertexColors.append(val)             # <<<<<<<<<<<<<<
@@ -6066,54 +6053,60 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
     if (unlikely(__pyx_v_rMesh->HasVertexColors == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 145, __pyx_L1_error)
+      __PYX_ERR(0, 146, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_v_val); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rMesh->HasVertexColors, __pyx_t_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 145, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rMesh->HasVertexColors, __pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 146, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":147
+  /* "assimpcy/all.pyx":148
  *         rMesh.HasVertexColors.append(val)
  * 
  *     rMesh.HasTextureCoords = []             # <<<<<<<<<<<<<<
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
- *         val = mesh.HasTextureCoords(i)
+ *     k = AI_MAX_NUMBER_OF_TEXTURECOORDS
+ *     for i in range(k):
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_rMesh->HasTextureCoords);
   __Pyx_DECREF(__pyx_v_rMesh->HasTextureCoords);
-  __pyx_v_rMesh->HasTextureCoords = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_v_rMesh->HasTextureCoords = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":148
+  /* "assimpcy/all.pyx":149
  * 
  *     rMesh.HasTextureCoords = []
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):             # <<<<<<<<<<<<<<
+ *     k = AI_MAX_NUMBER_OF_TEXTURECOORDS             # <<<<<<<<<<<<<<
+ *     for i in range(k):
+ *         val = mesh.HasTextureCoords(i)
+ */
+  __pyx_v_k = __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS;
+
+  /* "assimpcy/all.pyx":150
+ *     rMesh.HasTextureCoords = []
+ *     k = AI_MAX_NUMBER_OF_TEXTURECOORDS
+ *     for i in range(k):             # <<<<<<<<<<<<<<
  *         val = mesh.HasTextureCoords(i)
  *         if val:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_2); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 148, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
+  __pyx_t_3 = __pyx_v_k;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
 
-    /* "assimpcy/all.pyx":149
- *     rMesh.HasTextureCoords = []
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+    /* "assimpcy/all.pyx":151
+ *     k = AI_MAX_NUMBER_OF_TEXTURECOORDS
+ *     for i in range(k):
  *         val = mesh.HasTextureCoords(i)             # <<<<<<<<<<<<<<
  *         if val:
  *             hasanycoord = val
  */
     __pyx_v_val = __pyx_v_mesh->HasTextureCoords(__pyx_v_i);
 
-    /* "assimpcy/all.pyx":150
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+    /* "assimpcy/all.pyx":152
+ *     for i in range(k):
  *         val = mesh.HasTextureCoords(i)
  *         if val:             # <<<<<<<<<<<<<<
  *             hasanycoord = val
@@ -6122,7 +6115,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
     __pyx_t_5 = (__pyx_v_val != 0);
     if (__pyx_t_5) {
 
-      /* "assimpcy/all.pyx":151
+      /* "assimpcy/all.pyx":153
  *         val = mesh.HasTextureCoords(i)
  *         if val:
  *             hasanycoord = val             # <<<<<<<<<<<<<<
@@ -6131,8 +6124,8 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
       __pyx_v_hasanycoord = __pyx_v_val;
 
-      /* "assimpcy/all.pyx":150
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+      /* "assimpcy/all.pyx":152
+ *     for i in range(k):
  *         val = mesh.HasTextureCoords(i)
  *         if val:             # <<<<<<<<<<<<<<
  *             hasanycoord = val
@@ -6140,7 +6133,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
     }
 
-    /* "assimpcy/all.pyx":152
+    /* "assimpcy/all.pyx":154
  *         if val:
  *             hasanycoord = val
  *         rMesh.HasTextureCoords.append(val)             # <<<<<<<<<<<<<<
@@ -6149,15 +6142,15 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
     if (unlikely(__pyx_v_rMesh->HasTextureCoords == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 152, __pyx_L1_error)
+      __PYX_ERR(0, 154, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_v_val); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rMesh->HasTextureCoords, __pyx_t_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 152, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rMesh->HasTextureCoords, __pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 154, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":154
+  /* "assimpcy/all.pyx":156
  *         rMesh.HasTextureCoords.append(val)
  * 
  *     rMesh.NumUVChannels = mesh.GetNumUVChannels()             # <<<<<<<<<<<<<<
@@ -6166,7 +6159,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   __pyx_v_rMesh->NumUVChannels = __pyx_v_mesh->GetNumUVChannels();
 
-  /* "assimpcy/all.pyx":155
+  /* "assimpcy/all.pyx":157
  * 
  *     rMesh.NumUVChannels = mesh.GetNumUVChannels()
  *     rMesh.NumColorChannels = mesh.GetNumColorChannels()             # <<<<<<<<<<<<<<
@@ -6175,7 +6168,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   __pyx_v_rMesh->NumColorChannels = __pyx_v_mesh->GetNumColorChannels();
 
-  /* "assimpcy/all.pyx":156
+  /* "assimpcy/all.pyx":158
  *     rMesh.NumUVChannels = mesh.GetNumUVChannels()
  *     rMesh.NumColorChannels = mesh.GetNumColorChannels()
  *     rMesh.HasBones = mesh.HasBones()             # <<<<<<<<<<<<<<
@@ -6184,7 +6177,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   __pyx_v_rMesh->HasBones = __pyx_v_mesh->HasBones();
 
-  /* "assimpcy/all.pyx":157
+  /* "assimpcy/all.pyx":159
  *     rMesh.NumColorChannels = mesh.GetNumColorChannels()
  *     rMesh.HasBones = mesh.HasBones()
  *     rMesh.mNumFaces = mesh.mNumFaces             # <<<<<<<<<<<<<<
@@ -6194,7 +6187,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   __pyx_t_3 = __pyx_v_mesh->mNumFaces;
   __pyx_v_rMesh->mNumFaces = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":159
+  /* "assimpcy/all.pyx":161
  *     rMesh.mNumFaces = mesh.mNumFaces
  * 
  *     if rMesh.HasBones:             # <<<<<<<<<<<<<<
@@ -6204,7 +6197,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   __pyx_t_5 = (__pyx_v_rMesh->HasBones != 0);
   if (__pyx_t_5) {
 
-    /* "assimpcy/all.pyx":160
+    /* "assimpcy/all.pyx":162
  * 
  *     if rMesh.HasBones:
  *         for i in range(rMesh.mNumBones):             # <<<<<<<<<<<<<<
@@ -6212,75 +6205,75 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  *             bone.mName = str(mesh.mBones[i].mName.data)
  */
     __pyx_t_3 = __pyx_v_rMesh->mNumBones;
-    for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_3; __pyx_t_7+=1) {
-      __pyx_v_i = __pyx_t_7;
+    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_i = __pyx_t_4;
 
-      /* "assimpcy/all.pyx":161
+      /* "assimpcy/all.pyx":163
  *     if rMesh.HasBones:
  *         for i in range(rMesh.mNumBones):
  *             bone = aiBone()             # <<<<<<<<<<<<<<
  *             bone.mName = str(mesh.mBones[i].mName.data)
  *             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiBone), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_XDECREF_SET(__pyx_v_bone, ((struct __pyx_obj_8assimpcy_3all_aiBone *)__pyx_t_2));
-      __pyx_t_2 = 0;
+      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiBone), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_XDECREF_SET(__pyx_v_bone, ((struct __pyx_obj_8assimpcy_3all_aiBone *)__pyx_t_1));
+      __pyx_t_1 = 0;
 
-      /* "assimpcy/all.pyx":162
+      /* "assimpcy/all.pyx":164
  *         for i in range(rMesh.mNumBones):
  *             bone = aiBone()
  *             bone.mName = str(mesh.mBones[i].mName.data)             # <<<<<<<<<<<<<<
  *             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)
  *             with nogil:
  */
-      __pyx_t_2 = __Pyx_PyObject_FromString((__pyx_v_mesh->mBones[__pyx_v_i])->mName.data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_FromString((__pyx_v_mesh->mBones[__pyx_v_i])->mName.data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_GIVEREF(__pyx_t_2);
-      PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-      __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (!(likely(PyString_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 162, __pyx_L1_error)
-      __Pyx_GIVEREF(__pyx_t_2);
+      __Pyx_GIVEREF(__pyx_t_1);
+      PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+      __pyx_t_1 = 0;
+      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 164, __pyx_L1_error)
+      __Pyx_GIVEREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_v_bone->mName);
       __Pyx_DECREF(__pyx_v_bone->mName);
-      __pyx_v_bone->mName = ((PyObject*)__pyx_t_2);
-      __pyx_t_2 = 0;
+      __pyx_v_bone->mName = ((PyObject*)__pyx_t_1);
+      __pyx_t_1 = 0;
 
-      /* "assimpcy/all.pyx":163
+      /* "assimpcy/all.pyx":165
  *             bone = aiBone()
  *             bone.mName = str(mesh.mBones[i].mName.data)
  *             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *             with nogil:
  *                 memcpy(<void*>bone.mOffsetMatrix.data, <void*>&mesh.mBones[i].mOffsetMatrix, sizeof(NUMPYFLOAT_t) * 16)
  */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 163, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(0, 163, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__3, __pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 163, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 165, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(0, 165, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__3, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 165, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (!(likely(((__pyx_t_8) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_8, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 163, __pyx_L1_error)
-      __Pyx_GIVEREF(__pyx_t_8);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 165, __pyx_L1_error)
+      __Pyx_GIVEREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_v_bone->mOffsetMatrix);
       __Pyx_DECREF(((PyObject *)__pyx_v_bone->mOffsetMatrix));
-      __pyx_v_bone->mOffsetMatrix = ((PyArrayObject *)__pyx_t_8);
-      __pyx_t_8 = 0;
+      __pyx_v_bone->mOffsetMatrix = ((PyArrayObject *)__pyx_t_7);
+      __pyx_t_7 = 0;
 
-      /* "assimpcy/all.pyx":164
+      /* "assimpcy/all.pyx":166
  *             bone.mName = str(mesh.mBones[i].mName.data)
  *             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -6295,7 +6288,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
           #endif
           /*try:*/ {
 
-            /* "assimpcy/all.pyx":165
+            /* "assimpcy/all.pyx":167
  *             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)
  *             with nogil:
  *                 memcpy(<void*>bone.mOffsetMatrix.data, <void*>&mesh.mBones[i].mOffsetMatrix, sizeof(NUMPYFLOAT_t) * 16)             # <<<<<<<<<<<<<<
@@ -6305,7 +6298,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
             memcpy(((void *)__pyx_v_bone->mOffsetMatrix->data), ((void *)(&(__pyx_v_mesh->mBones[__pyx_v_i])->mOffsetMatrix)), ((sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t)) * 16));
           }
 
-          /* "assimpcy/all.pyx":164
+          /* "assimpcy/all.pyx":166
  *             bone.mName = str(mesh.mBones[i].mName.data)
  *             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -6324,50 +6317,50 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
           }
       }
 
-      /* "assimpcy/all.pyx":166
+      /* "assimpcy/all.pyx":168
  *             with nogil:
  *                 memcpy(<void*>bone.mOffsetMatrix.data, <void*>&mesh.mBones[i].mOffsetMatrix, sizeof(NUMPYFLOAT_t) * 16)
  *             for j in range(mesh.mBones[i].mNumWeights):             # <<<<<<<<<<<<<<
  *                 vertW = aiVertexWeight()
  *                 vertW.mVertexId = mesh.mBones[i].mWeights[j].mVertexId
  */
-      __pyx_t_9 = (__pyx_v_mesh->mBones[__pyx_v_i])->mNumWeights;
-      for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-        __pyx_v_j = __pyx_t_10;
+      __pyx_t_8 = (__pyx_v_mesh->mBones[__pyx_v_i])->mNumWeights;
+      for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
+        __pyx_v_j = __pyx_t_9;
 
-        /* "assimpcy/all.pyx":167
+        /* "assimpcy/all.pyx":169
  *                 memcpy(<void*>bone.mOffsetMatrix.data, <void*>&mesh.mBones[i].mOffsetMatrix, sizeof(NUMPYFLOAT_t) * 16)
  *             for j in range(mesh.mBones[i].mNumWeights):
  *                 vertW = aiVertexWeight()             # <<<<<<<<<<<<<<
  *                 vertW.mVertexId = mesh.mBones[i].mWeights[j].mVertexId
  *                 vertW.mWeight = mesh.mBones[i].mWeights[j].mWeight
  */
-        __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiVertexWeight), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 167, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __Pyx_XDECREF_SET(__pyx_v_vertW, ((struct __pyx_obj_8assimpcy_3all_aiVertexWeight *)__pyx_t_8));
-        __pyx_t_8 = 0;
+        __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiVertexWeight), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 169, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_XDECREF_SET(__pyx_v_vertW, ((struct __pyx_obj_8assimpcy_3all_aiVertexWeight *)__pyx_t_7));
+        __pyx_t_7 = 0;
 
-        /* "assimpcy/all.pyx":168
+        /* "assimpcy/all.pyx":170
  *             for j in range(mesh.mBones[i].mNumWeights):
  *                 vertW = aiVertexWeight()
  *                 vertW.mVertexId = mesh.mBones[i].mWeights[j].mVertexId             # <<<<<<<<<<<<<<
  *                 vertW.mWeight = mesh.mBones[i].mWeights[j].mWeight
  *                 bone.mWeights.append(vertW)
  */
-        __pyx_t_11 = ((__pyx_v_mesh->mBones[__pyx_v_i])->mWeights[__pyx_v_j]).mVertexId;
-        __pyx_v_vertW->mVertexId = __pyx_t_11;
+        __pyx_t_10 = ((__pyx_v_mesh->mBones[__pyx_v_i])->mWeights[__pyx_v_j]).mVertexId;
+        __pyx_v_vertW->mVertexId = __pyx_t_10;
 
-        /* "assimpcy/all.pyx":169
+        /* "assimpcy/all.pyx":171
  *                 vertW = aiVertexWeight()
  *                 vertW.mVertexId = mesh.mBones[i].mWeights[j].mVertexId
  *                 vertW.mWeight = mesh.mBones[i].mWeights[j].mWeight             # <<<<<<<<<<<<<<
  *                 bone.mWeights.append(vertW)
  *             rMesh.mBones.append(bone)
  */
-        __pyx_t_12 = ((__pyx_v_mesh->mBones[__pyx_v_i])->mWeights[__pyx_v_j]).mWeight;
-        __pyx_v_vertW->mWeight = __pyx_t_12;
+        __pyx_t_11 = ((__pyx_v_mesh->mBones[__pyx_v_i])->mWeights[__pyx_v_j]).mWeight;
+        __pyx_v_vertW->mWeight = __pyx_t_11;
 
-        /* "assimpcy/all.pyx":170
+        /* "assimpcy/all.pyx":172
  *                 vertW.mVertexId = mesh.mBones[i].mWeights[j].mVertexId
  *                 vertW.mWeight = mesh.mBones[i].mWeights[j].mWeight
  *                 bone.mWeights.append(vertW)             # <<<<<<<<<<<<<<
@@ -6376,26 +6369,26 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
         if (unlikely(__pyx_v_bone->mWeights == Py_None)) {
           PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-          __PYX_ERR(0, 170, __pyx_L1_error)
+          __PYX_ERR(0, 172, __pyx_L1_error)
         }
-        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_bone->mWeights, ((PyObject *)__pyx_v_vertW)); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 170, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_bone->mWeights, ((PyObject *)__pyx_v_vertW)); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 172, __pyx_L1_error)
       }
 
-      /* "assimpcy/all.pyx":171
+      /* "assimpcy/all.pyx":173
  *                 vertW.mWeight = mesh.mBones[i].mWeights[j].mWeight
  *                 bone.mWeights.append(vertW)
  *             rMesh.mBones.append(bone)             # <<<<<<<<<<<<<<
  * 
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+ *     for i in range(k):
  */
       if (unlikely(__pyx_v_rMesh->mBones == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-        __PYX_ERR(0, 171, __pyx_L1_error)
+        __PYX_ERR(0, 173, __pyx_L1_error)
       }
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rMesh->mBones, ((PyObject *)__pyx_v_bone)); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rMesh->mBones, ((PyObject *)__pyx_v_bone)); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 173, __pyx_L1_error)
     }
 
-    /* "assimpcy/all.pyx":159
+    /* "assimpcy/all.pyx":161
  *     rMesh.mNumFaces = mesh.mNumFaces
  * 
  *     if rMesh.HasBones:             # <<<<<<<<<<<<<<
@@ -6404,38 +6397,35 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   }
 
-  /* "assimpcy/all.pyx":173
+  /* "assimpcy/all.pyx":175
  *             rMesh.mBones.append(bone)
  * 
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):             # <<<<<<<<<<<<<<
+ *     for i in range(k):             # <<<<<<<<<<<<<<
  *         rMesh.mNumUVComponents[i] = mesh.mNumUVComponents[i]
  * 
  */
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_8); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
+  __pyx_t_3 = __pyx_v_k;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
 
-    /* "assimpcy/all.pyx":174
+    /* "assimpcy/all.pyx":176
  * 
- *     for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+ *     for i in range(k):
  *         rMesh.mNumUVComponents[i] = mesh.mNumUVComponents[i]             # <<<<<<<<<<<<<<
  * 
  *     if rMesh.HasPositions:
  */
-    __pyx_t_8 = __Pyx_PyInt_From_unsigned_int((__pyx_v_mesh->mNumUVComponents[__pyx_v_i])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 174, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_7 = __Pyx_PyInt_From_unsigned_int((__pyx_v_mesh->mNumUVComponents[__pyx_v_i])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 176, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
     if (unlikely(__pyx_v_rMesh->mNumUVComponents == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 174, __pyx_L1_error)
+      __PYX_ERR(0, 176, __pyx_L1_error)
     }
-    if (unlikely(__Pyx_SetItemInt(__pyx_v_rMesh->mNumUVComponents, __pyx_v_i, __pyx_t_8, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 1, 0, 0) < 0)) __PYX_ERR(0, 174, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    if (unlikely(__Pyx_SetItemInt(__pyx_v_rMesh->mNumUVComponents, __pyx_v_i, __pyx_t_7, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 1, 0, 0) < 0)) __PYX_ERR(0, 176, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
 
-  /* "assimpcy/all.pyx":176
+  /* "assimpcy/all.pyx":178
  *         rMesh.mNumUVComponents[i] = mesh.mNumUVComponents[i]
  * 
  *     if rMesh.HasPositions:             # <<<<<<<<<<<<<<
@@ -6445,52 +6435,52 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   __pyx_t_5 = (__pyx_v_rMesh->HasPositions != 0);
   if (__pyx_t_5) {
 
-    /* "assimpcy/all.pyx":177
+    /* "assimpcy/all.pyx":179
  * 
  *     if rMesh.HasPositions:
  *         rMesh.mVertices = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *         with nogil:
  *             memcpy(<void*>rMesh.mVertices.data, <void*>&mesh.mVertices[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  */
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_8);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_7);
     __Pyx_INCREF(__pyx_int_3);
     __Pyx_GIVEREF(__pyx_int_3);
-    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_3);
-    __pyx_t_8 = 0;
-    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
-    __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_13 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_13) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_8, __pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_3);
+    __pyx_t_7 = 0;
+    __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_12) < 0) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (!(likely(((__pyx_t_13) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_13, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 177, __pyx_L1_error)
-    __Pyx_GIVEREF(__pyx_t_13);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (!(likely(((__pyx_t_12) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_12, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GIVEREF(__pyx_t_12);
     __Pyx_GOTREF(__pyx_v_rMesh->mVertices);
     __Pyx_DECREF(((PyObject *)__pyx_v_rMesh->mVertices));
-    __pyx_v_rMesh->mVertices = ((PyArrayObject *)__pyx_t_13);
-    __pyx_t_13 = 0;
+    __pyx_v_rMesh->mVertices = ((PyArrayObject *)__pyx_t_12);
+    __pyx_t_12 = 0;
 
-    /* "assimpcy/all.pyx":178
+    /* "assimpcy/all.pyx":180
  *     if rMesh.HasPositions:
  *         rMesh.mVertices = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6505,7 +6495,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
         #endif
         /*try:*/ {
 
-          /* "assimpcy/all.pyx":179
+          /* "assimpcy/all.pyx":181
  *         rMesh.mVertices = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:
  *             memcpy(<void*>rMesh.mVertices.data, <void*>&mesh.mVertices[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))             # <<<<<<<<<<<<<<
@@ -6515,7 +6505,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
           memcpy(((void *)__pyx_v_rMesh->mVertices->data), ((void *)(&(__pyx_v_mesh->mVertices[0]))), ((__pyx_v_mesh->mNumVertices * 3) * (sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t))));
         }
 
-        /* "assimpcy/all.pyx":178
+        /* "assimpcy/all.pyx":180
  *     if rMesh.HasPositions:
  *         rMesh.mVertices = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6534,7 +6524,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
         }
     }
 
-    /* "assimpcy/all.pyx":176
+    /* "assimpcy/all.pyx":178
  *         rMesh.mNumUVComponents[i] = mesh.mNumUVComponents[i]
  * 
  *     if rMesh.HasPositions:             # <<<<<<<<<<<<<<
@@ -6543,7 +6533,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   }
 
-  /* "assimpcy/all.pyx":181
+  /* "assimpcy/all.pyx":183
  *             memcpy(<void*>rMesh.mVertices.data, <void*>&mesh.mVertices[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  * 
  *     if rMesh.HasNormals:             # <<<<<<<<<<<<<<
@@ -6553,52 +6543,52 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   __pyx_t_5 = (__pyx_v_rMesh->HasNormals != 0);
   if (__pyx_t_5) {
 
-    /* "assimpcy/all.pyx":182
+    /* "assimpcy/all.pyx":184
  * 
  *     if rMesh.HasNormals:
  *         rMesh.mNormals = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *         with nogil:
  *             memcpy(<void*>rMesh.mNormals.data, <void*>&mesh.mNormals[0],  mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  */
-    __pyx_t_13 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __pyx_t_13 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_13);
-    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_13);
+    __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    __pyx_t_12 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_12);
+    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_12);
     __Pyx_INCREF(__pyx_int_3);
     __Pyx_GIVEREF(__pyx_int_3);
-    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_int_3);
-    __pyx_t_13 = 0;
-    __pyx_t_13 = PyTuple_New(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_8);
-    __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_13, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_int_3);
+    __pyx_t_12 = 0;
+    __pyx_t_12 = PyTuple_New(1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_7);
+    __pyx_t_7 = 0;
+    __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_1) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GIVEREF(__pyx_t_2);
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_12, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GIVEREF(__pyx_t_1);
     __Pyx_GOTREF(__pyx_v_rMesh->mNormals);
     __Pyx_DECREF(((PyObject *)__pyx_v_rMesh->mNormals));
-    __pyx_v_rMesh->mNormals = ((PyArrayObject *)__pyx_t_2);
-    __pyx_t_2 = 0;
+    __pyx_v_rMesh->mNormals = ((PyArrayObject *)__pyx_t_1);
+    __pyx_t_1 = 0;
 
-    /* "assimpcy/all.pyx":183
+    /* "assimpcy/all.pyx":185
  *     if rMesh.HasNormals:
  *         rMesh.mNormals = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6613,7 +6603,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
         #endif
         /*try:*/ {
 
-          /* "assimpcy/all.pyx":184
+          /* "assimpcy/all.pyx":186
  *         rMesh.mNormals = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:
  *             memcpy(<void*>rMesh.mNormals.data, <void*>&mesh.mNormals[0],  mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))             # <<<<<<<<<<<<<<
@@ -6623,7 +6613,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
           memcpy(((void *)__pyx_v_rMesh->mNormals->data), ((void *)(&(__pyx_v_mesh->mNormals[0]))), ((__pyx_v_mesh->mNumVertices * 3) * (sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t))));
         }
 
-        /* "assimpcy/all.pyx":183
+        /* "assimpcy/all.pyx":185
  *     if rMesh.HasNormals:
  *         rMesh.mNormals = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6642,7 +6632,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
         }
     }
 
-    /* "assimpcy/all.pyx":181
+    /* "assimpcy/all.pyx":183
  *             memcpy(<void*>rMesh.mVertices.data, <void*>&mesh.mVertices[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  * 
  *     if rMesh.HasNormals:             # <<<<<<<<<<<<<<
@@ -6651,7 +6641,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   }
 
-  /* "assimpcy/all.pyx":186
+  /* "assimpcy/all.pyx":188
  *             memcpy(<void*>rMesh.mNormals.data, <void*>&mesh.mNormals[0],  mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  * 
  *     if rMesh.HasTangentsAndBitangents:             # <<<<<<<<<<<<<<
@@ -6661,97 +6651,97 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   __pyx_t_5 = (__pyx_v_rMesh->HasTangentsAndBitangents != 0);
   if (__pyx_t_5) {
 
-    /* "assimpcy/all.pyx":187
+    /* "assimpcy/all.pyx":189
  * 
  *     if rMesh.HasTangentsAndBitangents:
  *         rMesh.mTangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *         rMesh.mBitangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_13 = PyTuple_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __Pyx_GIVEREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_2);
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_1);
     __Pyx_INCREF(__pyx_int_3);
     __Pyx_GIVEREF(__pyx_int_3);
-    PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_int_3);
-    __pyx_t_2 = 0;
-    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
+    PyTuple_SET_ITEM(__pyx_t_12, 1, __pyx_int_3);
+    __pyx_t_1 = 0;
+    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_12);
+    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_12);
+    __pyx_t_12 = 0;
+    __pyx_t_12 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_13);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_13);
-    __pyx_t_13 = 0;
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_dtype, __pyx_t_1) < 0) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, __pyx_t_13); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    if (PyDict_SetItem(__pyx_t_12, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 187, __pyx_L1_error)
-    __Pyx_GIVEREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_1, __pyx_t_12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_GIVEREF(__pyx_t_2);
     __Pyx_GOTREF(__pyx_v_rMesh->mTangents);
     __Pyx_DECREF(((PyObject *)__pyx_v_rMesh->mTangents));
-    __pyx_v_rMesh->mTangents = ((PyArrayObject *)__pyx_t_1);
-    __pyx_t_1 = 0;
+    __pyx_v_rMesh->mTangents = ((PyArrayObject *)__pyx_t_2);
+    __pyx_t_2 = 0;
 
-    /* "assimpcy/all.pyx":188
+    /* "assimpcy/all.pyx":190
  *     if rMesh.HasTangentsAndBitangents:
  *         rMesh.mTangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         rMesh.mBitangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *         with nogil:
  *             memcpy(<void*>rMesh.mTangents.data, <void*>&mesh.mTangents[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 188, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-    __Pyx_INCREF(__pyx_int_3);
-    __Pyx_GIVEREF(__pyx_int_3);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_3);
-    __pyx_t_1 = 0;
-    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+    __Pyx_INCREF(__pyx_int_3);
+    __Pyx_GIVEREF(__pyx_int_3);
+    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_3);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 188, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(0, 188, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 188, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+    __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (!(likely(((__pyx_t_8) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_8, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 188, __pyx_L1_error)
-    __Pyx_GIVEREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_GIVEREF(__pyx_t_7);
     __Pyx_GOTREF(__pyx_v_rMesh->mBitangents);
     __Pyx_DECREF(((PyObject *)__pyx_v_rMesh->mBitangents));
-    __pyx_v_rMesh->mBitangents = ((PyArrayObject *)__pyx_t_8);
-    __pyx_t_8 = 0;
+    __pyx_v_rMesh->mBitangents = ((PyArrayObject *)__pyx_t_7);
+    __pyx_t_7 = 0;
 
-    /* "assimpcy/all.pyx":189
+    /* "assimpcy/all.pyx":191
  *         rMesh.mTangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         rMesh.mBitangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6766,7 +6756,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
         #endif
         /*try:*/ {
 
-          /* "assimpcy/all.pyx":190
+          /* "assimpcy/all.pyx":192
  *         rMesh.mBitangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:
  *             memcpy(<void*>rMesh.mTangents.data, <void*>&mesh.mTangents[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))             # <<<<<<<<<<<<<<
@@ -6775,7 +6765,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
           memcpy(((void *)__pyx_v_rMesh->mTangents->data), ((void *)(&(__pyx_v_mesh->mTangents[0]))), ((__pyx_v_mesh->mNumVertices * 3) * (sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t))));
 
-          /* "assimpcy/all.pyx":191
+          /* "assimpcy/all.pyx":193
  *         with nogil:
  *             memcpy(<void*>rMesh.mTangents.data, <void*>&mesh.mTangents[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  *             memcpy(<void*>rMesh.mBitangents.data, <void*>&mesh.mBitangents[0], sizeof(NUMPYFLOAT_t) * mesh.mNumVertices * 3)             # <<<<<<<<<<<<<<
@@ -6785,7 +6775,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
           memcpy(((void *)__pyx_v_rMesh->mBitangents->data), ((void *)(&(__pyx_v_mesh->mBitangents[0]))), (((sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t)) * __pyx_v_mesh->mNumVertices) * 3));
         }
 
-        /* "assimpcy/all.pyx":189
+        /* "assimpcy/all.pyx":191
  *         rMesh.mTangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         rMesh.mBitangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -6804,7 +6794,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
         }
     }
 
-    /* "assimpcy/all.pyx":186
+    /* "assimpcy/all.pyx":188
  *             memcpy(<void*>rMesh.mNormals.data, <void*>&mesh.mNormals[0],  mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
  * 
  *     if rMesh.HasTangentsAndBitangents:             # <<<<<<<<<<<<<<
@@ -6813,7 +6803,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   }
 
-  /* "assimpcy/all.pyx":193
+  /* "assimpcy/all.pyx":195
  *             memcpy(<void*>rMesh.mBitangents.data, <void*>&mesh.mBitangents[0], sizeof(NUMPYFLOAT_t) * mesh.mNumVertices * 3)
  * 
  *     if rMesh.HasFaces:             # <<<<<<<<<<<<<<
@@ -6823,54 +6813,54 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   __pyx_t_5 = (__pyx_v_rMesh->HasFaces != 0);
   if (__pyx_t_5) {
 
-    /* "assimpcy/all.pyx":194
+    /* "assimpcy/all.pyx":196
  * 
  *     if rMesh.HasFaces:
  *         rMesh.mFaces = np.empty((rMesh.mNumFaces, mesh.mFaces.mNumIndices), dtype=NUMPYINT)             # <<<<<<<<<<<<<<
  *         for i in range(mesh.mNumFaces):
  *             for j in range(mesh.mFaces.mNumIndices):
  */
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 194, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = __Pyx_PyInt_From_unsigned_int(__pyx_v_rMesh->mNumFaces); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mFaces->mNumIndices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyInt_From_unsigned_int(__pyx_v_rMesh->mNumFaces); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mFaces->mNumIndices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_13 = PyTuple_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_t_1);
-    __pyx_t_8 = 0;
-    __pyx_t_1 = 0;
-    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_13);
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_13);
-    __pyx_t_13 = 0;
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYINT); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_13); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_12, 1, __pyx_t_2);
+    __pyx_t_7 = 0;
+    __pyx_t_2 = 0;
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_12);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_12);
+    __pyx_t_12 = 0;
+    __pyx_t_12 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYINT); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    if (PyDict_SetItem(__pyx_t_12, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    if (!(likely(((__pyx_t_8) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_8, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 194, __pyx_L1_error)
-    __Pyx_GIVEREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 196, __pyx_L1_error)
+    __Pyx_GIVEREF(__pyx_t_7);
     __Pyx_GOTREF(__pyx_v_rMesh->mFaces);
     __Pyx_DECREF(((PyObject *)__pyx_v_rMesh->mFaces));
-    __pyx_v_rMesh->mFaces = ((PyArrayObject *)__pyx_t_8);
-    __pyx_t_8 = 0;
+    __pyx_v_rMesh->mFaces = ((PyArrayObject *)__pyx_t_7);
+    __pyx_t_7 = 0;
 
-    /* "assimpcy/all.pyx":195
+    /* "assimpcy/all.pyx":197
  *     if rMesh.HasFaces:
  *         rMesh.mFaces = np.empty((rMesh.mNumFaces, mesh.mFaces.mNumIndices), dtype=NUMPYINT)
  *         for i in range(mesh.mNumFaces):             # <<<<<<<<<<<<<<
@@ -6878,38 +6868,38 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  *                 rMesh.mFaces[i][j] = mesh.mFaces[i].mIndices[j]
  */
     __pyx_t_3 = __pyx_v_mesh->mNumFaces;
-    for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_3; __pyx_t_7+=1) {
-      __pyx_v_i = __pyx_t_7;
+    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_i = __pyx_t_4;
 
-      /* "assimpcy/all.pyx":196
+      /* "assimpcy/all.pyx":198
  *         rMesh.mFaces = np.empty((rMesh.mNumFaces, mesh.mFaces.mNumIndices), dtype=NUMPYINT)
  *         for i in range(mesh.mNumFaces):
  *             for j in range(mesh.mFaces.mNumIndices):             # <<<<<<<<<<<<<<
  *                 rMesh.mFaces[i][j] = mesh.mFaces[i].mIndices[j]
  * 
  */
-      __pyx_t_9 = __pyx_v_mesh->mFaces->mNumIndices;
-      for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-        __pyx_v_j = __pyx_t_10;
+      __pyx_t_8 = __pyx_v_mesh->mFaces->mNumIndices;
+      for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
+        __pyx_v_j = __pyx_t_9;
 
-        /* "assimpcy/all.pyx":197
+        /* "assimpcy/all.pyx":199
  *         for i in range(mesh.mNumFaces):
  *             for j in range(mesh.mFaces.mNumIndices):
  *                 rMesh.mFaces[i][j] = mesh.mFaces[i].mIndices[j]             # <<<<<<<<<<<<<<
  * 
  *     if hasanycoord:
  */
-        __pyx_t_8 = __Pyx_PyInt_From_unsigned_int(((__pyx_v_mesh->mFaces[__pyx_v_i]).mIndices[__pyx_v_j])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 197, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_13 = __Pyx_GetItemInt(((PyObject *)__pyx_v_rMesh->mFaces), __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 197, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        if (unlikely(__Pyx_SetItemInt(__pyx_t_13, __pyx_v_j, __pyx_t_8, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0) < 0)) __PYX_ERR(0, 197, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+        __pyx_t_7 = __Pyx_PyInt_From_unsigned_int(((__pyx_v_mesh->mFaces[__pyx_v_i]).mIndices[__pyx_v_j])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 199, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_12 = __Pyx_GetItemInt(((PyObject *)__pyx_v_rMesh->mFaces), __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 199, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        if (unlikely(__Pyx_SetItemInt(__pyx_t_12, __pyx_v_j, __pyx_t_7, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0) < 0)) __PYX_ERR(0, 199, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
     }
 
-    /* "assimpcy/all.pyx":193
+    /* "assimpcy/all.pyx":195
  *             memcpy(<void*>rMesh.mBitangents.data, <void*>&mesh.mBitangents[0], sizeof(NUMPYFLOAT_t) * mesh.mNumVertices * 3)
  * 
  *     if rMesh.HasFaces:             # <<<<<<<<<<<<<<
@@ -6918,87 +6908,84 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
   }
 
-  /* "assimpcy/all.pyx":199
+  /* "assimpcy/all.pyx":201
  *                 rMesh.mFaces[i][j] = mesh.mFaces[i].mIndices[j]
  * 
  *     if hasanycoord:             # <<<<<<<<<<<<<<
- *         for j in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+ *         for j in range(k):
  *             if rMesh.HasTextureCoords[j]:
  */
   __pyx_t_5 = (__pyx_v_hasanycoord != 0);
   if (__pyx_t_5) {
 
-    /* "assimpcy/all.pyx":200
+    /* "assimpcy/all.pyx":202
  * 
  *     if hasanycoord:
- *         for j in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):             # <<<<<<<<<<<<<<
+ *         for j in range(k):             # <<<<<<<<<<<<<<
  *             if rMesh.HasTextureCoords[j]:
  *                 # tempnd = np.empty((mesh.mNumVertices, rMesh.mNumUVComponents[j]), dtype=NUMPYFLOAT)
  */
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 200, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_8); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
-      __pyx_v_j = __pyx_t_3;
+    __pyx_t_3 = __pyx_v_k;
+    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_j = __pyx_t_4;
 
-      /* "assimpcy/all.pyx":201
+      /* "assimpcy/all.pyx":203
  *     if hasanycoord:
- *         for j in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+ *         for j in range(k):
  *             if rMesh.HasTextureCoords[j]:             # <<<<<<<<<<<<<<
  *                 # tempnd = np.empty((mesh.mNumVertices, rMesh.mNumUVComponents[j]), dtype=NUMPYFLOAT)
  *                 tempnd = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  */
       if (unlikely(__pyx_v_rMesh->HasTextureCoords == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 201, __pyx_L1_error)
+        __PYX_ERR(0, 203, __pyx_L1_error)
       }
-      __pyx_t_5 = __Pyx_PyObject_IsTrue(PyList_GET_ITEM(__pyx_v_rMesh->HasTextureCoords, __pyx_v_j)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 201, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_IsTrue(PyList_GET_ITEM(__pyx_v_rMesh->HasTextureCoords, __pyx_v_j)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 203, __pyx_L1_error)
       if (__pyx_t_5) {
 
-        /* "assimpcy/all.pyx":203
+        /* "assimpcy/all.pyx":205
  *             if rMesh.HasTextureCoords[j]:
  *                 # tempnd = np.empty((mesh.mNumVertices, rMesh.mNumUVComponents[j]), dtype=NUMPYFLOAT)
  *                 tempnd = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *                 with nogil:
  *                     memcpy(<void*>tempnd.data, <void*>&mesh.mTextureCoords[j][0], mesh.mNumVertices *
  */
-        __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_empty); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __pyx_t_8 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_GIVEREF(__pyx_t_8);
-        PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_8);
+        __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_empty); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __pyx_t_7 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_GIVEREF(__pyx_t_7);
+        PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_7);
         __Pyx_INCREF(__pyx_int_3);
         __Pyx_GIVEREF(__pyx_int_3);
-        PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_3);
-        __pyx_t_8 = 0;
-        __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __Pyx_GIVEREF(__pyx_t_1);
-        PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
-        __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_8, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 203, __pyx_L1_error)
-        __Pyx_XDECREF_SET(__pyx_v_tempnd, ((PyArrayObject *)__pyx_t_2));
+        PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_3);
+        __pyx_t_7 = 0;
+        __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_GIVEREF(__pyx_t_2);
+        PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
         __pyx_t_2 = 0;
+        __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_1) < 0) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 205, __pyx_L1_error)
+        __Pyx_XDECREF_SET(__pyx_v_tempnd, ((PyArrayObject *)__pyx_t_1));
+        __pyx_t_1 = 0;
 
-        /* "assimpcy/all.pyx":204
+        /* "assimpcy/all.pyx":206
  *                 # tempnd = np.empty((mesh.mNumVertices, rMesh.mNumUVComponents[j]), dtype=NUMPYFLOAT)
  *                 tempnd = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *                 with nogil:             # <<<<<<<<<<<<<<
@@ -7013,7 +7000,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
             #endif
             /*try:*/ {
 
-              /* "assimpcy/all.pyx":205
+              /* "assimpcy/all.pyx":207
  *                 tempnd = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *                 with nogil:
  *                     memcpy(<void*>tempnd.data, <void*>&mesh.mTextureCoords[j][0], mesh.mNumVertices *             # <<<<<<<<<<<<<<
@@ -7023,7 +7010,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
               memcpy(((void *)__pyx_v_tempnd->data), ((void *)(&((__pyx_v_mesh->mTextureCoords[__pyx_v_j])[0]))), ((__pyx_v_mesh->mNumVertices * 3) * (sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t))));
             }
 
-            /* "assimpcy/all.pyx":204
+            /* "assimpcy/all.pyx":206
  *                 # tempnd = np.empty((mesh.mNumVertices, rMesh.mNumUVComponents[j]), dtype=NUMPYFLOAT)
  *                 tempnd = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
  *                 with nogil:             # <<<<<<<<<<<<<<
@@ -7042,7 +7029,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
             }
         }
 
-        /* "assimpcy/all.pyx":207
+        /* "assimpcy/all.pyx":209
  *                     memcpy(<void*>tempnd.data, <void*>&mesh.mTextureCoords[j][0], mesh.mNumVertices *
  *                                                    3 * sizeof(NUMPYFLOAT_t))
  *                 rMesh.mTextureCoords[j] = tempnd[:,:rMesh.mNumUVComponents[j]]             # <<<<<<<<<<<<<<
@@ -7051,31 +7038,31 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
         if (unlikely(__pyx_v_rMesh->mNumUVComponents == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 207, __pyx_L1_error)
+          __PYX_ERR(0, 209, __pyx_L1_error)
         }
-        __pyx_t_2 = PySlice_New(Py_None, PyList_GET_ITEM(__pyx_v_rMesh->mNumUVComponents, __pyx_v_j), Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+        __pyx_t_1 = PySlice_New(Py_None, PyList_GET_ITEM(__pyx_v_rMesh->mNumUVComponents, __pyx_v_j), Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_slice__4);
         __Pyx_GIVEREF(__pyx_slice__4);
-        PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_slice__4);
-        __Pyx_GIVEREF(__pyx_t_2);
-        PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
-        __pyx_t_2 = 0;
-        __pyx_t_2 = PyObject_GetItem(((PyObject *)__pyx_v_tempnd), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_slice__4);
+        __Pyx_GIVEREF(__pyx_t_1);
+        PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
+        __pyx_t_1 = 0;
+        __pyx_t_1 = PyObject_GetItem(((PyObject *)__pyx_v_tempnd), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         if (unlikely(__pyx_v_rMesh->mTextureCoords == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 207, __pyx_L1_error)
+          __PYX_ERR(0, 209, __pyx_L1_error)
         }
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_rMesh->mTextureCoords, __pyx_v_j, __pyx_t_2, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 1, 0, 0) < 0)) __PYX_ERR(0, 207, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_rMesh->mTextureCoords, __pyx_v_j, __pyx_t_1, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 1, 0, 0) < 0)) __PYX_ERR(0, 209, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "assimpcy/all.pyx":201
+        /* "assimpcy/all.pyx":203
  *     if hasanycoord:
- *         for j in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+ *         for j in range(k):
  *             if rMesh.HasTextureCoords[j]:             # <<<<<<<<<<<<<<
  *                 # tempnd = np.empty((mesh.mNumVertices, rMesh.mNumUVComponents[j]), dtype=NUMPYFLOAT)
  *                 tempnd = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
@@ -7083,96 +7070,102 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
       }
     }
 
-    /* "assimpcy/all.pyx":199
+    /* "assimpcy/all.pyx":201
  *                 rMesh.mFaces[i][j] = mesh.mFaces[i].mIndices[j]
  * 
  *     if hasanycoord:             # <<<<<<<<<<<<<<
- *         for j in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+ *         for j in range(k):
  *             if rMesh.HasTextureCoords[j]:
  */
   }
 
-  /* "assimpcy/all.pyx":209
+  /* "assimpcy/all.pyx":211
  *                 rMesh.mTextureCoords[j] = tempnd[:,:rMesh.mNumUVComponents[j]]
  * 
  *     if hasanycolor:             # <<<<<<<<<<<<<<
- *         for j in range(AI_MAX_NUMBER_OF_COLOR_SETS):
- *             if rMesh.HasVertexColors[j]:
+ *         k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *         for j in range(k):
  */
   __pyx_t_5 = (__pyx_v_hasanycolor != 0);
   if (__pyx_t_5) {
 
-    /* "assimpcy/all.pyx":210
+    /* "assimpcy/all.pyx":212
  * 
  *     if hasanycolor:
- *         for j in range(AI_MAX_NUMBER_OF_COLOR_SETS):             # <<<<<<<<<<<<<<
+ *         k = AI_MAX_NUMBER_OF_COLOR_SETS             # <<<<<<<<<<<<<<
+ *         for j in range(k):
+ *             if rMesh.HasVertexColors[j]:
+ */
+    __pyx_v_k = __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_COLOR_SETS;
+
+    /* "assimpcy/all.pyx":213
+ *     if hasanycolor:
+ *         k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *         for j in range(k):             # <<<<<<<<<<<<<<
  *             if rMesh.HasVertexColors[j]:
  *                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_AI_MAX_NUMBER_OF_COLOR_SETS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_t_2); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 210, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
-      __pyx_v_j = __pyx_t_3;
+    __pyx_t_3 = __pyx_v_k;
+    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_j = __pyx_t_4;
 
-      /* "assimpcy/all.pyx":211
- *     if hasanycolor:
- *         for j in range(AI_MAX_NUMBER_OF_COLOR_SETS):
+      /* "assimpcy/all.pyx":214
+ *         k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *         for j in range(k):
  *             if rMesh.HasVertexColors[j]:             # <<<<<<<<<<<<<<
  *                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)
  *                 with nogil:
  */
       if (unlikely(__pyx_v_rMesh->HasVertexColors == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 211, __pyx_L1_error)
+        __PYX_ERR(0, 214, __pyx_L1_error)
       }
-      __pyx_t_5 = __Pyx_PyObject_IsTrue(PyList_GET_ITEM(__pyx_v_rMesh->HasVertexColors, __pyx_v_j)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_IsTrue(PyList_GET_ITEM(__pyx_v_rMesh->HasVertexColors, __pyx_v_j)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 214, __pyx_L1_error)
       if (__pyx_t_5) {
 
-        /* "assimpcy/all.pyx":212
- *         for j in range(AI_MAX_NUMBER_OF_COLOR_SETS):
+        /* "assimpcy/all.pyx":215
+ *         for j in range(k):
  *             if rMesh.HasVertexColors[j]:
  *                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *                 with nogil:
  *                     memcpy(<void*>tempnd.data, <void*>&mesh.mColors[j][0], mesh.mNumVertices * 4 * sizeof(NUMPYFLOAT_t))
  */
-        __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __Pyx_GIVEREF(__pyx_t_2);
-        PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_2);
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_mesh->mNumVertices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_GIVEREF(__pyx_t_1);
+        PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1);
         __Pyx_INCREF(__pyx_int_4);
         __Pyx_GIVEREF(__pyx_int_4);
-        PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_int_4);
-        __pyx_t_2 = 0;
-        __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_GIVEREF(__pyx_t_8);
-        PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_8);
-        __pyx_t_8 = 0;
-        __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_13 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_13) < 0) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_8); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_int_4);
+        __pyx_t_1 = 0;
+        __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_GIVEREF(__pyx_t_7);
+        PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_7);
+        __pyx_t_7 = 0;
+        __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_12) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (!(likely(((__pyx_t_13) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_13, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 212, __pyx_L1_error)
-        __Pyx_XDECREF_SET(__pyx_v_tempnd, ((PyArrayObject *)__pyx_t_13));
-        __pyx_t_13 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        if (!(likely(((__pyx_t_12) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_12, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_XDECREF_SET(__pyx_v_tempnd, ((PyArrayObject *)__pyx_t_12));
+        __pyx_t_12 = 0;
 
-        /* "assimpcy/all.pyx":213
+        /* "assimpcy/all.pyx":216
  *             if rMesh.HasVertexColors[j]:
  *                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)
  *                 with nogil:             # <<<<<<<<<<<<<<
@@ -7187,7 +7180,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
             #endif
             /*try:*/ {
 
-              /* "assimpcy/all.pyx":214
+              /* "assimpcy/all.pyx":217
  *                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)
  *                 with nogil:
  *                     memcpy(<void*>tempnd.data, <void*>&mesh.mColors[j][0], mesh.mNumVertices * 4 * sizeof(NUMPYFLOAT_t))             # <<<<<<<<<<<<<<
@@ -7197,7 +7190,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
               memcpy(((void *)__pyx_v_tempnd->data), ((void *)(&((__pyx_v_mesh->mColors[__pyx_v_j])[0]))), ((__pyx_v_mesh->mNumVertices * 4) * (sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t))));
             }
 
-            /* "assimpcy/all.pyx":213
+            /* "assimpcy/all.pyx":216
  *             if rMesh.HasVertexColors[j]:
  *                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)
  *                 with nogil:             # <<<<<<<<<<<<<<
@@ -7216,7 +7209,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
             }
         }
 
-        /* "assimpcy/all.pyx":215
+        /* "assimpcy/all.pyx":218
  *                 with nogil:
  *                     memcpy(<void*>tempnd.data, <void*>&mesh.mColors[j][0], mesh.mNumVertices * 4 * sizeof(NUMPYFLOAT_t))
  *                 rMesh.mColors[j] = tempnd             # <<<<<<<<<<<<<<
@@ -7225,13 +7218,13 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  */
         if (unlikely(__pyx_v_rMesh->mColors == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 215, __pyx_L1_error)
+          __PYX_ERR(0, 218, __pyx_L1_error)
         }
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_rMesh->mColors, __pyx_v_j, ((PyObject *)__pyx_v_tempnd), unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 1, 0, 0) < 0)) __PYX_ERR(0, 215, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_rMesh->mColors, __pyx_v_j, ((PyObject *)__pyx_v_tempnd), unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 1, 0, 0) < 0)) __PYX_ERR(0, 218, __pyx_L1_error)
 
-        /* "assimpcy/all.pyx":211
- *     if hasanycolor:
- *         for j in range(AI_MAX_NUMBER_OF_COLOR_SETS):
+        /* "assimpcy/all.pyx":214
+ *         k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *         for j in range(k):
  *             if rMesh.HasVertexColors[j]:             # <<<<<<<<<<<<<<
  *                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)
  *                 with nogil:
@@ -7239,16 +7232,16 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
       }
     }
 
-    /* "assimpcy/all.pyx":209
+    /* "assimpcy/all.pyx":211
  *                 rMesh.mTextureCoords[j] = tempnd[:,:rMesh.mNumUVComponents[j]]
  * 
  *     if hasanycolor:             # <<<<<<<<<<<<<<
- *         for j in range(AI_MAX_NUMBER_OF_COLOR_SETS):
- *             if rMesh.HasVertexColors[j]:
+ *         k = AI_MAX_NUMBER_OF_COLOR_SETS
+ *         for j in range(k):
  */
   }
 
-  /* "assimpcy/all.pyx":217
+  /* "assimpcy/all.pyx":220
  *                 rMesh.mColors[j] = tempnd
  * 
  *     return rMesh             # <<<<<<<<<<<<<<
@@ -7265,15 +7258,15 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
  * @cython.nonecheck(False)
  * cdef aiMesh buildMesh(cMesh.aiMesh* mesh):             # <<<<<<<<<<<<<<
  *     cdef bint val, hasanycoord, hasanycolor = 0
- *     cdef unsigned int i, j = 0
+ *     cdef unsigned int i, j = 0, k
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_13);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_12);
   __Pyx_AddTraceback("assimpcy.all.buildMesh", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -7286,7 +7279,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMesh *__pyx_f_8assimpcy_3all_buildMesh(
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":233
+/* "assimpcy/all.pyx":236
  * 
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -7316,14 +7309,14 @@ static int __pyx_pf_8assimpcy_3all_6aiNode___init__(struct __pyx_obj_8assimpcy_3
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "assimpcy/all.pyx":234
+  /* "assimpcy/all.pyx":237
  * 
  *     def __init__(self):
  *         self.mChildren = []             # <<<<<<<<<<<<<<
  *         self.mMeshes = []
  *         self.mName = ''
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mChildren);
@@ -7331,14 +7324,14 @@ static int __pyx_pf_8assimpcy_3all_6aiNode___init__(struct __pyx_obj_8assimpcy_3
   __pyx_v_self->mChildren = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":235
+  /* "assimpcy/all.pyx":238
  *     def __init__(self):
  *         self.mChildren = []
  *         self.mMeshes = []             # <<<<<<<<<<<<<<
  *         self.mName = ''
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mMeshes);
@@ -7346,7 +7339,7 @@ static int __pyx_pf_8assimpcy_3all_6aiNode___init__(struct __pyx_obj_8assimpcy_3
   __pyx_v_self->mMeshes = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":236
+  /* "assimpcy/all.pyx":239
  *         self.mChildren = []
  *         self.mMeshes = []
  *         self.mName = ''             # <<<<<<<<<<<<<<
@@ -7359,7 +7352,7 @@ static int __pyx_pf_8assimpcy_3all_6aiNode___init__(struct __pyx_obj_8assimpcy_3
   __Pyx_DECREF(__pyx_v_self->mName);
   __pyx_v_self->mName = __pyx_kp_s_;
 
-  /* "assimpcy/all.pyx":233
+  /* "assimpcy/all.pyx":236
  * 
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -7379,7 +7372,7 @@ static int __pyx_pf_8assimpcy_3all_6aiNode___init__(struct __pyx_obj_8assimpcy_3
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":238
+/* "assimpcy/all.pyx":241
  *         self.mName = ''
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -7405,7 +7398,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_2__str__(struct __pyx_obj_8assi
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "assimpcy/all.pyx":239
+  /* "assimpcy/all.pyx":242
  * 
  *     def __str__(self):
  *         return self.mName             # <<<<<<<<<<<<<<
@@ -7417,7 +7410,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_2__str__(struct __pyx_obj_8assi
   __pyx_r = __pyx_v_self->mName;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":238
+  /* "assimpcy/all.pyx":241
  *         self.mName = ''
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -7432,7 +7425,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_2__str__(struct __pyx_obj_8assi
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":224
+/* "assimpcy/all.pyx":227
  * 
  * cdef class aiNode:
  *     cdef readonly list mChildren             # <<<<<<<<<<<<<<
@@ -7469,7 +7462,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_9mChildren___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":225
+/* "assimpcy/all.pyx":228
  * cdef class aiNode:
  *     cdef readonly list mChildren
  *     cdef readonly str mName             # <<<<<<<<<<<<<<
@@ -7506,7 +7499,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_5mName___get__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":226
+/* "assimpcy/all.pyx":229
  *     cdef readonly list mChildren
  *     cdef readonly str mName
  *     cdef readonly int mNumChildren             # <<<<<<<<<<<<<<
@@ -7533,7 +7526,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_12mNumChildren___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumChildren); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumChildren); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7550,7 +7543,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_12mNumChildren___get__(struct _
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":227
+/* "assimpcy/all.pyx":230
  *     cdef readonly str mName
  *     cdef readonly int mNumChildren
  *     cdef readonly aiNode mParent             # <<<<<<<<<<<<<<
@@ -7587,7 +7580,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_7mParent___get__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":228
+/* "assimpcy/all.pyx":231
  *     cdef readonly int mNumChildren
  *     cdef readonly aiNode mParent
  *     cdef readonly int mNumMeshes             # <<<<<<<<<<<<<<
@@ -7614,7 +7607,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_10mNumMeshes___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7631,7 +7624,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_10mNumMeshes___get__(struct __p
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":229
+/* "assimpcy/all.pyx":232
  *     cdef readonly aiNode mParent
  *     cdef readonly int mNumMeshes
  *     cdef readonly list mMeshes             # <<<<<<<<<<<<<<
@@ -7668,7 +7661,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_7mMeshes___get__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":230
+/* "assimpcy/all.pyx":233
  *     cdef readonly int mNumMeshes
  *     cdef readonly list mMeshes
  *     cdef readonly np.ndarray mTransformation             # <<<<<<<<<<<<<<
@@ -8046,17 +8039,18 @@ static PyObject *__pyx_pf_8assimpcy_3all_6aiNode_6__setstate_cython__(struct __p
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":241
+/* "assimpcy/all.pyx":244
  *         return self.mName
  * 
  * cdef aiNode buildNode(cScene.aiNode* node, aiNode parent):             # <<<<<<<<<<<<<<
  *     cdef aiNode rNode = aiNode()
- *     cdef unsigned int i = 0
+ *     cdef unsigned int i = 0, j
  */
 
 static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(aiNode *__pyx_v_node, struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_v_parent) {
   struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_v_rNode = 0;
   unsigned int __pyx_v_i;
+  unsigned int __pyx_v_j;
   struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -8064,33 +8058,34 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   int __pyx_t_5;
-  int __pyx_t_6;
+  unsigned int __pyx_t_6;
+  int __pyx_t_7;
   __Pyx_RefNannySetupContext("buildNode", 0);
 
-  /* "assimpcy/all.pyx":242
+  /* "assimpcy/all.pyx":245
  * 
  * cdef aiNode buildNode(cScene.aiNode* node, aiNode parent):
  *     cdef aiNode rNode = aiNode()             # <<<<<<<<<<<<<<
- *     cdef unsigned int i = 0
+ *     cdef unsigned int i = 0, j
  *     rNode.mParent = parent
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiNode), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiNode), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_rNode = ((struct __pyx_obj_8assimpcy_3all_aiNode *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":243
+  /* "assimpcy/all.pyx":246
  * cdef aiNode buildNode(cScene.aiNode* node, aiNode parent):
  *     cdef aiNode rNode = aiNode()
- *     cdef unsigned int i = 0             # <<<<<<<<<<<<<<
+ *     cdef unsigned int i = 0, j             # <<<<<<<<<<<<<<
  *     rNode.mParent = parent
  *     rNode.mNumMeshes = node.mNumMeshes
  */
   __pyx_v_i = 0;
 
-  /* "assimpcy/all.pyx":244
+  /* "assimpcy/all.pyx":247
  *     cdef aiNode rNode = aiNode()
- *     cdef unsigned int i = 0
+ *     cdef unsigned int i = 0, j
  *     rNode.mParent = parent             # <<<<<<<<<<<<<<
  *     rNode.mNumMeshes = node.mNumMeshes
  *     rNode.mName = str(node.mName.data)
@@ -8101,8 +8096,8 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
   __Pyx_DECREF(((PyObject *)__pyx_v_rNode->mParent));
   __pyx_v_rNode->mParent = __pyx_v_parent;
 
-  /* "assimpcy/all.pyx":245
- *     cdef unsigned int i = 0
+  /* "assimpcy/all.pyx":248
+ *     cdef unsigned int i = 0, j
  *     rNode.mParent = parent
  *     rNode.mNumMeshes = node.mNumMeshes             # <<<<<<<<<<<<<<
  *     rNode.mName = str(node.mName.data)
@@ -8111,31 +8106,31 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
   __pyx_t_2 = __pyx_v_node->mNumMeshes;
   __pyx_v_rNode->mNumMeshes = __pyx_t_2;
 
-  /* "assimpcy/all.pyx":246
+  /* "assimpcy/all.pyx":249
  *     rNode.mParent = parent
  *     rNode.mNumMeshes = node.mNumMeshes
  *     rNode.mName = str(node.mName.data)             # <<<<<<<<<<<<<<
  *     rNode.mNumChildren = node.mNumChildren
  *     rNode.mTransformation = np.empty((4, 4), dtype=NUMPYFLOAT)
  */
-  __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_node->mName.data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_node->mName.data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 246, __pyx_L1_error)
+  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_rNode->mName);
   __Pyx_DECREF(__pyx_v_rNode->mName);
   __pyx_v_rNode->mName = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":247
+  /* "assimpcy/all.pyx":250
  *     rNode.mNumMeshes = node.mNumMeshes
  *     rNode.mName = str(node.mName.data)
  *     rNode.mNumChildren = node.mNumChildren             # <<<<<<<<<<<<<<
@@ -8145,36 +8140,36 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
   __pyx_t_2 = __pyx_v_node->mNumChildren;
   __pyx_v_rNode->mNumChildren = __pyx_t_2;
 
-  /* "assimpcy/all.pyx":248
+  /* "assimpcy/all.pyx":251
  *     rNode.mName = str(node.mName.data)
  *     rNode.mNumChildren = node.mNumChildren
  *     rNode.mTransformation = np.empty((4, 4), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *     with nogil:
  *         memcpy(<void*>rNode.mTransformation.data, <void*>&node.mTransformation, sizeof(NUMPYFLOAT_t) * 16)
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 248, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__6, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__6, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 248, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_4);
   __Pyx_GOTREF(__pyx_v_rNode->mTransformation);
   __Pyx_DECREF(((PyObject *)__pyx_v_rNode->mTransformation));
   __pyx_v_rNode->mTransformation = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "assimpcy/all.pyx":249
+  /* "assimpcy/all.pyx":252
  *     rNode.mNumChildren = node.mNumChildren
  *     rNode.mTransformation = np.empty((4, 4), dtype=NUMPYFLOAT)
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -8189,17 +8184,17 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":250
+        /* "assimpcy/all.pyx":253
  *     rNode.mTransformation = np.empty((4, 4), dtype=NUMPYFLOAT)
  *     with nogil:
  *         memcpy(<void*>rNode.mTransformation.data, <void*>&node.mTransformation, sizeof(NUMPYFLOAT_t) * 16)             # <<<<<<<<<<<<<<
  * 
- *     for i in range(rNode.mNumChildren):
+ *     j = rNode.mNumChildren
  */
         memcpy(((void *)__pyx_v_rNode->mTransformation->data), ((void *)(&__pyx_v_node->mTransformation)), ((sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t)) * 16));
       }
 
-      /* "assimpcy/all.pyx":249
+      /* "assimpcy/all.pyx":252
  *     rNode.mNumChildren = node.mNumChildren
  *     rNode.mTransformation = np.empty((4, 4), dtype=NUMPYFLOAT)
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -8218,64 +8213,84 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
       }
   }
 
-  /* "assimpcy/all.pyx":252
+  /* "assimpcy/all.pyx":255
  *         memcpy(<void*>rNode.mTransformation.data, <void*>&node.mTransformation, sizeof(NUMPYFLOAT_t) * 16)
  * 
- *     for i in range(rNode.mNumChildren):             # <<<<<<<<<<<<<<
+ *     j = rNode.mNumChildren             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         rNode.mChildren.append(buildNode(node.mChildren[i], rNode))
+ */
+  __pyx_t_5 = __pyx_v_rNode->mNumChildren;
+  __pyx_v_j = __pyx_t_5;
+
+  /* "assimpcy/all.pyx":256
+ * 
+ *     j = rNode.mNumChildren
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         rNode.mChildren.append(buildNode(node.mChildren[i], rNode))
  * 
  */
-  __pyx_t_5 = __pyx_v_rNode->mNumChildren;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_5; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_j;
+  for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_2; __pyx_t_6+=1) {
+    __pyx_v_i = __pyx_t_6;
 
-    /* "assimpcy/all.pyx":253
- * 
- *     for i in range(rNode.mNumChildren):
+    /* "assimpcy/all.pyx":257
+ *     j = rNode.mNumChildren
+ *     for i in range(j):
  *         rNode.mChildren.append(buildNode(node.mChildren[i], rNode))             # <<<<<<<<<<<<<<
  * 
- *     for i in range(rNode.mNumMeshes):
+ *     j = rNode.mNumMeshes
  */
     if (unlikely(__pyx_v_rNode->mChildren == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 253, __pyx_L1_error)
+      __PYX_ERR(0, 257, __pyx_L1_error)
     }
-    __pyx_t_4 = ((PyObject *)__pyx_f_8assimpcy_3all_buildNode((__pyx_v_node->mChildren[__pyx_v_i]), __pyx_v_rNode)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L1_error)
+    __pyx_t_4 = ((PyObject *)__pyx_f_8assimpcy_3all_buildNode((__pyx_v_node->mChildren[__pyx_v_i]), __pyx_v_rNode)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rNode->mChildren, __pyx_t_4); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 253, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_rNode->mChildren, __pyx_t_4); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
 
-  /* "assimpcy/all.pyx":255
+  /* "assimpcy/all.pyx":259
  *         rNode.mChildren.append(buildNode(node.mChildren[i], rNode))
  * 
- *     for i in range(rNode.mNumMeshes):             # <<<<<<<<<<<<<<
+ *     j = rNode.mNumMeshes             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         rNode.mMeshes.append(node.mMeshes[i])
+ */
+  __pyx_t_5 = __pyx_v_rNode->mNumMeshes;
+  __pyx_v_j = __pyx_t_5;
+
+  /* "assimpcy/all.pyx":260
+ * 
+ *     j = rNode.mNumMeshes
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         rNode.mMeshes.append(node.mMeshes[i])
  *     return rNode
  */
-  __pyx_t_5 = __pyx_v_rNode->mNumMeshes;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_5; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_j;
+  for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_2; __pyx_t_6+=1) {
+    __pyx_v_i = __pyx_t_6;
 
-    /* "assimpcy/all.pyx":256
- * 
- *     for i in range(rNode.mNumMeshes):
+    /* "assimpcy/all.pyx":261
+ *     j = rNode.mNumMeshes
+ *     for i in range(j):
  *         rNode.mMeshes.append(node.mMeshes[i])             # <<<<<<<<<<<<<<
  *     return rNode
  * 
  */
     if (unlikely(__pyx_v_rNode->mMeshes == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 256, __pyx_L1_error)
+      __PYX_ERR(0, 261, __pyx_L1_error)
     }
-    __pyx_t_4 = __Pyx_PyInt_From_unsigned_int((__pyx_v_node->mMeshes[__pyx_v_i])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_unsigned_int((__pyx_v_node->mMeshes[__pyx_v_i])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_rNode->mMeshes, __pyx_t_4); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_rNode->mMeshes, __pyx_t_4); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 261, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
 
-  /* "assimpcy/all.pyx":257
- *     for i in range(rNode.mNumMeshes):
+  /* "assimpcy/all.pyx":262
+ *     for i in range(j):
  *         rNode.mMeshes.append(node.mMeshes[i])
  *     return rNode             # <<<<<<<<<<<<<<
  * 
@@ -8286,12 +8301,12 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
   __pyx_r = __pyx_v_rNode;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":241
+  /* "assimpcy/all.pyx":244
  *         return self.mName
  * 
  * cdef aiNode buildNode(cScene.aiNode* node, aiNode parent):             # <<<<<<<<<<<<<<
  *     cdef aiNode rNode = aiNode()
- *     cdef unsigned int i = 0
+ *     cdef unsigned int i = 0, j
  */
 
   /* function exit code */
@@ -8308,7 +8323,7 @@ static struct __pyx_obj_8assimpcy_3all_aiNode *__pyx_f_8assimpcy_3all_buildNode(
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":265
+/* "assimpcy/all.pyx":270
  *     cdef readonly dict properties
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -8338,14 +8353,14 @@ static int __pyx_pf_8assimpcy_3all_10aiMaterial___init__(struct __pyx_obj_8assim
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "assimpcy/all.pyx":266
+  /* "assimpcy/all.pyx":271
  * 
  *     def __init__(self):
  *         self.properties = {}             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->properties);
@@ -8353,7 +8368,7 @@ static int __pyx_pf_8assimpcy_3all_10aiMaterial___init__(struct __pyx_obj_8assim
   __pyx_v_self->properties = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":265
+  /* "assimpcy/all.pyx":270
  *     cdef readonly dict properties
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -8373,7 +8388,7 @@ static int __pyx_pf_8assimpcy_3all_10aiMaterial___init__(struct __pyx_obj_8assim
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":268
+/* "assimpcy/all.pyx":273
  *         self.properties = {}
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -8400,7 +8415,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiMaterial_2__repr__(struct __pyx_obj
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "assimpcy/all.pyx":269
+  /* "assimpcy/all.pyx":274
  * 
  *     def __repr__(self):
  *         return self.properties.get('NAME', '')             # <<<<<<<<<<<<<<
@@ -8410,15 +8425,15 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiMaterial_2__repr__(struct __pyx_obj
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->properties == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
-    __PYX_ERR(0, 269, __pyx_L1_error)
+    __PYX_ERR(0, 274, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_self->properties, __pyx_n_s_NAME, __pyx_kp_s_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_self->properties, __pyx_n_s_NAME, __pyx_kp_s_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":268
+  /* "assimpcy/all.pyx":273
  *         self.properties = {}
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -8437,7 +8452,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiMaterial_2__repr__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":263
+/* "assimpcy/all.pyx":268
  * 
  * cdef class aiMaterial:
  *     cdef readonly dict properties             # <<<<<<<<<<<<<<
@@ -8761,7 +8776,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiMaterial_6__setstate_cython__(struc
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":274
+/* "assimpcy/all.pyx":279
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):             # <<<<<<<<<<<<<<
@@ -8796,7 +8811,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
   PyObject *__pyx_t_10 = NULL;
   __Pyx_RefNannySetupContext("buildMaterial", 0);
 
-  /* "assimpcy/all.pyx":279
+  /* "assimpcy/all.pyx":284
  *     cdef dataStorageI pvalI
  *     cdef cTypes.aiString* pvalS
  *     cdef unsigned int pvalsize, i, j = 0             # <<<<<<<<<<<<<<
@@ -8805,7 +8820,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
   __pyx_v_j = 0;
 
-  /* "assimpcy/all.pyx":280
+  /* "assimpcy/all.pyx":285
  *     cdef cTypes.aiString* pvalS
  *     cdef unsigned int pvalsize, i, j = 0
  *     cdef int res = 0             # <<<<<<<<<<<<<<
@@ -8814,7 +8829,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
   __pyx_v_res = 0;
 
-  /* "assimpcy/all.pyx":281
+  /* "assimpcy/all.pyx":286
  *     cdef unsigned int pvalsize, i, j = 0
  *     cdef int res = 0
  *     cdef object propval = None             # <<<<<<<<<<<<<<
@@ -8824,19 +8839,19 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
   __Pyx_INCREF(Py_None);
   __pyx_v_propval = Py_None;
 
-  /* "assimpcy/all.pyx":282
+  /* "assimpcy/all.pyx":287
  *     cdef int res = 0
  *     cdef object propval = None
  *     cdef aiMaterial nMat = aiMaterial()             # <<<<<<<<<<<<<<
  *     cdef str sname
  *     cdef int ptype
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiMaterial), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiMaterial), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_nMat = ((struct __pyx_obj_8assimpcy_3all_aiMaterial *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":286
+  /* "assimpcy/all.pyx":291
  *     cdef int ptype
  * 
  *     for i in range(mat.mNumProperties):             # <<<<<<<<<<<<<<
@@ -8847,7 +8862,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "assimpcy/all.pyx":287
+    /* "assimpcy/all.pyx":292
  * 
  *     for i in range(mat.mNumProperties):
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -8862,7 +8877,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
         #endif
         /*try:*/ {
 
-          /* "assimpcy/all.pyx":288
+          /* "assimpcy/all.pyx":293
  *     for i in range(mat.mNumProperties):
  *         with nogil:
  *             prop = mat.mProperties[i]             # <<<<<<<<<<<<<<
@@ -8871,7 +8886,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
           __pyx_v_prop = (__pyx_v_mat->mProperties[__pyx_v_i]);
 
-          /* "assimpcy/all.pyx":289
+          /* "assimpcy/all.pyx":294
  *         with nogil:
  *             prop = mat.mProperties[i]
  *             ptype = prop.mType             # <<<<<<<<<<<<<<
@@ -8881,7 +8896,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
           __pyx_t_4 = __pyx_v_prop->mType;
           __pyx_v_ptype = __pyx_t_4;
 
-          /* "assimpcy/all.pyx":290
+          /* "assimpcy/all.pyx":295
  *             prop = mat.mProperties[i]
  *             ptype = prop.mType
  *             if ptype == cMaterial.aiPTI_Float:             # <<<<<<<<<<<<<<
@@ -8891,7 +8906,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
           switch (__pyx_v_ptype) {
             case aiPTI_Float:
 
-            /* "assimpcy/all.pyx":291
+            /* "assimpcy/all.pyx":296
  *             ptype = prop.mType
  *             if ptype == cMaterial.aiPTI_Float:
  *                 pvalsize = sizeof(dataStorageF)             # <<<<<<<<<<<<<<
@@ -8900,7 +8915,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             __pyx_v_pvalsize = (sizeof(__pyx_t_8assimpcy_3all_dataStorageF));
 
-            /* "assimpcy/all.pyx":292
+            /* "assimpcy/all.pyx":297
  *             if ptype == cMaterial.aiPTI_Float:
  *                 pvalsize = sizeof(dataStorageF)
  *                 res =  cMaterial.aiGetMaterialFloatArray(mat, prop.mKey.data, -1, 0, <float*>&pvalF, &pvalsize)             # <<<<<<<<<<<<<<
@@ -8909,7 +8924,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             __pyx_v_res = aiGetMaterialFloatArray(__pyx_v_mat, __pyx_v_prop->mKey.data, -1, 0, ((float *)(&__pyx_v_pvalF)), (&__pyx_v_pvalsize));
 
-            /* "assimpcy/all.pyx":290
+            /* "assimpcy/all.pyx":295
  *             prop = mat.mProperties[i]
  *             ptype = prop.mType
  *             if ptype == cMaterial.aiPTI_Float:             # <<<<<<<<<<<<<<
@@ -8918,7 +8933,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             break;
 
-            /* "assimpcy/all.pyx":293
+            /* "assimpcy/all.pyx":298
  *                 pvalsize = sizeof(dataStorageF)
  *                 res =  cMaterial.aiGetMaterialFloatArray(mat, prop.mKey.data, -1, 0, <float*>&pvalF, &pvalsize)
  *             elif ptype == cMaterial.aiPTI_Integer:             # <<<<<<<<<<<<<<
@@ -8927,7 +8942,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             case aiPTI_Integer:
 
-            /* "assimpcy/all.pyx":294
+            /* "assimpcy/all.pyx":299
  *                 res =  cMaterial.aiGetMaterialFloatArray(mat, prop.mKey.data, -1, 0, <float*>&pvalF, &pvalsize)
  *             elif ptype == cMaterial.aiPTI_Integer:
  *                 pvalsize = sizeof(dataStorageI)             # <<<<<<<<<<<<<<
@@ -8936,7 +8951,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             __pyx_v_pvalsize = (sizeof(__pyx_t_8assimpcy_3all_dataStorageI));
 
-            /* "assimpcy/all.pyx":295
+            /* "assimpcy/all.pyx":300
  *             elif ptype == cMaterial.aiPTI_Integer:
  *                 pvalsize = sizeof(dataStorageI)
  *                 res =  cMaterial.aiGetMaterialIntegerArray(mat, prop.mKey.data, -1, 0, <int*>&pvalI, &pvalsize)             # <<<<<<<<<<<<<<
@@ -8945,7 +8960,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             __pyx_v_res = aiGetMaterialIntegerArray(__pyx_v_mat, __pyx_v_prop->mKey.data, -1, 0, ((int *)(&__pyx_v_pvalI)), (&__pyx_v_pvalsize));
 
-            /* "assimpcy/all.pyx":293
+            /* "assimpcy/all.pyx":298
  *                 pvalsize = sizeof(dataStorageF)
  *                 res =  cMaterial.aiGetMaterialFloatArray(mat, prop.mKey.data, -1, 0, <float*>&pvalF, &pvalsize)
  *             elif ptype == cMaterial.aiPTI_Integer:             # <<<<<<<<<<<<<<
@@ -8954,7 +8969,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             break;
 
-            /* "assimpcy/all.pyx":296
+            /* "assimpcy/all.pyx":301
  *                 pvalsize = sizeof(dataStorageI)
  *                 res =  cMaterial.aiGetMaterialIntegerArray(mat, prop.mKey.data, -1, 0, <int*>&pvalI, &pvalsize)
  *             elif ptype == cMaterial.aiPTI_String:             # <<<<<<<<<<<<<<
@@ -8963,7 +8978,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             case aiPTI_String:
 
-            /* "assimpcy/all.pyx":297
+            /* "assimpcy/all.pyx":302
  *                 res =  cMaterial.aiGetMaterialIntegerArray(mat, prop.mKey.data, -1, 0, <int*>&pvalI, &pvalsize)
  *             elif ptype == cMaterial.aiPTI_String:
  *                 pvalS = new cTypes.aiString()             # <<<<<<<<<<<<<<
@@ -8972,7 +8987,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             __pyx_v_pvalS = new aiString();
 
-            /* "assimpcy/all.pyx":298
+            /* "assimpcy/all.pyx":303
  *             elif ptype == cMaterial.aiPTI_String:
  *                 pvalS = new cTypes.aiString()
  *                 res =  cMaterial.aiGetMaterialString(mat, prop.mKey.data, -1, 0, pvalS)             # <<<<<<<<<<<<<<
@@ -8981,7 +8996,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
             __pyx_v_res = aiGetMaterialString(__pyx_v_mat, __pyx_v_prop->mKey.data, -1, 0, __pyx_v_pvalS);
 
-            /* "assimpcy/all.pyx":296
+            /* "assimpcy/all.pyx":301
  *                 pvalsize = sizeof(dataStorageI)
  *                 res =  cMaterial.aiGetMaterialIntegerArray(mat, prop.mKey.data, -1, 0, <int*>&pvalI, &pvalsize)
  *             elif ptype == cMaterial.aiPTI_String:             # <<<<<<<<<<<<<<
@@ -8991,7 +9006,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
             break;
             default:
 
-            /* "assimpcy/all.pyx":300
+            /* "assimpcy/all.pyx":305
  *                 res =  cMaterial.aiGetMaterialString(mat, prop.mKey.data, -1, 0, pvalS)
  *             else:
  *                 continue             # <<<<<<<<<<<<<<
@@ -9003,7 +9018,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
           }
         }
 
-        /* "assimpcy/all.pyx":287
+        /* "assimpcy/all.pyx":292
  * 
  *     for i in range(mat.mNumProperties):
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -9029,7 +9044,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
         }
     }
 
-    /* "assimpcy/all.pyx":302
+    /* "assimpcy/all.pyx":307
  *                 continue
  * 
  *         if res == cTypes.aiReturn_FAILURE:             # <<<<<<<<<<<<<<
@@ -9039,7 +9054,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
     switch (__pyx_v_res) {
       case aiReturn_FAILURE:
 
-      /* "assimpcy/all.pyx":303
+      /* "assimpcy/all.pyx":308
  * 
  *         if res == cTypes.aiReturn_FAILURE:
  *             continue             # <<<<<<<<<<<<<<
@@ -9048,7 +9063,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
       goto __pyx_L3_continue;
 
-      /* "assimpcy/all.pyx":302
+      /* "assimpcy/all.pyx":307
  *                 continue
  * 
  *         if res == cTypes.aiReturn_FAILURE:             # <<<<<<<<<<<<<<
@@ -9057,7 +9072,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
       break;
 
-      /* "assimpcy/all.pyx":304
+      /* "assimpcy/all.pyx":309
  *         if res == cTypes.aiReturn_FAILURE:
  *             continue
  *         elif res == cTypes.aiReturn_OUTOFMEMORY:             # <<<<<<<<<<<<<<
@@ -9066,20 +9081,20 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
       case aiReturn_OUTOFMEMORY:
 
-      /* "assimpcy/all.pyx":305
+      /* "assimpcy/all.pyx":310
  *             continue
  *         elif res == cTypes.aiReturn_OUTOFMEMORY:
  *             raise MemoryError('Out of memory.')             # <<<<<<<<<<<<<<
  * 
  *         sname = str(prop.mKey.data.decode())
  */
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_Raise(__pyx_t_1, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __PYX_ERR(0, 305, __pyx_L1_error)
+      __PYX_ERR(0, 310, __pyx_L1_error)
 
-      /* "assimpcy/all.pyx":304
+      /* "assimpcy/all.pyx":309
  *         if res == cTypes.aiReturn_FAILURE:
  *             continue
  *         elif res == cTypes.aiReturn_OUTOFMEMORY:             # <<<<<<<<<<<<<<
@@ -9090,7 +9105,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
       default: break;
     }
 
-    /* "assimpcy/all.pyx":307
+    /* "assimpcy/all.pyx":312
  *             raise MemoryError('Out of memory.')
  * 
  *         sname = str(prop.mKey.data.decode())             # <<<<<<<<<<<<<<
@@ -9098,22 +9113,22 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  *             if pvalsize == 1:
  */
     __pyx_t_5 = __pyx_v_prop->mKey.data;
-    __pyx_t_1 = __Pyx_decode_c_string(__pyx_t_5, 0, strlen(__pyx_t_5), NULL, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_decode_c_string(__pyx_t_5, 0, strlen(__pyx_t_5), NULL, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 307, __pyx_L1_error)
+    if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_sname, ((PyObject*)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "assimpcy/all.pyx":308
+    /* "assimpcy/all.pyx":313
  * 
  *         sname = str(prop.mKey.data.decode())
  *         if ptype == cMaterial.aiPTI_Float:             # <<<<<<<<<<<<<<
@@ -9123,7 +9138,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
     switch (__pyx_v_ptype) {
       case aiPTI_Float:
 
-      /* "assimpcy/all.pyx":309
+      /* "assimpcy/all.pyx":314
  *         sname = str(prop.mKey.data.decode())
  *         if ptype == cMaterial.aiPTI_Float:
  *             if pvalsize == 1:             # <<<<<<<<<<<<<<
@@ -9133,19 +9148,19 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
       __pyx_t_7 = ((__pyx_v_pvalsize == 1) != 0);
       if (__pyx_t_7) {
 
-        /* "assimpcy/all.pyx":310
+        /* "assimpcy/all.pyx":315
  *         if ptype == cMaterial.aiPTI_Float:
  *             if pvalsize == 1:
  *                 propval = pvalF.data[0]             # <<<<<<<<<<<<<<
  *             else:
  *                 pvalF.validLenght = pvalsize
  */
-        __pyx_t_1 = PyFloat_FromDouble((__pyx_v_pvalF.data[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+        __pyx_t_1 = PyFloat_FromDouble((__pyx_v_pvalF.data[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF_SET(__pyx_v_propval, __pyx_t_1);
         __pyx_t_1 = 0;
 
-        /* "assimpcy/all.pyx":309
+        /* "assimpcy/all.pyx":314
  *         sname = str(prop.mKey.data.decode())
  *         if ptype == cMaterial.aiPTI_Float:
  *             if pvalsize == 1:             # <<<<<<<<<<<<<<
@@ -9155,7 +9170,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
         goto __pyx_L10;
       }
 
-      /* "assimpcy/all.pyx":312
+      /* "assimpcy/all.pyx":317
  *                 propval = pvalF.data[0]
  *             else:
  *                 pvalF.validLenght = pvalsize             # <<<<<<<<<<<<<<
@@ -9165,21 +9180,21 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
       /*else*/ {
         __pyx_v_pvalF.validLenght = __pyx_v_pvalsize;
 
-        /* "assimpcy/all.pyx":313
+        /* "assimpcy/all.pyx":318
  *             else:
  *                 pvalF.validLenght = pvalsize
  *                 propval = asNumpyArray(&pvalF)             # <<<<<<<<<<<<<<
  *         elif ptype == cMaterial.aiPTI_Integer:
  *             if pvalsize == 1:
  */
-        __pyx_t_1 = ((PyObject *)__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray((&__pyx_v_pvalF))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+        __pyx_t_1 = ((PyObject *)__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray((&__pyx_v_pvalF))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 318, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF_SET(__pyx_v_propval, __pyx_t_1);
         __pyx_t_1 = 0;
       }
       __pyx_L10:;
 
-      /* "assimpcy/all.pyx":308
+      /* "assimpcy/all.pyx":313
  * 
  *         sname = str(prop.mKey.data.decode())
  *         if ptype == cMaterial.aiPTI_Float:             # <<<<<<<<<<<<<<
@@ -9188,7 +9203,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
       break;
 
-      /* "assimpcy/all.pyx":314
+      /* "assimpcy/all.pyx":319
  *                 pvalF.validLenght = pvalsize
  *                 propval = asNumpyArray(&pvalF)
  *         elif ptype == cMaterial.aiPTI_Integer:             # <<<<<<<<<<<<<<
@@ -9197,7 +9212,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
       case aiPTI_Integer:
 
-      /* "assimpcy/all.pyx":315
+      /* "assimpcy/all.pyx":320
  *                 propval = asNumpyArray(&pvalF)
  *         elif ptype == cMaterial.aiPTI_Integer:
  *             if pvalsize == 1:             # <<<<<<<<<<<<<<
@@ -9207,19 +9222,19 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
       __pyx_t_7 = ((__pyx_v_pvalsize == 1) != 0);
       if (__pyx_t_7) {
 
-        /* "assimpcy/all.pyx":316
+        /* "assimpcy/all.pyx":321
  *         elif ptype == cMaterial.aiPTI_Integer:
  *             if pvalsize == 1:
  *                 propval = pvalI.data[0]             # <<<<<<<<<<<<<<
  *             else:
  *                 pvalI.validLenght = pvalsize
  */
-        __pyx_t_1 = __Pyx_PyInt_From_npy_uint32((__pyx_v_pvalI.data[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyInt_From_npy_uint32((__pyx_v_pvalI.data[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF_SET(__pyx_v_propval, __pyx_t_1);
         __pyx_t_1 = 0;
 
-        /* "assimpcy/all.pyx":315
+        /* "assimpcy/all.pyx":320
  *                 propval = asNumpyArray(&pvalF)
  *         elif ptype == cMaterial.aiPTI_Integer:
  *             if pvalsize == 1:             # <<<<<<<<<<<<<<
@@ -9229,7 +9244,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
         goto __pyx_L11;
       }
 
-      /* "assimpcy/all.pyx":318
+      /* "assimpcy/all.pyx":323
  *                 propval = pvalI.data[0]
  *             else:
  *                 pvalI.validLenght = pvalsize             # <<<<<<<<<<<<<<
@@ -9239,21 +9254,21 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
       /*else*/ {
         __pyx_v_pvalI.validLenght = __pyx_v_pvalsize;
 
-        /* "assimpcy/all.pyx":319
+        /* "assimpcy/all.pyx":324
  *             else:
  *                 pvalI.validLenght = pvalsize
  *                 propval = asNumpyArray(&pvalI)             # <<<<<<<<<<<<<<
  *         elif ptype == cMaterial.aiPTI_String:
  *             propval = str(pvalS.data.decode())
  */
-        __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray((&__pyx_v_pvalI))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
+        __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray((&__pyx_v_pvalI))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF_SET(__pyx_v_propval, __pyx_t_1);
         __pyx_t_1 = 0;
       }
       __pyx_L11:;
 
-      /* "assimpcy/all.pyx":314
+      /* "assimpcy/all.pyx":319
  *                 pvalF.validLenght = pvalsize
  *                 propval = asNumpyArray(&pvalF)
  *         elif ptype == cMaterial.aiPTI_Integer:             # <<<<<<<<<<<<<<
@@ -9262,7 +9277,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
       break;
 
-      /* "assimpcy/all.pyx":320
+      /* "assimpcy/all.pyx":325
  *                 pvalI.validLenght = pvalsize
  *                 propval = asNumpyArray(&pvalI)
  *         elif ptype == cMaterial.aiPTI_String:             # <<<<<<<<<<<<<<
@@ -9271,7 +9286,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
       case aiPTI_String:
 
-      /* "assimpcy/all.pyx":321
+      /* "assimpcy/all.pyx":326
  *                 propval = asNumpyArray(&pvalI)
  *         elif ptype == cMaterial.aiPTI_String:
  *             propval = str(pvalS.data.decode())             # <<<<<<<<<<<<<<
@@ -9279,21 +9294,21 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  *         nMat.properties[propertyNames.get(sname, sname)] = propval
  */
       __pyx_t_5 = __pyx_v_pvalS->data;
-      __pyx_t_1 = __Pyx_decode_c_string(__pyx_t_5, 0, strlen(__pyx_t_5), NULL, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_decode_c_string(__pyx_t_5, 0, strlen(__pyx_t_5), NULL, NULL, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 321, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 326, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF_SET(__pyx_v_propval, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "assimpcy/all.pyx":320
+      /* "assimpcy/all.pyx":325
  *                 pvalI.validLenght = pvalsize
  *                 propval = asNumpyArray(&pvalI)
  *         elif ptype == cMaterial.aiPTI_String:             # <<<<<<<<<<<<<<
@@ -9304,7 +9319,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
       default: break;
     }
 
-    /* "assimpcy/all.pyx":323
+    /* "assimpcy/all.pyx":328
  *             propval = str(pvalS.data.decode())
  * 
  *         nMat.properties[propertyNames.get(sname, sname)] = propval             # <<<<<<<<<<<<<<
@@ -9313,11 +9328,11 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
     if (unlikely(__pyx_v_nMat->properties == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 323, __pyx_L1_error)
+      __PYX_ERR(0, 328, __pyx_L1_error)
     }
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_propertyNames); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_propertyNames); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 328, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 328, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
@@ -9335,7 +9350,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_8)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_sname, __pyx_v_sname};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -9343,13 +9358,13 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_sname, __pyx_v_sname};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 328, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -9360,17 +9375,17 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
       __Pyx_INCREF(__pyx_v_sname);
       __Pyx_GIVEREF(__pyx_v_sname);
       PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_v_sname);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_nMat->properties, __pyx_t_1, __pyx_v_propval) < 0)) __PYX_ERR(0, 323, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_nMat->properties, __pyx_t_1, __pyx_v_propval) < 0)) __PYX_ERR(0, 328, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_L3_continue:;
   }
 
-  /* "assimpcy/all.pyx":325
+  /* "assimpcy/all.pyx":330
  *         nMat.properties[propertyNames.get(sname, sname)] = propval
  * 
  *     prop = NULL             # <<<<<<<<<<<<<<
@@ -9379,7 +9394,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
   __pyx_v_prop = NULL;
 
-  /* "assimpcy/all.pyx":326
+  /* "assimpcy/all.pyx":331
  * 
  *     prop = NULL
  *     del (prop)             # <<<<<<<<<<<<<<
@@ -9388,7 +9403,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
   delete __pyx_v_prop;
 
-  /* "assimpcy/all.pyx":327
+  /* "assimpcy/all.pyx":332
  *     prop = NULL
  *     del (prop)
  *     pvalS = NULL             # <<<<<<<<<<<<<<
@@ -9397,7 +9412,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
   __pyx_v_pvalS = NULL;
 
-  /* "assimpcy/all.pyx":328
+  /* "assimpcy/all.pyx":333
  *     del (prop)
  *     pvalS = NULL
  *     del (pvalS)             # <<<<<<<<<<<<<<
@@ -9406,7 +9421,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
  */
   delete __pyx_v_pvalS;
 
-  /* "assimpcy/all.pyx":330
+  /* "assimpcy/all.pyx":335
  *     del (pvalS)
  * 
  *     return nMat             # <<<<<<<<<<<<<<
@@ -9418,7 +9433,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
   __pyx_r = __pyx_v_nMat;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":274
+  /* "assimpcy/all.pyx":279
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):             # <<<<<<<<<<<<<<
@@ -9443,7 +9458,7 @@ static struct __pyx_obj_8assimpcy_3all_aiMaterial *__pyx_f_8assimpcy_3all_buildM
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":336
+/* "assimpcy/all.pyx":341
  *     cdef readonly double mTime
  *     cdef readonly np.ndarray mValue
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -9478,7 +9493,7 @@ static int __pyx_pf_8assimpcy_3all_5aiKey___init__(CYTHON_UNUSED struct __pyx_ob
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":339
+/* "assimpcy/all.pyx":344
  *         pass
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -9510,7 +9525,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_2__str__(struct __pyx_obj_8assim
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "assimpcy/all.pyx":340
+  /* "assimpcy/all.pyx":345
  * 
  *     def __str__(self):
  *         return '{:0>5}->{}'.format(self.mTime, self.mValue)             # <<<<<<<<<<<<<<
@@ -9518,9 +9533,9 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_2__str__(struct __pyx_obj_8assim
  * cdef class aiNodeAnim:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_5, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_0_5, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->mTime); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->mTime); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -9537,7 +9552,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_2__str__(struct __pyx_obj_8assim
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, ((PyObject *)__pyx_v_self->mValue)};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9546,14 +9561,14 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_2__str__(struct __pyx_obj_8assim
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, ((PyObject *)__pyx_v_self->mValue)};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 340, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -9564,7 +9579,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_2__str__(struct __pyx_obj_8assim
     __Pyx_GIVEREF(((PyObject *)__pyx_v_self->mValue));
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, ((PyObject *)__pyx_v_self->mValue));
     __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -9573,7 +9588,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_2__str__(struct __pyx_obj_8assim
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":339
+  /* "assimpcy/all.pyx":344
  *         pass
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -9596,7 +9611,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_2__str__(struct __pyx_obj_8assim
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":334
+/* "assimpcy/all.pyx":339
  * # -----------------------------------------------------
  * cdef class aiKey:
  *     cdef readonly double mTime             # <<<<<<<<<<<<<<
@@ -9623,7 +9638,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_5mTime___get__(struct __pyx_obj_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mTime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mTime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9640,7 +9655,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_5mTime___get__(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":335
+/* "assimpcy/all.pyx":340
  * cdef class aiKey:
  *     cdef readonly double mTime
  *     cdef readonly np.ndarray mValue             # <<<<<<<<<<<<<<
@@ -9969,7 +9984,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_5aiKey_6__setstate_cython__(struct __py
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":350
+/* "assimpcy/all.pyx":355
  *     # cdef readonly aiAnimBehaviour mPostState
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -9999,7 +10014,7 @@ static int __pyx_pf_8assimpcy_3all_10aiNodeAnim___init__(struct __pyx_obj_8assim
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "assimpcy/all.pyx":351
+  /* "assimpcy/all.pyx":356
  * 
  *     def __init__(self):
  *         self.mNodeName = ''             # <<<<<<<<<<<<<<
@@ -10012,14 +10027,14 @@ static int __pyx_pf_8assimpcy_3all_10aiNodeAnim___init__(struct __pyx_obj_8assim
   __Pyx_DECREF(__pyx_v_self->mNodeName);
   __pyx_v_self->mNodeName = __pyx_kp_s_;
 
-  /* "assimpcy/all.pyx":352
+  /* "assimpcy/all.pyx":357
  *     def __init__(self):
  *         self.mNodeName = ''
  *         self.mPositionKeys = []             # <<<<<<<<<<<<<<
  *         self.mRotationKeys = []
  *         self.mScalingKeys = []
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mPositionKeys);
@@ -10027,14 +10042,14 @@ static int __pyx_pf_8assimpcy_3all_10aiNodeAnim___init__(struct __pyx_obj_8assim
   __pyx_v_self->mPositionKeys = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":353
+  /* "assimpcy/all.pyx":358
  *         self.mNodeName = ''
  *         self.mPositionKeys = []
  *         self.mRotationKeys = []             # <<<<<<<<<<<<<<
  *         self.mScalingKeys = []
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mRotationKeys);
@@ -10042,14 +10057,14 @@ static int __pyx_pf_8assimpcy_3all_10aiNodeAnim___init__(struct __pyx_obj_8assim
   __pyx_v_self->mRotationKeys = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":354
+  /* "assimpcy/all.pyx":359
  *         self.mPositionKeys = []
  *         self.mRotationKeys = []
  *         self.mScalingKeys = []             # <<<<<<<<<<<<<<
  * 
  *     def __str__(self):
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 354, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mScalingKeys);
@@ -10057,7 +10072,7 @@ static int __pyx_pf_8assimpcy_3all_10aiNodeAnim___init__(struct __pyx_obj_8assim
   __pyx_v_self->mScalingKeys = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":350
+  /* "assimpcy/all.pyx":355
  *     # cdef readonly aiAnimBehaviour mPostState
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -10077,7 +10092,7 @@ static int __pyx_pf_8assimpcy_3all_10aiNodeAnim___init__(struct __pyx_obj_8assim
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":356
+/* "assimpcy/all.pyx":361
  *         self.mScalingKeys = []
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -10103,7 +10118,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiNodeAnim_2__str__(struct __pyx_obj_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "assimpcy/all.pyx":357
+  /* "assimpcy/all.pyx":362
  * 
  *     def __str__(self):
  *         return self.mNodeName             # <<<<<<<<<<<<<<
@@ -10115,7 +10130,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiNodeAnim_2__str__(struct __pyx_obj_
   __pyx_r = __pyx_v_self->mNodeName;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":356
+  /* "assimpcy/all.pyx":361
  *         self.mScalingKeys = []
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -10130,7 +10145,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiNodeAnim_2__str__(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":343
+/* "assimpcy/all.pyx":348
  * 
  * cdef class aiNodeAnim:
  *     cdef readonly str mNodeName             # <<<<<<<<<<<<<<
@@ -10167,7 +10182,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiNodeAnim_9mNodeName___get__(struct 
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":344
+/* "assimpcy/all.pyx":349
  * cdef class aiNodeAnim:
  *     cdef readonly str mNodeName
  *     cdef readonly list mPositionKeys             # <<<<<<<<<<<<<<
@@ -10204,7 +10219,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiNodeAnim_13mPositionKeys___get__(st
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":345
+/* "assimpcy/all.pyx":350
  *     cdef readonly str mNodeName
  *     cdef readonly list mPositionKeys
  *     cdef readonly list mRotationKeys             # <<<<<<<<<<<<<<
@@ -10241,7 +10256,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiNodeAnim_13mRotationKeys___get__(st
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":346
+/* "assimpcy/all.pyx":351
  *     cdef readonly list mPositionKeys
  *     cdef readonly list mRotationKeys
  *     cdef readonly list mScalingKeys             # <<<<<<<<<<<<<<
@@ -10599,16 +10614,17 @@ static PyObject *__pyx_pf_8assimpcy_3all_10aiNodeAnim_6__setstate_cython__(struc
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":362
+/* "assimpcy/all.pyx":367
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):             # <<<<<<<<<<<<<<
- *     cdef int i = 0
+ *     cdef int i = 0, j
  *     cdef cAnim.aiVectorKey vkey
  */
 
 static struct __pyx_obj_8assimpcy_3all_aiNodeAnim *__pyx_f_8assimpcy_3all_buildAnimNode(aiNodeAnim *__pyx_v_channel) {
   int __pyx_v_i;
+  int __pyx_v_j;
   aiVectorKey __pyx_v_vkey;
   struct __pyx_obj_8assimpcy_3all_aiNodeAnim *__pyx_v_node = 0;
   aiQuatKey __pyx_v_rkey;
@@ -10619,149 +10635,180 @@ static struct __pyx_obj_8assimpcy_3all_aiNodeAnim *__pyx_f_8assimpcy_3all_buildA
   unsigned int __pyx_t_3;
   int __pyx_t_4;
   int __pyx_t_5;
+  int __pyx_t_6;
   __Pyx_RefNannySetupContext("buildAnimNode", 0);
 
-  /* "assimpcy/all.pyx":363
+  /* "assimpcy/all.pyx":368
  * @cython.nonecheck(False)
  * cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):
- *     cdef int i = 0             # <<<<<<<<<<<<<<
+ *     cdef int i = 0, j             # <<<<<<<<<<<<<<
  *     cdef cAnim.aiVectorKey vkey
  *     cdef cAnim.aiQuatKey qkey
  */
   __pyx_v_i = 0;
 
-  /* "assimpcy/all.pyx":366
+  /* "assimpcy/all.pyx":371
  *     cdef cAnim.aiVectorKey vkey
  *     cdef cAnim.aiQuatKey qkey
  *     cdef aiNodeAnim node = aiNodeAnim()             # <<<<<<<<<<<<<<
  *     node.mNodeName = str(channel.mNodeName.data)
- *     for i in range(channel.mNumPositionKeys):
+ *     j = channel.mNumPositionKeys
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiNodeAnim), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 366, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiNodeAnim), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 371, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_node = ((struct __pyx_obj_8assimpcy_3all_aiNodeAnim *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":367
+  /* "assimpcy/all.pyx":372
  *     cdef cAnim.aiQuatKey qkey
  *     cdef aiNodeAnim node = aiNodeAnim()
  *     node.mNodeName = str(channel.mNodeName.data)             # <<<<<<<<<<<<<<
- *     for i in range(channel.mNumPositionKeys):
- *         vkey = channel.mPositionKeys[i]
+ *     j = channel.mNumPositionKeys
+ *     for i in range(j):
  */
-  __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_channel->mNodeName.data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_channel->mNodeName.data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 367, __pyx_L1_error)
+  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_node->mNodeName);
   __Pyx_DECREF(__pyx_v_node->mNodeName);
   __pyx_v_node->mNodeName = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":368
+  /* "assimpcy/all.pyx":373
  *     cdef aiNodeAnim node = aiNodeAnim()
  *     node.mNodeName = str(channel.mNodeName.data)
- *     for i in range(channel.mNumPositionKeys):             # <<<<<<<<<<<<<<
+ *     j = channel.mNumPositionKeys             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         vkey = channel.mPositionKeys[i]
+ */
+  __pyx_t_3 = __pyx_v_channel->mNumPositionKeys;
+  __pyx_v_j = __pyx_t_3;
+
+  /* "assimpcy/all.pyx":374
+ *     node.mNodeName = str(channel.mNodeName.data)
+ *     j = channel.mNumPositionKeys
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         vkey = channel.mPositionKeys[i]
  *         node.mPositionKeys.append(buildKey(&vkey))
  */
-  __pyx_t_3 = __pyx_v_channel->mNumPositionKeys;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_4 = __pyx_v_j;
+  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+    __pyx_v_i = __pyx_t_5;
 
-    /* "assimpcy/all.pyx":369
- *     node.mNodeName = str(channel.mNodeName.data)
- *     for i in range(channel.mNumPositionKeys):
+    /* "assimpcy/all.pyx":375
+ *     j = channel.mNumPositionKeys
+ *     for i in range(j):
  *         vkey = channel.mPositionKeys[i]             # <<<<<<<<<<<<<<
  *         node.mPositionKeys.append(buildKey(&vkey))
  * 
  */
     __pyx_v_vkey = (__pyx_v_channel->mPositionKeys[__pyx_v_i]);
 
-    /* "assimpcy/all.pyx":370
- *     for i in range(channel.mNumPositionKeys):
+    /* "assimpcy/all.pyx":376
+ *     for i in range(j):
  *         vkey = channel.mPositionKeys[i]
  *         node.mPositionKeys.append(buildKey(&vkey))             # <<<<<<<<<<<<<<
  * 
- *     for i in range(channel.mNumRotationKeys):
+ *     j = channel.mNumRotationKeys
  */
     if (unlikely(__pyx_v_node->mPositionKeys == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 370, __pyx_L1_error)
+      __PYX_ERR(0, 376, __pyx_L1_error)
     }
-    __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8assimpcy_3all_buildKey((&__pyx_v_vkey))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8assimpcy_3all_buildKey((&__pyx_v_vkey))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_node->mPositionKeys, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_node->mPositionKeys, __pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 376, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":372
+  /* "assimpcy/all.pyx":378
  *         node.mPositionKeys.append(buildKey(&vkey))
  * 
- *     for i in range(channel.mNumRotationKeys):             # <<<<<<<<<<<<<<
+ *     j = channel.mNumRotationKeys             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         rkey = channel.mRotationKeys[i]
+ */
+  __pyx_t_3 = __pyx_v_channel->mNumRotationKeys;
+  __pyx_v_j = __pyx_t_3;
+
+  /* "assimpcy/all.pyx":379
+ * 
+ *     j = channel.mNumRotationKeys
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         rkey = channel.mRotationKeys[i]
  *         node.mRotationKeys.append(buildKey(&rkey))
  */
-  __pyx_t_3 = __pyx_v_channel->mNumRotationKeys;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_4 = __pyx_v_j;
+  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+    __pyx_v_i = __pyx_t_5;
 
-    /* "assimpcy/all.pyx":373
- * 
- *     for i in range(channel.mNumRotationKeys):
+    /* "assimpcy/all.pyx":380
+ *     j = channel.mNumRotationKeys
+ *     for i in range(j):
  *         rkey = channel.mRotationKeys[i]             # <<<<<<<<<<<<<<
  *         node.mRotationKeys.append(buildKey(&rkey))
  * 
  */
     __pyx_v_rkey = (__pyx_v_channel->mRotationKeys[__pyx_v_i]);
 
-    /* "assimpcy/all.pyx":374
- *     for i in range(channel.mNumRotationKeys):
+    /* "assimpcy/all.pyx":381
+ *     for i in range(j):
  *         rkey = channel.mRotationKeys[i]
  *         node.mRotationKeys.append(buildKey(&rkey))             # <<<<<<<<<<<<<<
  * 
- *     for i in range(channel.mNumScalingKeys):
+ *     j = channel.mNumScalingKeys
  */
     if (unlikely(__pyx_v_node->mRotationKeys == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 374, __pyx_L1_error)
+      __PYX_ERR(0, 381, __pyx_L1_error)
     }
-    __pyx_t_1 = ((PyObject *)__pyx_fuse_1__pyx_f_8assimpcy_3all_buildKey((&__pyx_v_rkey))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_fuse_1__pyx_f_8assimpcy_3all_buildKey((&__pyx_v_rkey))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_node->mRotationKeys, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_node->mRotationKeys, __pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":376
+  /* "assimpcy/all.pyx":383
  *         node.mRotationKeys.append(buildKey(&rkey))
  * 
- *     for i in range(channel.mNumScalingKeys):             # <<<<<<<<<<<<<<
+ *     j = channel.mNumScalingKeys             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         vkey = channel.mScalingKeys[i]
+ */
+  __pyx_t_3 = __pyx_v_channel->mNumScalingKeys;
+  __pyx_v_j = __pyx_t_3;
+
+  /* "assimpcy/all.pyx":384
+ * 
+ *     j = channel.mNumScalingKeys
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         vkey = channel.mScalingKeys[i]
  *         node.mScalingKeys.append(buildKey(&vkey))
  */
-  __pyx_t_3 = __pyx_v_channel->mNumScalingKeys;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_4 = __pyx_v_j;
+  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+    __pyx_v_i = __pyx_t_5;
 
-    /* "assimpcy/all.pyx":377
- * 
- *     for i in range(channel.mNumScalingKeys):
+    /* "assimpcy/all.pyx":385
+ *     j = channel.mNumScalingKeys
+ *     for i in range(j):
  *         vkey = channel.mScalingKeys[i]             # <<<<<<<<<<<<<<
  *         node.mScalingKeys.append(buildKey(&vkey))
  * 
  */
     __pyx_v_vkey = (__pyx_v_channel->mScalingKeys[__pyx_v_i]);
 
-    /* "assimpcy/all.pyx":378
- *     for i in range(channel.mNumScalingKeys):
+    /* "assimpcy/all.pyx":386
+ *     for i in range(j):
  *         vkey = channel.mScalingKeys[i]
  *         node.mScalingKeys.append(buildKey(&vkey))             # <<<<<<<<<<<<<<
  * 
@@ -10769,15 +10816,15 @@ static struct __pyx_obj_8assimpcy_3all_aiNodeAnim *__pyx_f_8assimpcy_3all_buildA
  */
     if (unlikely(__pyx_v_node->mScalingKeys == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 378, __pyx_L1_error)
+      __PYX_ERR(0, 386, __pyx_L1_error)
     }
-    __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8assimpcy_3all_buildKey((&__pyx_v_vkey))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 378, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8assimpcy_3all_buildKey((&__pyx_v_vkey))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_node->mScalingKeys, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 378, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_node->mScalingKeys, __pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 386, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":380
+  /* "assimpcy/all.pyx":388
  *         node.mScalingKeys.append(buildKey(&vkey))
  * 
  *     return node             # <<<<<<<<<<<<<<
@@ -10789,11 +10836,11 @@ static struct __pyx_obj_8assimpcy_3all_aiNodeAnim *__pyx_f_8assimpcy_3all_buildA
   __pyx_r = __pyx_v_node;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":362
+  /* "assimpcy/all.pyx":367
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):             # <<<<<<<<<<<<<<
- *     cdef int i = 0
+ *     cdef int i = 0, j
  *     cdef cAnim.aiVectorKey vkey
  */
 
@@ -10810,7 +10857,7 @@ static struct __pyx_obj_8assimpcy_3all_aiNodeAnim *__pyx_f_8assimpcy_3all_buildA
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":385
+/* "assimpcy/all.pyx":393
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiKey buildKey(anykey* key):             # <<<<<<<<<<<<<<
@@ -10830,19 +10877,19 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("__pyx_fuse_0buildKey", 0);
 
-  /* "assimpcy/all.pyx":386
+  /* "assimpcy/all.pyx":394
  * @cython.nonecheck(False)
  * cdef aiKey buildKey(anykey* key):
  *     cdef aiKey pykey = aiKey()             # <<<<<<<<<<<<<<
  *     cdef int kl
  *     with nogil:
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiKey), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiKey), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_pykey = ((struct __pyx_obj_8assimpcy_3all_aiKey *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":388
+  /* "assimpcy/all.pyx":396
  *     cdef aiKey pykey = aiKey()
  *     cdef int kl
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -10857,7 +10904,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":389
+        /* "assimpcy/all.pyx":397
  *     cdef int kl
  *     with nogil:
  *         pykey.mTime = key.mTime             # <<<<<<<<<<<<<<
@@ -10867,7 +10914,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
         __pyx_t_2 = __pyx_v_key->mTime;
         __pyx_v_pykey->mTime = __pyx_t_2;
 
-        /* "assimpcy/all.pyx":391
+        /* "assimpcy/all.pyx":399
  *         pykey.mTime = key.mTime
  *         if anykey == cAnim.aiVectorKey:
  *             kl = 3             # <<<<<<<<<<<<<<
@@ -10877,7 +10924,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
         __pyx_v_kl = 3;
       }
 
-      /* "assimpcy/all.pyx":388
+      /* "assimpcy/all.pyx":396
  *     cdef aiKey pykey = aiKey()
  *     cdef int kl
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -10896,44 +10943,44 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
       }
   }
 
-  /* "assimpcy/all.pyx":394
+  /* "assimpcy/all.pyx":402
  *         else:
  *             kl = 4
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *     with nogil:
  *         memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_kl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_kl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 394, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 394, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_5);
   __Pyx_GOTREF(__pyx_v_pykey->mValue);
   __Pyx_DECREF(((PyObject *)__pyx_v_pykey->mValue));
   __pyx_v_pykey->mValue = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "assimpcy/all.pyx":395
+  /* "assimpcy/all.pyx":403
  *             kl = 4
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -10948,7 +10995,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":396
+        /* "assimpcy/all.pyx":404
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
  *     with nogil:
  *         memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))             # <<<<<<<<<<<<<<
@@ -10958,7 +11005,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
         memcpy(((void *)__pyx_v_pykey->mValue->data), ((void *)(&__pyx_v_key->mValue)), (__pyx_v_kl * (sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t))));
       }
 
-      /* "assimpcy/all.pyx":395
+      /* "assimpcy/all.pyx":403
  *             kl = 4
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -10977,7 +11024,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
       }
   }
 
-  /* "assimpcy/all.pyx":397
+  /* "assimpcy/all.pyx":405
  *     with nogil:
  *         memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))
  *     return pykey             # <<<<<<<<<<<<<<
@@ -10989,7 +11036,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_0__pyx_f_8assimpcy_3all
   __pyx_r = __pyx_v_pykey;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":385
+  /* "assimpcy/all.pyx":393
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiKey buildKey(anykey* key):             # <<<<<<<<<<<<<<
@@ -11024,19 +11071,19 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("__pyx_fuse_1buildKey", 0);
 
-  /* "assimpcy/all.pyx":386
+  /* "assimpcy/all.pyx":394
  * @cython.nonecheck(False)
  * cdef aiKey buildKey(anykey* key):
  *     cdef aiKey pykey = aiKey()             # <<<<<<<<<<<<<<
  *     cdef int kl
  *     with nogil:
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiKey), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiKey), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_pykey = ((struct __pyx_obj_8assimpcy_3all_aiKey *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":388
+  /* "assimpcy/all.pyx":396
  *     cdef aiKey pykey = aiKey()
  *     cdef int kl
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -11051,7 +11098,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":389
+        /* "assimpcy/all.pyx":397
  *     cdef int kl
  *     with nogil:
  *         pykey.mTime = key.mTime             # <<<<<<<<<<<<<<
@@ -11061,7 +11108,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
         __pyx_t_2 = __pyx_v_key->mTime;
         __pyx_v_pykey->mTime = __pyx_t_2;
 
-        /* "assimpcy/all.pyx":393
+        /* "assimpcy/all.pyx":401
  *             kl = 3
  *         else:
  *             kl = 4             # <<<<<<<<<<<<<<
@@ -11071,7 +11118,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
         __pyx_v_kl = 4;
       }
 
-      /* "assimpcy/all.pyx":388
+      /* "assimpcy/all.pyx":396
  *     cdef aiKey pykey = aiKey()
  *     cdef int kl
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -11090,44 +11137,44 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
       }
   }
 
-  /* "assimpcy/all.pyx":394
+  /* "assimpcy/all.pyx":402
  *         else:
  *             kl = 4
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *     with nogil:
  *         memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_kl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_kl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 394, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 394, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_5);
   __Pyx_GOTREF(__pyx_v_pykey->mValue);
   __Pyx_DECREF(((PyObject *)__pyx_v_pykey->mValue));
   __pyx_v_pykey->mValue = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "assimpcy/all.pyx":395
+  /* "assimpcy/all.pyx":403
  *             kl = 4
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -11142,7 +11189,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":396
+        /* "assimpcy/all.pyx":404
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
  *     with nogil:
  *         memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))             # <<<<<<<<<<<<<<
@@ -11152,7 +11199,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
         memcpy(((void *)__pyx_v_pykey->mValue->data), ((void *)(&__pyx_v_key->mValue)), (__pyx_v_kl * (sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t))));
       }
 
-      /* "assimpcy/all.pyx":395
+      /* "assimpcy/all.pyx":403
  *             kl = 4
  *     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -11171,7 +11218,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
       }
   }
 
-  /* "assimpcy/all.pyx":397
+  /* "assimpcy/all.pyx":405
  *     with nogil:
  *         memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))
  *     return pykey             # <<<<<<<<<<<<<<
@@ -11183,7 +11230,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
   __pyx_r = __pyx_v_pykey;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":385
+  /* "assimpcy/all.pyx":393
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiKey buildKey(anykey* key):             # <<<<<<<<<<<<<<
@@ -11206,7 +11253,7 @@ static struct __pyx_obj_8assimpcy_3all_aiKey *__pyx_fuse_1__pyx_f_8assimpcy_3all
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":405
+/* "assimpcy/all.pyx":413
  *     cdef readonly list mChannels
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -11236,7 +11283,7 @@ static int __pyx_pf_8assimpcy_3all_11aiAnimation___init__(struct __pyx_obj_8assi
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "assimpcy/all.pyx":406
+  /* "assimpcy/all.pyx":414
  * 
  *     def __init__(self):
  *         self.mName = ''             # <<<<<<<<<<<<<<
@@ -11249,14 +11296,14 @@ static int __pyx_pf_8assimpcy_3all_11aiAnimation___init__(struct __pyx_obj_8assi
   __Pyx_DECREF(__pyx_v_self->mName);
   __pyx_v_self->mName = __pyx_kp_s_;
 
-  /* "assimpcy/all.pyx":407
+  /* "assimpcy/all.pyx":415
  *     def __init__(self):
  *         self.mName = ''
  *         self.mChannels = []             # <<<<<<<<<<<<<<
  * 
  *     def __str__(self):
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mChannels);
@@ -11264,7 +11311,7 @@ static int __pyx_pf_8assimpcy_3all_11aiAnimation___init__(struct __pyx_obj_8assi
   __pyx_v_self->mChannels = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":405
+  /* "assimpcy/all.pyx":413
  *     cdef readonly list mChannels
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -11284,7 +11331,7 @@ static int __pyx_pf_8assimpcy_3all_11aiAnimation___init__(struct __pyx_obj_8assi
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":409
+/* "assimpcy/all.pyx":417
  *         self.mChannels = []
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -11310,7 +11357,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_2__str__(struct __pyx_obj
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "assimpcy/all.pyx":410
+  /* "assimpcy/all.pyx":418
  * 
  *     def __str__(self):
  *         return self.mName             # <<<<<<<<<<<<<<
@@ -11322,7 +11369,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_2__str__(struct __pyx_obj
   __pyx_r = __pyx_v_self->mName;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":409
+  /* "assimpcy/all.pyx":417
  *         self.mChannels = []
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -11337,7 +11384,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_2__str__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":400
+/* "assimpcy/all.pyx":408
  * 
  * cdef class aiAnimation:
  *     cdef readonly str mName             # <<<<<<<<<<<<<<
@@ -11374,7 +11421,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_5mName___get__(struct __p
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":401
+/* "assimpcy/all.pyx":409
  * cdef class aiAnimation:
  *     cdef readonly str mName
  *     cdef readonly double mDuration             # <<<<<<<<<<<<<<
@@ -11401,7 +11448,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_9mDuration___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mDuration); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 401, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mDuration); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11418,7 +11465,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_9mDuration___get__(struct
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":402
+/* "assimpcy/all.pyx":410
  *     cdef readonly str mName
  *     cdef readonly double mDuration
  *     cdef readonly double mTicksPerSecond             # <<<<<<<<<<<<<<
@@ -11445,7 +11492,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_15mTicksPerSecond___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mTicksPerSecond); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mTicksPerSecond); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11462,7 +11509,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_15mTicksPerSecond___get__
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":403
+/* "assimpcy/all.pyx":411
  *     cdef readonly double mDuration
  *     cdef readonly double mTicksPerSecond
  *     cdef readonly list mChannels             # <<<<<<<<<<<<<<
@@ -11810,17 +11857,18 @@ static PyObject *__pyx_pf_8assimpcy_3all_11aiAnimation_6__setstate_cython__(stru
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":415
+/* "assimpcy/all.pyx":423
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiAnimation buildAnimation(cAnim.aiAnimation* anim):             # <<<<<<<<<<<<<<
  *     cdef aiAnimation nAnim = aiAnimation()
- *     cdef int i = 0
+ *     cdef int i = 0, j
  */
 
 static struct __pyx_obj_8assimpcy_3all_aiAnimation *__pyx_f_8assimpcy_3all_buildAnimation(aiAnimation *__pyx_v_anim) {
   struct __pyx_obj_8assimpcy_3all_aiAnimation *__pyx_v_nAnim = 0;
   int __pyx_v_i;
+  int __pyx_v_j;
   struct __pyx_obj_8assimpcy_3all_aiAnimation *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11829,103 +11877,114 @@ static struct __pyx_obj_8assimpcy_3all_aiAnimation *__pyx_f_8assimpcy_3all_build
   unsigned int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
+  int __pyx_t_7;
   __Pyx_RefNannySetupContext("buildAnimation", 0);
 
-  /* "assimpcy/all.pyx":416
+  /* "assimpcy/all.pyx":424
  * @cython.nonecheck(False)
  * cdef aiAnimation buildAnimation(cAnim.aiAnimation* anim):
  *     cdef aiAnimation nAnim = aiAnimation()             # <<<<<<<<<<<<<<
- *     cdef int i = 0
+ *     cdef int i = 0, j
  *     nAnim.mName = str(anim.mName.data)
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiAnimation), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiAnimation), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_nAnim = ((struct __pyx_obj_8assimpcy_3all_aiAnimation *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":417
+  /* "assimpcy/all.pyx":425
  * cdef aiAnimation buildAnimation(cAnim.aiAnimation* anim):
  *     cdef aiAnimation nAnim = aiAnimation()
- *     cdef int i = 0             # <<<<<<<<<<<<<<
+ *     cdef int i = 0, j             # <<<<<<<<<<<<<<
  *     nAnim.mName = str(anim.mName.data)
  *     nAnim.mDuration = anim.mDuration
  */
   __pyx_v_i = 0;
 
-  /* "assimpcy/all.pyx":418
+  /* "assimpcy/all.pyx":426
  *     cdef aiAnimation nAnim = aiAnimation()
- *     cdef int i = 0
+ *     cdef int i = 0, j
  *     nAnim.mName = str(anim.mName.data)             # <<<<<<<<<<<<<<
  *     nAnim.mDuration = anim.mDuration
  *     nAnim.mTicksPerSecond = anim.mTicksPerSecond
  */
-  __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_anim->mName.data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_anim->mName.data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 418, __pyx_L1_error)
+  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_nAnim->mName);
   __Pyx_DECREF(__pyx_v_nAnim->mName);
   __pyx_v_nAnim->mName = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":419
- *     cdef int i = 0
+  /* "assimpcy/all.pyx":427
+ *     cdef int i = 0, j
  *     nAnim.mName = str(anim.mName.data)
  *     nAnim.mDuration = anim.mDuration             # <<<<<<<<<<<<<<
  *     nAnim.mTicksPerSecond = anim.mTicksPerSecond
- *     for i in range(anim.mNumChannels):
+ *     j = anim.mNumChannels
  */
   __pyx_t_3 = __pyx_v_anim->mDuration;
   __pyx_v_nAnim->mDuration = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":420
+  /* "assimpcy/all.pyx":428
  *     nAnim.mName = str(anim.mName.data)
  *     nAnim.mDuration = anim.mDuration
  *     nAnim.mTicksPerSecond = anim.mTicksPerSecond             # <<<<<<<<<<<<<<
- *     for i in range(anim.mNumChannels):
- *         nAnim.mChannels.append(buildAnimNode(anim.mChannels[i]))
+ *     j = anim.mNumChannels
+ *     for i in range(j):
  */
   __pyx_t_3 = __pyx_v_anim->mTicksPerSecond;
   __pyx_v_nAnim->mTicksPerSecond = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":421
+  /* "assimpcy/all.pyx":429
  *     nAnim.mDuration = anim.mDuration
  *     nAnim.mTicksPerSecond = anim.mTicksPerSecond
- *     for i in range(anim.mNumChannels):             # <<<<<<<<<<<<<<
+ *     j = anim.mNumChannels             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         nAnim.mChannels.append(buildAnimNode(anim.mChannels[i]))
+ */
+  __pyx_t_4 = __pyx_v_anim->mNumChannels;
+  __pyx_v_j = __pyx_t_4;
+
+  /* "assimpcy/all.pyx":430
+ *     nAnim.mTicksPerSecond = anim.mTicksPerSecond
+ *     j = anim.mNumChannels
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         nAnim.mChannels.append(buildAnimNode(anim.mChannels[i]))
  *     return nAnim
  */
-  __pyx_t_4 = __pyx_v_anim->mNumChannels;
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_i = __pyx_t_5;
+  __pyx_t_5 = __pyx_v_j;
+  for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
+    __pyx_v_i = __pyx_t_6;
 
-    /* "assimpcy/all.pyx":422
- *     nAnim.mTicksPerSecond = anim.mTicksPerSecond
- *     for i in range(anim.mNumChannels):
+    /* "assimpcy/all.pyx":431
+ *     j = anim.mNumChannels
+ *     for i in range(j):
  *         nAnim.mChannels.append(buildAnimNode(anim.mChannels[i]))             # <<<<<<<<<<<<<<
  *     return nAnim
  * 
  */
     if (unlikely(__pyx_v_nAnim->mChannels == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 422, __pyx_L1_error)
+      __PYX_ERR(0, 431, __pyx_L1_error)
     }
-    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildAnimNode((__pyx_v_anim->mChannels[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 422, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildAnimNode((__pyx_v_anim->mChannels[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_nAnim->mChannels, __pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 422, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_nAnim->mChannels, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":423
- *     for i in range(anim.mNumChannels):
+  /* "assimpcy/all.pyx":432
+ *     for i in range(j):
  *         nAnim.mChannels.append(buildAnimNode(anim.mChannels[i]))
  *     return nAnim             # <<<<<<<<<<<<<<
  * 
@@ -11936,12 +11995,12 @@ static struct __pyx_obj_8assimpcy_3all_aiAnimation *__pyx_f_8assimpcy_3all_build
   __pyx_r = __pyx_v_nAnim;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":415
+  /* "assimpcy/all.pyx":423
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiAnimation buildAnimation(cAnim.aiAnimation* anim):             # <<<<<<<<<<<<<<
  *     cdef aiAnimation nAnim = aiAnimation()
- *     cdef int i = 0
+ *     cdef int i = 0, j
  */
 
   /* function exit code */
@@ -11957,7 +12016,7 @@ static struct __pyx_obj_8assimpcy_3all_aiAnimation *__pyx_f_8assimpcy_3all_build
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":450
+/* "assimpcy/all.pyx":459
  *     cdef readonly bool HasAnimations
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -11987,14 +12046,14 @@ static int __pyx_pf_8assimpcy_3all_7aiScene___init__(struct __pyx_obj_8assimpcy_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "assimpcy/all.pyx":451
+  /* "assimpcy/all.pyx":460
  * 
  *     def __init__(self):
  *         self.mMeshes = []             # <<<<<<<<<<<<<<
  *         self.mMaterials = []
  *         self.mAnimations = []
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 451, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mMeshes);
@@ -12002,14 +12061,14 @@ static int __pyx_pf_8assimpcy_3all_7aiScene___init__(struct __pyx_obj_8assimpcy_
   __pyx_v_self->mMeshes = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":452
+  /* "assimpcy/all.pyx":461
  *     def __init__(self):
  *         self.mMeshes = []
  *         self.mMaterials = []             # <<<<<<<<<<<<<<
  *         self.mAnimations = []
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 452, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mMaterials);
@@ -12017,14 +12076,14 @@ static int __pyx_pf_8assimpcy_3all_7aiScene___init__(struct __pyx_obj_8assimpcy_
   __pyx_v_self->mMaterials = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":453
+  /* "assimpcy/all.pyx":462
  *         self.mMeshes = []
  *         self.mMaterials = []
  *         self.mAnimations = []             # <<<<<<<<<<<<<<
  * 
  * @cython.boundscheck(False)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 462, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->mAnimations);
@@ -12032,7 +12091,7 @@ static int __pyx_pf_8assimpcy_3all_7aiScene___init__(struct __pyx_obj_8assimpcy_
   __pyx_v_self->mAnimations = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":450
+  /* "assimpcy/all.pyx":459
  *     cdef readonly bool HasAnimations
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -12052,7 +12111,7 @@ static int __pyx_pf_8assimpcy_3all_7aiScene___init__(struct __pyx_obj_8assimpcy_
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":429
+/* "assimpcy/all.pyx":438
  * cdef class aiScene:
  *     # self.mFlags
  *     cdef readonly aiNode mRootNode             # <<<<<<<<<<<<<<
@@ -12089,7 +12148,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_9mRootNode___get__(struct __py
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":430
+/* "assimpcy/all.pyx":439
  *     # self.mFlags
  *     cdef readonly aiNode mRootNode
  *     cdef readonly int mNumMeshes             # <<<<<<<<<<<<<<
@@ -12116,7 +12175,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_10mNumMeshes___get__(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 439, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12133,7 +12192,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_10mNumMeshes___get__(struct __
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":431
+/* "assimpcy/all.pyx":440
  *     cdef readonly aiNode mRootNode
  *     cdef readonly int mNumMeshes
  *     cdef readonly list mMeshes             # <<<<<<<<<<<<<<
@@ -12170,7 +12229,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_7mMeshes___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":432
+/* "assimpcy/all.pyx":441
  *     cdef readonly int mNumMeshes
  *     cdef readonly list mMeshes
  *     cdef readonly int mNumMaterials             # <<<<<<<<<<<<<<
@@ -12197,7 +12256,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_13mNumMaterials___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumMaterials); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 432, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumMaterials); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12214,7 +12273,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_13mNumMaterials___get__(struct
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":433
+/* "assimpcy/all.pyx":442
  *     cdef readonly list mMeshes
  *     cdef readonly int mNumMaterials
  *     cdef readonly list mMaterials             # <<<<<<<<<<<<<<
@@ -12251,7 +12310,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_10mMaterials___get__(struct __
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":434
+/* "assimpcy/all.pyx":443
  *     cdef readonly int mNumMaterials
  *     cdef readonly list mMaterials
  *     cdef readonly int mNumAnimations             # <<<<<<<<<<<<<<
@@ -12278,7 +12337,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_14mNumAnimations___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumAnimations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumAnimations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12295,7 +12354,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_14mNumAnimations___get__(struc
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":435
+/* "assimpcy/all.pyx":444
  *     cdef readonly list mMaterials
  *     cdef readonly int mNumAnimations
  *     cdef readonly list mAnimations             # <<<<<<<<<<<<<<
@@ -12332,7 +12391,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_11mAnimations___get__(struct _
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":436
+/* "assimpcy/all.pyx":445
  *     cdef readonly int mNumAnimations
  *     cdef readonly list mAnimations
  *     cdef readonly int mNumTextures             # <<<<<<<<<<<<<<
@@ -12359,7 +12418,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_12mNumTextures___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumTextures); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumTextures); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 445, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12376,7 +12435,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_12mNumTextures___get__(struct 
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":438
+/* "assimpcy/all.pyx":447
  *     cdef readonly int mNumTextures
  *     # cdef readonly list mTextures
  *     cdef readonly int mNumLights             # <<<<<<<<<<<<<<
@@ -12403,7 +12462,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_10mNumLights___get__(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumLights); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumLights); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12420,7 +12479,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_10mNumLights___get__(struct __
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":440
+/* "assimpcy/all.pyx":449
  *     cdef readonly int mNumLights
  *     # cdef readonly list mLights
  *     cdef readonly int mNumCameras             # <<<<<<<<<<<<<<
@@ -12447,7 +12506,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_11mNumCameras___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumCameras); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->mNumCameras); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 449, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12464,7 +12523,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_11mNumCameras___get__(struct _
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":443
+/* "assimpcy/all.pyx":452
  *     # cdef readonly list mCameras
  * 
  *     cdef readonly bool HasMeshes             # <<<<<<<<<<<<<<
@@ -12491,7 +12550,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_9HasMeshes___get__(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12508,7 +12567,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_9HasMeshes___get__(struct __py
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":444
+/* "assimpcy/all.pyx":453
  * 
  *     cdef readonly bool HasMeshes
  *     cdef readonly bool HasMaterials             # <<<<<<<<<<<<<<
@@ -12535,7 +12594,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_12HasMaterials___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasMaterials); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasMaterials); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12552,7 +12611,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_12HasMaterials___get__(struct 
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":445
+/* "assimpcy/all.pyx":454
  *     cdef readonly bool HasMeshes
  *     cdef readonly bool HasMaterials
  *     cdef readonly bool HasLights             # <<<<<<<<<<<<<<
@@ -12579,7 +12638,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_9HasLights___get__(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasLights); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 445, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasLights); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12596,7 +12655,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_9HasLights___get__(struct __py
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":446
+/* "assimpcy/all.pyx":455
  *     cdef readonly bool HasMaterials
  *     cdef readonly bool HasLights
  *     cdef readonly bool HasTextures             # <<<<<<<<<<<<<<
@@ -12623,7 +12682,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_11HasTextures___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasTextures); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasTextures); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12640,7 +12699,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_11HasTextures___get__(struct _
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":447
+/* "assimpcy/all.pyx":456
  *     cdef readonly bool HasLights
  *     cdef readonly bool HasTextures
  *     cdef readonly bool HasCameras             # <<<<<<<<<<<<<<
@@ -12667,7 +12726,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_10HasCameras___get__(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasCameras); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasCameras); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 456, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12684,7 +12743,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_10HasCameras___get__(struct __
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":448
+/* "assimpcy/all.pyx":457
  *     cdef readonly bool HasTextures
  *     cdef readonly bool HasCameras
  *     cdef readonly bool HasAnimations             # <<<<<<<<<<<<<<
@@ -12711,7 +12770,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_13HasAnimations___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasAnimations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->HasAnimations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 457, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13129,45 +13188,47 @@ static PyObject *__pyx_pf_8assimpcy_3all_7aiScene_4__setstate_cython__(struct __
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":458
+/* "assimpcy/all.pyx":467
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiScene buildScene(const cScene.aiScene *cs):             # <<<<<<<<<<<<<<
  *     cdef aiScene scene = aiScene()
- *     cdef unsigned int i
+ *     cdef unsigned int i, j
  */
 
 static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScene(aiScene const *__pyx_v_cs) {
   struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_v_scene = 0;
   unsigned int __pyx_v_i;
+  unsigned int __pyx_v_j;
   struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   unsigned int __pyx_t_2;
   int __pyx_t_3;
-  int __pyx_t_4;
+  unsigned int __pyx_t_4;
+  int __pyx_t_5;
   __Pyx_RefNannySetupContext("buildScene", 0);
 
-  /* "assimpcy/all.pyx":459
+  /* "assimpcy/all.pyx":468
  * @cython.nonecheck(False)
  * cdef aiScene buildScene(const cScene.aiScene *cs):
  *     cdef aiScene scene = aiScene()             # <<<<<<<<<<<<<<
- *     cdef unsigned int i
+ *     cdef unsigned int i, j
  *     # scene.mFlags
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiScene), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8assimpcy_3all_aiScene), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_scene = ((struct __pyx_obj_8assimpcy_3all_aiScene *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":462
- *     cdef unsigned int i
+  /* "assimpcy/all.pyx":471
+ *     cdef unsigned int i, j
  *     # scene.mFlags
  *     scene.mRootNode  = buildNode(cs.mRootNode, None)             # <<<<<<<<<<<<<<
  *     scene.mNumMeshes = cs.mNumMeshes
  *     scene.mNumMaterials = cs.mNumMaterials
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildNode(__pyx_v_cs->mRootNode, ((struct __pyx_obj_8assimpcy_3all_aiNode *)Py_None))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildNode(__pyx_v_cs->mRootNode, ((struct __pyx_obj_8assimpcy_3all_aiNode *)Py_None))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_scene->mRootNode);
@@ -13175,7 +13236,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_v_scene->mRootNode = ((struct __pyx_obj_8assimpcy_3all_aiNode *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":463
+  /* "assimpcy/all.pyx":472
  *     # scene.mFlags
  *     scene.mRootNode  = buildNode(cs.mRootNode, None)
  *     scene.mNumMeshes = cs.mNumMeshes             # <<<<<<<<<<<<<<
@@ -13185,7 +13246,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_2 = __pyx_v_cs->mNumMeshes;
   __pyx_v_scene->mNumMeshes = __pyx_t_2;
 
-  /* "assimpcy/all.pyx":464
+  /* "assimpcy/all.pyx":473
  *     scene.mRootNode  = buildNode(cs.mRootNode, None)
  *     scene.mNumMeshes = cs.mNumMeshes
  *     scene.mNumMaterials = cs.mNumMaterials             # <<<<<<<<<<<<<<
@@ -13195,7 +13256,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_3 = __pyx_v_cs->mNumMaterials;
   __pyx_v_scene->mNumMaterials = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":465
+  /* "assimpcy/all.pyx":474
  *     scene.mNumMeshes = cs.mNumMeshes
  *     scene.mNumMaterials = cs.mNumMaterials
  *     scene.mNumAnimations = cs.mNumAnimations             # <<<<<<<<<<<<<<
@@ -13205,7 +13266,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_2 = __pyx_v_cs->mNumAnimations;
   __pyx_v_scene->mNumAnimations = __pyx_t_2;
 
-  /* "assimpcy/all.pyx":466
+  /* "assimpcy/all.pyx":475
  *     scene.mNumMaterials = cs.mNumMaterials
  *     scene.mNumAnimations = cs.mNumAnimations
  *     scene.mNumTextures = cs.mNumTextures             # <<<<<<<<<<<<<<
@@ -13215,7 +13276,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_2 = __pyx_v_cs->mNumTextures;
   __pyx_v_scene->mNumTextures = __pyx_t_2;
 
-  /* "assimpcy/all.pyx":468
+  /* "assimpcy/all.pyx":477
  *     scene.mNumTextures = cs.mNumTextures
  *     #scene.mTextures
  *     scene.mNumLights = cs.mNumLights             # <<<<<<<<<<<<<<
@@ -13225,7 +13286,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_2 = __pyx_v_cs->mNumLights;
   __pyx_v_scene->mNumLights = __pyx_t_2;
 
-  /* "assimpcy/all.pyx":470
+  /* "assimpcy/all.pyx":479
  *     scene.mNumLights = cs.mNumLights
  *     #scene.mLights
  *     scene.mNumCameras = cs.mNumCameras             # <<<<<<<<<<<<<<
@@ -13235,7 +13296,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_2 = __pyx_v_cs->mNumCameras;
   __pyx_v_scene->mNumCameras = __pyx_t_2;
 
-  /* "assimpcy/all.pyx":473
+  /* "assimpcy/all.pyx":482
  *     #scene.mCameras
  * 
  *     scene.HasMeshes = scene.mNumMeshes             # <<<<<<<<<<<<<<
@@ -13245,7 +13306,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_3 = __pyx_v_scene->mNumMeshes;
   __pyx_v_scene->HasMeshes = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":474
+  /* "assimpcy/all.pyx":483
  * 
  *     scene.HasMeshes = scene.mNumMeshes
  *     scene.HasMaterials = scene.mNumMaterials             # <<<<<<<<<<<<<<
@@ -13255,7 +13316,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_3 = __pyx_v_scene->mNumMaterials;
   __pyx_v_scene->HasMaterials = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":475
+  /* "assimpcy/all.pyx":484
  *     scene.HasMeshes = scene.mNumMeshes
  *     scene.HasMaterials = scene.mNumMaterials
  *     scene.HasLights = scene.mNumLights             # <<<<<<<<<<<<<<
@@ -13265,7 +13326,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_3 = __pyx_v_scene->mNumLights;
   __pyx_v_scene->HasLights = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":476
+  /* "assimpcy/all.pyx":485
  *     scene.HasMaterials = scene.mNumMaterials
  *     scene.HasLights = scene.mNumLights
  *     scene.HasTextures = scene.mNumTextures             # <<<<<<<<<<<<<<
@@ -13275,7 +13336,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_3 = __pyx_v_scene->mNumTextures;
   __pyx_v_scene->HasTextures = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":477
+  /* "assimpcy/all.pyx":486
  *     scene.HasLights = scene.mNumLights
  *     scene.HasTextures = scene.mNumTextures
  *     scene.HasCameras = scene.mNumCameras             # <<<<<<<<<<<<<<
@@ -13285,101 +13346,131 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_t_3 = __pyx_v_scene->mNumCameras;
   __pyx_v_scene->HasCameras = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":478
+  /* "assimpcy/all.pyx":487
  *     scene.HasTextures = scene.mNumTextures
  *     scene.HasCameras = scene.mNumCameras
  *     scene.HasAnimations = scene.mNumAnimations             # <<<<<<<<<<<<<<
  * 
- *     for i in range(scene.mNumMeshes):
+ *     j = scene.mNumMeshes
  */
   __pyx_t_3 = __pyx_v_scene->mNumAnimations;
   __pyx_v_scene->HasAnimations = __pyx_t_3;
 
-  /* "assimpcy/all.pyx":480
+  /* "assimpcy/all.pyx":489
  *     scene.HasAnimations = scene.mNumAnimations
  * 
- *     for i in range(scene.mNumMeshes):             # <<<<<<<<<<<<<<
+ *     j = scene.mNumMeshes             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         scene.mMeshes.append(buildMesh(cs.mMeshes[i]))
+ */
+  __pyx_t_3 = __pyx_v_scene->mNumMeshes;
+  __pyx_v_j = __pyx_t_3;
+
+  /* "assimpcy/all.pyx":490
+ * 
+ *     j = scene.mNumMeshes
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         scene.mMeshes.append(buildMesh(cs.mMeshes[i]))
  * 
  */
-  __pyx_t_3 = __pyx_v_scene->mNumMeshes;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_j;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_2; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
 
-    /* "assimpcy/all.pyx":481
- * 
- *     for i in range(scene.mNumMeshes):
+    /* "assimpcy/all.pyx":491
+ *     j = scene.mNumMeshes
+ *     for i in range(j):
  *         scene.mMeshes.append(buildMesh(cs.mMeshes[i]))             # <<<<<<<<<<<<<<
  * 
- *     for i in range(scene.mNumMaterials):
+ *     j = scene.mNumMaterials
  */
     if (unlikely(__pyx_v_scene->mMeshes == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 481, __pyx_L1_error)
+      __PYX_ERR(0, 491, __pyx_L1_error)
     }
-    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildMesh((__pyx_v_cs->mMeshes[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 481, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildMesh((__pyx_v_cs->mMeshes[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 491, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyList_Append(__pyx_v_scene->mMeshes, __pyx_t_1); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 481, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_scene->mMeshes, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 491, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":483
+  /* "assimpcy/all.pyx":493
  *         scene.mMeshes.append(buildMesh(cs.mMeshes[i]))
  * 
- *     for i in range(scene.mNumMaterials):             # <<<<<<<<<<<<<<
+ *     j = scene.mNumMaterials             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         scene.mMaterials.append(buildMaterial(cs.mMaterials[i]))
+ */
+  __pyx_t_3 = __pyx_v_scene->mNumMaterials;
+  __pyx_v_j = __pyx_t_3;
+
+  /* "assimpcy/all.pyx":494
+ * 
+ *     j = scene.mNumMaterials
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         scene.mMaterials.append(buildMaterial(cs.mMaterials[i]))
  * 
  */
-  __pyx_t_3 = __pyx_v_scene->mNumMaterials;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_j;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_2; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
 
-    /* "assimpcy/all.pyx":484
- * 
- *     for i in range(scene.mNumMaterials):
+    /* "assimpcy/all.pyx":495
+ *     j = scene.mNumMaterials
+ *     for i in range(j):
  *         scene.mMaterials.append(buildMaterial(cs.mMaterials[i]))             # <<<<<<<<<<<<<<
  * 
- *     for i in range(scene.mNumAnimations):
+ *     j = scene.mNumAnimations
  */
     if (unlikely(__pyx_v_scene->mMaterials == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 484, __pyx_L1_error)
+      __PYX_ERR(0, 495, __pyx_L1_error)
     }
-    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildMaterial((__pyx_v_cs->mMaterials[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 484, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildMaterial((__pyx_v_cs->mMaterials[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 495, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyList_Append(__pyx_v_scene->mMaterials, __pyx_t_1); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 484, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_scene->mMaterials, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 495, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":486
+  /* "assimpcy/all.pyx":497
  *         scene.mMaterials.append(buildMaterial(cs.mMaterials[i]))
  * 
- *     for i in range(scene.mNumAnimations):             # <<<<<<<<<<<<<<
+ *     j = scene.mNumAnimations             # <<<<<<<<<<<<<<
+ *     for i in range(j):
+ *         scene.mAnimations.append(buildAnimation(cs.mAnimations[i]))
+ */
+  __pyx_t_3 = __pyx_v_scene->mNumAnimations;
+  __pyx_v_j = __pyx_t_3;
+
+  /* "assimpcy/all.pyx":498
+ * 
+ *     j = scene.mNumAnimations
+ *     for i in range(j):             # <<<<<<<<<<<<<<
  *         scene.mAnimations.append(buildAnimation(cs.mAnimations[i]))
  * 
  */
-  __pyx_t_3 = __pyx_v_scene->mNumAnimations;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_j;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_2; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
 
-    /* "assimpcy/all.pyx":487
- * 
- *     for i in range(scene.mNumAnimations):
+    /* "assimpcy/all.pyx":499
+ *     j = scene.mNumAnimations
+ *     for i in range(j):
  *         scene.mAnimations.append(buildAnimation(cs.mAnimations[i]))             # <<<<<<<<<<<<<<
  * 
  *     return scene
  */
     if (unlikely(__pyx_v_scene->mAnimations == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 487, __pyx_L1_error)
+      __PYX_ERR(0, 499, __pyx_L1_error)
     }
-    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildAnimation((__pyx_v_cs->mAnimations[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 487, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildAnimation((__pyx_v_cs->mAnimations[__pyx_v_i]))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 499, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyList_Append(__pyx_v_scene->mAnimations, __pyx_t_1); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 487, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_scene->mAnimations, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 499, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "assimpcy/all.pyx":489
+  /* "assimpcy/all.pyx":501
  *         scene.mAnimations.append(buildAnimation(cs.mAnimations[i]))
  * 
  *     return scene             # <<<<<<<<<<<<<<
@@ -13391,12 +13482,12 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   __pyx_r = __pyx_v_scene;
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":458
+  /* "assimpcy/all.pyx":467
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef aiScene buildScene(const cScene.aiScene *cs):             # <<<<<<<<<<<<<<
  *     cdef aiScene scene = aiScene()
- *     cdef unsigned int i
+ *     cdef unsigned int i, j
  */
 
   /* function exit code */
@@ -13411,7 +13502,7 @@ static struct __pyx_obj_8assimpcy_3all_aiScene *__pyx_f_8assimpcy_3all_buildScen
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":494
+/* "assimpcy/all.pyx":506
  * # -----------------------------------------------------
  * 
  * def aiImportFile(str path, unsigned int flags=0):             # <<<<<<<<<<<<<<
@@ -13456,7 +13547,7 @@ static PyObject *__pyx_pw_8assimpcy_3all_1aiImportFile(PyObject *__pyx_self, PyO
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aiImportFile") < 0)) __PYX_ERR(0, 494, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aiImportFile") < 0)) __PYX_ERR(0, 506, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -13469,20 +13560,20 @@ static PyObject *__pyx_pw_8assimpcy_3all_1aiImportFile(PyObject *__pyx_self, PyO
     }
     __pyx_v_path = ((PyObject*)values[0]);
     if (values[1]) {
-      __pyx_v_flags = __Pyx_PyInt_As_unsigned_int(values[1]); if (unlikely((__pyx_v_flags == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 494, __pyx_L3_error)
+      __pyx_v_flags = __Pyx_PyInt_As_unsigned_int(values[1]); if (unlikely((__pyx_v_flags == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 506, __pyx_L3_error)
     } else {
       __pyx_v_flags = ((unsigned int)0);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("aiImportFile", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 494, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("aiImportFile", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 506, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("assimpcy.all.aiImportFile", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), (&PyString_Type), 1, "path", 1))) __PYX_ERR(0, 494, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), (&PyString_Type), 1, "path", 1))) __PYX_ERR(0, 506, __pyx_L1_error)
   __pyx_r = __pyx_pf_8assimpcy_3all_aiImportFile(__pyx_self, __pyx_v_path, __pyx_v_flags);
 
   /* function exit code */
@@ -13519,14 +13610,14 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
   PyObject *__pyx_t_17 = NULL;
   __Pyx_RefNannySetupContext("aiImportFile", 0);
 
-  /* "assimpcy/all.pyx":508
+  /* "assimpcy/all.pyx":520
  *     """
  *     cdef const cScene.aiScene* csc
  *     bpath = path.encode()             # <<<<<<<<<<<<<<
  *     cdef const char* cpath = bpath
  *     with nogil:
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_path, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 508, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_path, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 520, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -13539,27 +13630,27 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 508, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 520, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 508, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 520, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_bpath = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":509
+  /* "assimpcy/all.pyx":521
  *     cdef const cScene.aiScene* csc
  *     bpath = path.encode()
  *     cdef const char* cpath = bpath             # <<<<<<<<<<<<<<
  *     with nogil:
  *         csc = cImporter.aiImportFile(cpath, flags)
  */
-  __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_bpath); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_bpath); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 521, __pyx_L1_error)
   __pyx_v_cpath = __pyx_t_4;
 
-  /* "assimpcy/all.pyx":510
+  /* "assimpcy/all.pyx":522
  *     bpath = path.encode()
  *     cdef const char* cpath = bpath
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -13574,7 +13665,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":511
+        /* "assimpcy/all.pyx":523
  *     cdef const char* cpath = bpath
  *     with nogil:
  *         csc = cImporter.aiImportFile(cpath, flags)             # <<<<<<<<<<<<<<
@@ -13591,12 +13682,12 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
           #ifdef WITH_THREAD
           __Pyx_PyGILState_Release(__pyx_gilstate_save);
           #endif
-          __PYX_ERR(0, 511, __pyx_L4_error)
+          __PYX_ERR(0, 523, __pyx_L4_error)
         }
         __pyx_v_csc = __pyx_t_5;
       }
 
-      /* "assimpcy/all.pyx":510
+      /* "assimpcy/all.pyx":522
  *     bpath = path.encode()
  *     cdef const char* cpath = bpath
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -13622,7 +13713,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
       }
   }
 
-  /* "assimpcy/all.pyx":512
+  /* "assimpcy/all.pyx":524
  *     with nogil:
  *         csc = cImporter.aiImportFile(cpath, flags)
  *     if csc:             # <<<<<<<<<<<<<<
@@ -13632,7 +13723,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
   __pyx_t_6 = (__pyx_v_csc != 0);
   if (__pyx_t_6) {
 
-    /* "assimpcy/all.pyx":513
+    /* "assimpcy/all.pyx":525
  *         csc = cImporter.aiImportFile(cpath, flags)
  *     if csc:
  *         try:             # <<<<<<<<<<<<<<
@@ -13641,7 +13732,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  */
     /*try:*/ {
 
-      /* "assimpcy/all.pyx":514
+      /* "assimpcy/all.pyx":526
  *     if csc:
  *         try:
  *             return buildScene(csc)             # <<<<<<<<<<<<<<
@@ -13649,14 +13740,14 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  *         #     raise
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildScene(__pyx_v_csc)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 514, __pyx_L8_error)
+      __pyx_t_1 = ((PyObject *)__pyx_f_8assimpcy_3all_buildScene(__pyx_v_csc)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 526, __pyx_L8_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_r = __pyx_t_1;
       __pyx_t_1 = 0;
       goto __pyx_L7_return;
     }
 
-    /* "assimpcy/all.pyx":518
+    /* "assimpcy/all.pyx":530
  *         #     raise
  *         finally:
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -13690,7 +13781,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
               #endif
               /*try:*/ {
 
-                /* "assimpcy/all.pyx":519
+                /* "assimpcy/all.pyx":531
  *         finally:
  *             with nogil:
  *                 cImporter.aiReleaseImport(csc)             # <<<<<<<<<<<<<<
@@ -13699,7 +13790,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  */
                 aiReleaseImport(__pyx_v_csc);
 
-                /* "assimpcy/all.pyx":520
+                /* "assimpcy/all.pyx":532
  *             with nogil:
  *                 cImporter.aiReleaseImport(csc)
  *                 csc = NULL             # <<<<<<<<<<<<<<
@@ -13708,7 +13799,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  */
                 __pyx_v_csc = NULL;
 
-                /* "assimpcy/all.pyx":521
+                /* "assimpcy/all.pyx":533
  *                 cImporter.aiReleaseImport(csc)
  *                 csc = NULL
  *                 del csc             # <<<<<<<<<<<<<<
@@ -13718,7 +13809,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
                 delete __pyx_v_csc;
               }
 
-              /* "assimpcy/all.pyx":518
+              /* "assimpcy/all.pyx":530
  *         #     raise
  *         finally:
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -13762,7 +13853,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
             #endif
             /*try:*/ {
 
-              /* "assimpcy/all.pyx":519
+              /* "assimpcy/all.pyx":531
  *         finally:
  *             with nogil:
  *                 cImporter.aiReleaseImport(csc)             # <<<<<<<<<<<<<<
@@ -13771,7 +13862,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  */
               aiReleaseImport(__pyx_v_csc);
 
-              /* "assimpcy/all.pyx":520
+              /* "assimpcy/all.pyx":532
  *             with nogil:
  *                 cImporter.aiReleaseImport(csc)
  *                 csc = NULL             # <<<<<<<<<<<<<<
@@ -13780,7 +13871,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  */
               __pyx_v_csc = NULL;
 
-              /* "assimpcy/all.pyx":521
+              /* "assimpcy/all.pyx":533
  *                 cImporter.aiReleaseImport(csc)
  *                 csc = NULL
  *                 del csc             # <<<<<<<<<<<<<<
@@ -13790,7 +13881,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
               delete __pyx_v_csc;
             }
 
-            /* "assimpcy/all.pyx":518
+            /* "assimpcy/all.pyx":530
  *         #     raise
  *         finally:
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -13814,7 +13905,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
       }
     }
 
-    /* "assimpcy/all.pyx":512
+    /* "assimpcy/all.pyx":524
  *     with nogil:
  *         csc = cImporter.aiImportFile(cpath, flags)
  *     if csc:             # <<<<<<<<<<<<<<
@@ -13823,7 +13914,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  */
   }
 
-  /* "assimpcy/all.pyx":523
+  /* "assimpcy/all.pyx":535
  *                 del csc
  *     else:
  *         csc = NULL             # <<<<<<<<<<<<<<
@@ -13833,7 +13924,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
   /*else*/ {
     __pyx_v_csc = NULL;
 
-    /* "assimpcy/all.pyx":524
+    /* "assimpcy/all.pyx":536
  *     else:
  *         csc = NULL
  *         del csc             # <<<<<<<<<<<<<<
@@ -13842,16 +13933,16 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
  */
     delete __pyx_v_csc;
 
-    /* "assimpcy/all.pyx":527
+    /* "assimpcy/all.pyx":539
  *         # cpath = NULL
  *         # del cpath  # << Error (Deletion of non-Python, non-C++ object)
  *         raise AssimpError(cImporter.aiGetErrorString())             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_AssimpError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 527, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_AssimpError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 539, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyBytes_FromString(aiGetErrorString()); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 527, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyBytes_FromString(aiGetErrorString()); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 539, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_16 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -13864,14 +13955,14 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
       }
     }
     if (!__pyx_t_16) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 527, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 539, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_2)) {
         PyObject *__pyx_temp[2] = {__pyx_t_16, __pyx_t_3};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 527, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 539, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13880,20 +13971,20 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
         PyObject *__pyx_temp[2] = {__pyx_t_16, __pyx_t_3};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 527, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 539, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else
       #endif
       {
-        __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 527, __pyx_L1_error)
+        __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 539, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_17);
         __Pyx_GIVEREF(__pyx_t_16); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_16); __pyx_t_16 = NULL;
         __Pyx_GIVEREF(__pyx_t_3);
         PyTuple_SET_ITEM(__pyx_t_17, 0+1, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 527, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 539, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
       }
@@ -13901,10 +13992,10 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 527, __pyx_L1_error)
+    __PYX_ERR(0, 539, __pyx_L1_error)
   }
 
-  /* "assimpcy/all.pyx":494
+  /* "assimpcy/all.pyx":506
  * # -----------------------------------------------------
  * 
  * def aiImportFile(str path, unsigned int flags=0):             # <<<<<<<<<<<<<<
@@ -13928,7 +14019,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_aiImportFile(CYTHON_UNUSED PyObject *__
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":530
+/* "assimpcy/all.pyx":542
  * 
  * 
  * def aiReleaseImport(aiScene pScene):             # <<<<<<<<<<<<<<
@@ -13943,7 +14034,7 @@ static PyObject *__pyx_pw_8assimpcy_3all_3aiReleaseImport(PyObject *__pyx_self, 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("aiReleaseImport (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_pScene), __pyx_ptype_8assimpcy_3all_aiScene, 1, "pScene", 0))) __PYX_ERR(0, 530, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_pScene), __pyx_ptype_8assimpcy_3all_aiScene, 1, "pScene", 0))) __PYX_ERR(0, 542, __pyx_L1_error)
   __pyx_r = __pyx_pf_8assimpcy_3all_2aiReleaseImport(__pyx_self, ((struct __pyx_obj_8assimpcy_3all_aiScene *)__pyx_v_pScene));
 
   /* function exit code */
@@ -13965,16 +14056,16 @@ static PyObject *__pyx_pf_8assimpcy_3all_2aiReleaseImport(CYTHON_UNUSED PyObject
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("aiReleaseImport", 0);
 
-  /* "assimpcy/all.pyx":531
+  /* "assimpcy/all.pyx":543
  * 
  * def aiReleaseImport(aiScene pScene):
  *      warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed since it is handled by '             # <<<<<<<<<<<<<<
  *                              '\'aiImportFile\'.'))
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_warn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_warn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeWarning, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeWarning, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -13987,14 +14078,14 @@ static PyObject *__pyx_pf_8assimpcy_3all_2aiReleaseImport(CYTHON_UNUSED PyObject
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 543, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 543, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14003,20 +14094,20 @@ static PyObject *__pyx_pf_8assimpcy_3all_2aiReleaseImport(CYTHON_UNUSED PyObject
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 543, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 531, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 543, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 543, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -14024,7 +14115,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_2aiReleaseImport(CYTHON_UNUSED PyObject
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":530
+  /* "assimpcy/all.pyx":542
  * 
  * 
  * def aiReleaseImport(aiScene pScene):             # <<<<<<<<<<<<<<
@@ -14049,7 +14140,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_2aiReleaseImport(CYTHON_UNUSED PyObject
   return __pyx_r;
 }
 
-/* "assimpcy/all.pyx":541
+/* "assimpcy/all.pyx":553
  *     NUMPYFLOAT_t data[16]
  *     unsigned int validLenght
  *     dataStorageF():             # <<<<<<<<<<<<<<
@@ -14060,7 +14151,7 @@ static PyObject *__pyx_pf_8assimpcy_3all_2aiReleaseImport(CYTHON_UNUSED PyObject
 void __pyx_t_8assimpcy_3all_dataStorageF::__pyx_f___init__dataStorageF(void) {
   CYTHON_UNUSED long __pyx_v_validLenght;
 
-  /* "assimpcy/all.pyx":542
+  /* "assimpcy/all.pyx":554
  *     unsigned int validLenght
  *     dataStorageF():
  *         validLenght = 0             # <<<<<<<<<<<<<<
@@ -14069,7 +14160,7 @@ void __pyx_t_8assimpcy_3all_dataStorageF::__pyx_f___init__dataStorageF(void) {
  */
   __pyx_v_validLenght = 0;
 
-  /* "assimpcy/all.pyx":541
+  /* "assimpcy/all.pyx":553
  *     NUMPYFLOAT_t data[16]
  *     unsigned int validLenght
  *     dataStorageF():             # <<<<<<<<<<<<<<
@@ -14080,7 +14171,7 @@ void __pyx_t_8assimpcy_3all_dataStorageF::__pyx_f___init__dataStorageF(void) {
   /* function exit code */
 }
 
-/* "assimpcy/all.pyx":547
+/* "assimpcy/all.pyx":559
  *     NUMPYINT_t data[16]
  *     unsigned int validLenght
  *     dataStorageI():             # <<<<<<<<<<<<<<
@@ -14091,7 +14182,7 @@ void __pyx_t_8assimpcy_3all_dataStorageF::__pyx_f___init__dataStorageF(void) {
 void __pyx_t_8assimpcy_3all_dataStorageI::__pyx_f___init__dataStorageI(void) {
   CYTHON_UNUSED long __pyx_v_validLenght;
 
-  /* "assimpcy/all.pyx":548
+  /* "assimpcy/all.pyx":560
  *     unsigned int validLenght
  *     dataStorageI():
  *         validLenght = 0             # <<<<<<<<<<<<<<
@@ -14100,7 +14191,7 @@ void __pyx_t_8assimpcy_3all_dataStorageI::__pyx_f___init__dataStorageI(void) {
  */
   __pyx_v_validLenght = 0;
 
-  /* "assimpcy/all.pyx":547
+  /* "assimpcy/all.pyx":559
  *     NUMPYINT_t data[16]
  *     unsigned int validLenght
  *     dataStorageI():             # <<<<<<<<<<<<<<
@@ -14111,7 +14202,7 @@ void __pyx_t_8assimpcy_3all_dataStorageI::__pyx_f___init__dataStorageI(void) {
   /* function exit code */
 }
 
-/* "assimpcy/all.pyx":553
+/* "assimpcy/all.pyx":565
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef np.ndarray asNumpyArray(i_f* ds):             # <<<<<<<<<<<<<<
@@ -14150,42 +14241,42 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
   __pyx_pybuffernd_retI.data = NULL;
   __pyx_pybuffernd_retI.rcbuffer = &__pyx_pybuffer_retI;
 
-  /* "assimpcy/all.pyx":564
+  /* "assimpcy/all.pyx":576
  * 
  *     if i_f is dataStorageI:
  *         retI = np.empty([ds.validLenght], dtype=NUMPYINT)             # <<<<<<<<<<<<<<
  *         dsiarr_view = ds.data
  *         iarr_view =  retI
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_ds->validLenght); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_ds->validLenght); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYINT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYINT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 564, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 576, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 564, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 576, __pyx_L1_error)
   __pyx_t_5 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -14202,13 +14293,13 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
       __pyx_t_7 = __pyx_t_8 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_retI.diminfo[0].strides = __pyx_pybuffernd_retI.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_retI.diminfo[0].shape = __pyx_pybuffernd_retI.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 564, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 576, __pyx_L1_error)
   }
   __pyx_t_5 = 0;
   __pyx_v_retI = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "assimpcy/all.pyx":565
+  /* "assimpcy/all.pyx":577
  *     if i_f is dataStorageI:
  *         retI = np.empty([ds.validLenght], dtype=NUMPYINT)
  *         dsiarr_view = ds.data             # <<<<<<<<<<<<<<
@@ -14218,26 +14309,26 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
   __pyx_t_10 = __pyx_v_ds->data;
   if (!__pyx_t_10) {
     PyErr_SetString(PyExc_ValueError,"Cannot create cython.array from NULL pointer");
-    __PYX_ERR(0, 565, __pyx_L1_error)
+    __PYX_ERR(0, 577, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_nn___pyx_t_8assimpcy_3all_NUMPYINT_t);
   __pyx_t_4 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)16));
-  if (unlikely(!__pyx_t_3 || !__pyx_t_4 || !PyBytes_AsString(__pyx_t_3))) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3 || !__pyx_t_4 || !PyBytes_AsString(__pyx_t_3))) __PYX_ERR(0, 577, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_11 = __pyx_array_new(__pyx_t_4, sizeof(__pyx_t_8assimpcy_3all_NUMPYINT_t), PyBytes_AS_STRING(__pyx_t_3), (char *) "fortran", (char *) __pyx_t_10);
-  if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 577, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_8assimpcy_3all_NUMPYINT_t(((PyObject *)__pyx_t_11));
-  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 565, __pyx_L1_error)
+  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 577, __pyx_L1_error)
   __Pyx_DECREF(((PyObject *)__pyx_t_11)); __pyx_t_11 = 0;
   __pyx_v_dsiarr_view = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "assimpcy/all.pyx":566
+  /* "assimpcy/all.pyx":578
  *         retI = np.empty([ds.validLenght], dtype=NUMPYINT)
  *         dsiarr_view = ds.data
  *         iarr_view =  retI             # <<<<<<<<<<<<<<
@@ -14245,12 +14336,12 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
  *             for i in range(ds.validLenght):
  */
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_8assimpcy_3all_NUMPYINT_t(((PyObject *)__pyx_v_retI));
-  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 566, __pyx_L1_error)
+  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 578, __pyx_L1_error)
   __pyx_v_iarr_view = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "assimpcy/all.pyx":567
+  /* "assimpcy/all.pyx":579
  *         dsiarr_view = ds.data
  *         iarr_view =  retI
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -14265,7 +14356,7 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":568
+        /* "assimpcy/all.pyx":580
  *         iarr_view =  retI
  *         with nogil:
  *             for i in range(ds.validLenght):             # <<<<<<<<<<<<<<
@@ -14276,7 +14367,7 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
         for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
           __pyx_v_i = __pyx_t_14;
 
-          /* "assimpcy/all.pyx":569
+          /* "assimpcy/all.pyx":581
  *         with nogil:
  *             for i in range(ds.validLenght):
  *                 iarr_view[i] = dsiarr_view[i]             # <<<<<<<<<<<<<<
@@ -14289,7 +14380,7 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
         }
       }
 
-      /* "assimpcy/all.pyx":567
+      /* "assimpcy/all.pyx":579
  *         dsiarr_view = ds.data
  *         iarr_view =  retI
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -14308,7 +14399,7 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
       }
   }
 
-  /* "assimpcy/all.pyx":570
+  /* "assimpcy/all.pyx":582
  *             for i in range(ds.validLenght):
  *                 iarr_view[i] = dsiarr_view[i]
  *         return retI             # <<<<<<<<<<<<<<
@@ -14320,7 +14411,7 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
   __pyx_r = ((PyArrayObject *)__pyx_v_retI);
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":553
+  /* "assimpcy/all.pyx":565
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef np.ndarray asNumpyArray(i_f* ds):             # <<<<<<<<<<<<<<
@@ -14387,42 +14478,42 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
   __pyx_pybuffernd_retF.data = NULL;
   __pyx_pybuffernd_retF.rcbuffer = &__pyx_pybuffer_retF;
 
-  /* "assimpcy/all.pyx":572
+  /* "assimpcy/all.pyx":584
  *         return retI
  *     else:
  *         retF = np.empty([ds.validLenght], dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *         dsfarr_view = ds.data
  *         farr_view = retF
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_ds->validLenght); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_ds->validLenght); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_NUMPYFLOAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 572, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 572, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 584, __pyx_L1_error)
   __pyx_t_5 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -14439,13 +14530,13 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
       __pyx_t_7 = __pyx_t_8 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_retF.diminfo[0].strides = __pyx_pybuffernd_retF.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_retF.diminfo[0].shape = __pyx_pybuffernd_retF.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 572, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 584, __pyx_L1_error)
   }
   __pyx_t_5 = 0;
   __pyx_v_retF = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "assimpcy/all.pyx":573
+  /* "assimpcy/all.pyx":585
  *     else:
  *         retF = np.empty([ds.validLenght], dtype=NUMPYFLOAT)
  *         dsfarr_view = ds.data             # <<<<<<<<<<<<<<
@@ -14455,26 +14546,26 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
   __pyx_t_10 = __pyx_v_ds->data;
   if (!__pyx_t_10) {
     PyErr_SetString(PyExc_ValueError,"Cannot create cython.array from NULL pointer");
-    __PYX_ERR(0, 573, __pyx_L1_error)
+    __PYX_ERR(0, 585, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_nn___pyx_t_8assimpcy_3all_NUMPYFLOAT_t);
   __pyx_t_4 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)16));
-  if (unlikely(!__pyx_t_3 || !__pyx_t_4 || !PyBytes_AsString(__pyx_t_3))) __PYX_ERR(0, 573, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3 || !__pyx_t_4 || !PyBytes_AsString(__pyx_t_3))) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_11 = __pyx_array_new(__pyx_t_4, sizeof(__pyx_t_8assimpcy_3all_NUMPYFLOAT_t), PyBytes_AS_STRING(__pyx_t_3), (char *) "fortran", (char *) __pyx_t_10);
-  if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 573, __pyx_L1_error)
+  if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_8assimpcy_3all_NUMPYFLOAT_t(((PyObject *)__pyx_t_11));
-  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 573, __pyx_L1_error)
+  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 585, __pyx_L1_error)
   __Pyx_DECREF(((PyObject *)__pyx_t_11)); __pyx_t_11 = 0;
   __pyx_v_dsfarr_view = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "assimpcy/all.pyx":574
+  /* "assimpcy/all.pyx":586
  *         retF = np.empty([ds.validLenght], dtype=NUMPYFLOAT)
  *         dsfarr_view = ds.data
  *         farr_view = retF             # <<<<<<<<<<<<<<
@@ -14482,12 +14573,12 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
  *             for i in range(ds.validLenght):
  */
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_8assimpcy_3all_NUMPYFLOAT_t(((PyObject *)__pyx_v_retF));
-  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 574, __pyx_L1_error)
+  if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 586, __pyx_L1_error)
   __pyx_v_farr_view = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "assimpcy/all.pyx":575
+  /* "assimpcy/all.pyx":587
  *         dsfarr_view = ds.data
  *         farr_view = retF
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -14502,7 +14593,7 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
       #endif
       /*try:*/ {
 
-        /* "assimpcy/all.pyx":576
+        /* "assimpcy/all.pyx":588
  *         farr_view = retF
  *         with nogil:
  *             for i in range(ds.validLenght):             # <<<<<<<<<<<<<<
@@ -14513,7 +14604,7 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
         for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
           __pyx_v_i = __pyx_t_14;
 
-          /* "assimpcy/all.pyx":577
+          /* "assimpcy/all.pyx":589
  *         with nogil:
  *             for i in range(ds.validLenght):
  *                 farr_view[i] = dsfarr_view[i]             # <<<<<<<<<<<<<<
@@ -14526,7 +14617,7 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
         }
       }
 
-      /* "assimpcy/all.pyx":575
+      /* "assimpcy/all.pyx":587
  *         dsfarr_view = ds.data
  *         farr_view = retF
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -14545,7 +14636,7 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
       }
   }
 
-  /* "assimpcy/all.pyx":578
+  /* "assimpcy/all.pyx":590
  *             for i in range(ds.validLenght):
  *                 farr_view[i] = dsfarr_view[i]
  *         return retF             # <<<<<<<<<<<<<<
@@ -14557,7 +14648,7 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_8assimpcy_3all_asNumpyArray(__pyx_t_8a
   __pyx_r = ((PyArrayObject *)__pyx_v_retF);
   goto __pyx_L0;
 
-  /* "assimpcy/all.pyx":553
+  /* "assimpcy/all.pyx":565
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef np.ndarray asNumpyArray(i_f* ds):             # <<<<<<<<<<<<<<
@@ -37378,8 +37469,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_b_, __pyx_k_, sizeof(__pyx_k_), 0, 0, 0, 0},
   {&__pyx_kp_s_, __pyx_k_, sizeof(__pyx_k_), 0, 0, 1, 0},
   {&__pyx_kp_s_0_5, __pyx_k_0_5, sizeof(__pyx_k_0_5), 0, 0, 1, 0},
-  {&__pyx_n_s_AI_MAX_NUMBER_OF_COLOR_SETS, __pyx_k_AI_MAX_NUMBER_OF_COLOR_SETS, sizeof(__pyx_k_AI_MAX_NUMBER_OF_COLOR_SETS), 0, 0, 1, 1},
-  {&__pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS, __pyx_k_AI_MAX_NUMBER_OF_TEXTURECOORDS, sizeof(__pyx_k_AI_MAX_NUMBER_OF_TEXTURECOORDS), 0, 0, 1, 1},
   {&__pyx_n_s_ASCII, __pyx_k_ASCII, sizeof(__pyx_k_ASCII), 0, 0, 1, 1},
   {&__pyx_n_s_AssimpError, __pyx_k_AssimpError, sizeof(__pyx_k_AssimpError), 0, 0, 1, 1},
   {&__pyx_n_s_BLEND_FUNC, __pyx_k_BLEND_FUNC, sizeof(__pyx_k_BLEND_FUNC), 0, 0, 1, 1},
@@ -37615,9 +37704,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 141, __pyx_L1_error)
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 305, __pyx_L1_error)
-  __pyx_builtin_RuntimeWarning = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeWarning); if (!__pyx_builtin_RuntimeWarning) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_builtin_RuntimeWarning = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeWarning); if (!__pyx_builtin_RuntimeWarning) __PYX_ERR(0, 543, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(2, 235, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(2, 823, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(2, 1013, __pyx_L1_error)
@@ -37635,64 +37724,64 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "assimpcy/all.pyx":163
+  /* "assimpcy/all.pyx":165
  *             bone = aiBone()
  *             bone.mName = str(mesh.mBones[i].mName.data)
  *             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *             with nogil:
  *                 memcpy(<void*>bone.mOffsetMatrix.data, <void*>&mesh.mBones[i].mOffsetMatrix, sizeof(NUMPYFLOAT_t) * 16)
  */
-  __pyx_tuple__2 = PyTuple_Pack(2, __pyx_int_4, __pyx_int_4); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(2, __pyx_int_4, __pyx_int_4); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_tuple__2); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_tuple__2); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "assimpcy/all.pyx":207
+  /* "assimpcy/all.pyx":209
  *                     memcpy(<void*>tempnd.data, <void*>&mesh.mTextureCoords[j][0], mesh.mNumVertices *
  *                                                    3 * sizeof(NUMPYFLOAT_t))
  *                 rMesh.mTextureCoords[j] = tempnd[:,:rMesh.mNumUVComponents[j]]             # <<<<<<<<<<<<<<
  * 
  *     if hasanycolor:
  */
-  __pyx_slice__4 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_slice__4 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__4);
   __Pyx_GIVEREF(__pyx_slice__4);
 
-  /* "assimpcy/all.pyx":248
+  /* "assimpcy/all.pyx":251
  *     rNode.mName = str(node.mName.data)
  *     rNode.mNumChildren = node.mNumChildren
  *     rNode.mTransformation = np.empty((4, 4), dtype=NUMPYFLOAT)             # <<<<<<<<<<<<<<
  *     with nogil:
  *         memcpy(<void*>rNode.mTransformation.data, <void*>&node.mTransformation, sizeof(NUMPYFLOAT_t) * 16)
  */
-  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_int_4, __pyx_int_4); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_int_4, __pyx_int_4); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_tuple__5); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_tuple__5); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "assimpcy/all.pyx":305
+  /* "assimpcy/all.pyx":310
  *             continue
  *         elif res == cTypes.aiReturn_OUTOFMEMORY:
  *             raise MemoryError('Out of memory.')             # <<<<<<<<<<<<<<
  * 
  *         sname = str(prop.mKey.data.decode())
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_Out_of_memory); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 305, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_Out_of_memory); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "assimpcy/all.pyx":531
+  /* "assimpcy/all.pyx":543
  * 
  * def aiReleaseImport(aiScene pScene):
  *      warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed since it is handled by '             # <<<<<<<<<<<<<<
  *                              '\'aiImportFile\'.'))
  * 
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_Releasing_the_scene_in_AssimpCy); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_Releasing_the_scene_in_AssimpCy); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
@@ -37996,29 +38085,29 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__36);
   __Pyx_GIVEREF(__pyx_tuple__36);
 
-  /* "assimpcy/all.pyx":494
+  /* "assimpcy/all.pyx":506
  * # -----------------------------------------------------
  * 
  * def aiImportFile(str path, unsigned int flags=0):             # <<<<<<<<<<<<<<
  *     """
  *     Usage:
  */
-  __pyx_tuple__41 = PyTuple_Pack(5, __pyx_n_s_path, __pyx_n_s_flags, __pyx_n_s_csc, __pyx_n_s_bpath, __pyx_n_s_cpath); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_tuple__41 = PyTuple_Pack(5, __pyx_n_s_path, __pyx_n_s_flags, __pyx_n_s_csc, __pyx_n_s_bpath, __pyx_n_s_cpath); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 506, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__41);
   __Pyx_GIVEREF(__pyx_tuple__41);
-  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_assimpcy_all_pyx, __pyx_n_s_aiImportFile, 494, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_assimpcy_all_pyx, __pyx_n_s_aiImportFile, 506, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 506, __pyx_L1_error)
 
-  /* "assimpcy/all.pyx":530
+  /* "assimpcy/all.pyx":542
  * 
  * 
  * def aiReleaseImport(aiScene pScene):             # <<<<<<<<<<<<<<
  *      warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed since it is handled by '
  *                              '\'aiImportFile\'.'))
  */
-  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_n_s_pScene); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 530, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_n_s_pScene); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 542, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__43);
   __Pyx_GIVEREF(__pyx_tuple__43);
-  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_assimpcy_all_pyx, __pyx_n_s_aiReleaseImport, 530, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 530, __pyx_L1_error)
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_assimpcy_all_pyx, __pyx_n_s_aiReleaseImport, 542, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 542, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_aiVertexWeight(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
@@ -38316,35 +38405,35 @@ static int __pyx_pymod_exec_all(PyObject *__pyx_pyinit_module)
   if (PyObject_SetAttrString(__pyx_m, "aiMesh", (PyObject *)&__pyx_type_8assimpcy_3all_aiMesh) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiMesh) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
   __pyx_ptype_8assimpcy_3all_aiMesh = &__pyx_type_8assimpcy_3all_aiMesh;
-  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiNode) < 0) __PYX_ERR(0, 223, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiNode) < 0) __PYX_ERR(0, 226, __pyx_L1_error)
   __pyx_type_8assimpcy_3all_aiNode.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "aiNode", (PyObject *)&__pyx_type_8assimpcy_3all_aiNode) < 0) __PYX_ERR(0, 223, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiNode) < 0) __PYX_ERR(0, 223, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "aiNode", (PyObject *)&__pyx_type_8assimpcy_3all_aiNode) < 0) __PYX_ERR(0, 226, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiNode) < 0) __PYX_ERR(0, 226, __pyx_L1_error)
   __pyx_ptype_8assimpcy_3all_aiNode = &__pyx_type_8assimpcy_3all_aiNode;
-  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiMaterial) < 0) __PYX_ERR(0, 262, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiMaterial) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
   __pyx_type_8assimpcy_3all_aiMaterial.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "aiMaterial", (PyObject *)&__pyx_type_8assimpcy_3all_aiMaterial) < 0) __PYX_ERR(0, 262, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiMaterial) < 0) __PYX_ERR(0, 262, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "aiMaterial", (PyObject *)&__pyx_type_8assimpcy_3all_aiMaterial) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiMaterial) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
   __pyx_ptype_8assimpcy_3all_aiMaterial = &__pyx_type_8assimpcy_3all_aiMaterial;
-  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiKey) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiKey) < 0) __PYX_ERR(0, 338, __pyx_L1_error)
   __pyx_type_8assimpcy_3all_aiKey.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "aiKey", (PyObject *)&__pyx_type_8assimpcy_3all_aiKey) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiKey) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "aiKey", (PyObject *)&__pyx_type_8assimpcy_3all_aiKey) < 0) __PYX_ERR(0, 338, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiKey) < 0) __PYX_ERR(0, 338, __pyx_L1_error)
   __pyx_ptype_8assimpcy_3all_aiKey = &__pyx_type_8assimpcy_3all_aiKey;
-  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiNodeAnim) < 0) __PYX_ERR(0, 342, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiNodeAnim) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
   __pyx_type_8assimpcy_3all_aiNodeAnim.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "aiNodeAnim", (PyObject *)&__pyx_type_8assimpcy_3all_aiNodeAnim) < 0) __PYX_ERR(0, 342, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiNodeAnim) < 0) __PYX_ERR(0, 342, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "aiNodeAnim", (PyObject *)&__pyx_type_8assimpcy_3all_aiNodeAnim) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiNodeAnim) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
   __pyx_ptype_8assimpcy_3all_aiNodeAnim = &__pyx_type_8assimpcy_3all_aiNodeAnim;
-  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiAnimation) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiAnimation) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
   __pyx_type_8assimpcy_3all_aiAnimation.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "aiAnimation", (PyObject *)&__pyx_type_8assimpcy_3all_aiAnimation) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiAnimation) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "aiAnimation", (PyObject *)&__pyx_type_8assimpcy_3all_aiAnimation) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiAnimation) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
   __pyx_ptype_8assimpcy_3all_aiAnimation = &__pyx_type_8assimpcy_3all_aiAnimation;
-  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiScene) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_8assimpcy_3all_aiScene) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
   __pyx_type_8assimpcy_3all_aiScene.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "aiScene", (PyObject *)&__pyx_type_8assimpcy_3all_aiScene) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiScene) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "aiScene", (PyObject *)&__pyx_type_8assimpcy_3all_aiScene) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_8assimpcy_3all_aiScene) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
   __pyx_ptype_8assimpcy_3all_aiScene = &__pyx_type_8assimpcy_3all_aiScene;
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -38466,26 +38555,20 @@ static int __pyx_pymod_exec_all(PyObject *__pyx_pyinit_module)
   /* "assimpcy/all.pyx":28
  *     dataStorageF
  * 
- * AI_MAX_NUMBER_OF_TEXTURECOORDS = cMesh._AI_MAX_NUMBER_OF_TEXTURECOORDS             # <<<<<<<<<<<<<<
- * AI_MAX_NUMBER_OF_COLOR_SETS = cMesh._AI_MAX_NUMBER_OF_COLOR_SETS
+ * cdef int AI_MAX_NUMBER_OF_TEXTURECOORDS = cMesh._AI_MAX_NUMBER_OF_TEXTURECOORDS             # <<<<<<<<<<<<<<
+ * cdef int AI_MAX_NUMBER_OF_COLOR_SETS = cMesh._AI_MAX_NUMBER_OF_COLOR_SETS
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(AI_MAX_NUMBER_OF_TEXTURECOORDS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AI_MAX_NUMBER_OF_TEXTURECOORDS, __pyx_t_2) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_TEXTURECOORDS = AI_MAX_NUMBER_OF_TEXTURECOORDS;
 
   /* "assimpcy/all.pyx":29
  * 
- * AI_MAX_NUMBER_OF_TEXTURECOORDS = cMesh._AI_MAX_NUMBER_OF_TEXTURECOORDS
- * AI_MAX_NUMBER_OF_COLOR_SETS = cMesh._AI_MAX_NUMBER_OF_COLOR_SETS             # <<<<<<<<<<<<<<
+ * cdef int AI_MAX_NUMBER_OF_TEXTURECOORDS = cMesh._AI_MAX_NUMBER_OF_TEXTURECOORDS
+ * cdef int AI_MAX_NUMBER_OF_COLOR_SETS = cMesh._AI_MAX_NUMBER_OF_COLOR_SETS             # <<<<<<<<<<<<<<
  * 
  * propertyNames = {
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(AI_MAX_NUMBER_OF_COLOR_SETS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AI_MAX_NUMBER_OF_COLOR_SETS, __pyx_t_2) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_8assimpcy_3all_AI_MAX_NUMBER_OF_COLOR_SETS = AI_MAX_NUMBER_OF_COLOR_SETS;
 
   /* "assimpcy/all.pyx":32
  * 
@@ -38527,383 +38610,383 @@ static int __pyx_pymod_exec_all(PyObject *__pyx_pyinit_module)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_propertyNames, __pyx_t_2) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "assimpcy/all.pyx":494
+  /* "assimpcy/all.pyx":506
  * # -----------------------------------------------------
  * 
  * def aiImportFile(str path, unsigned int flags=0):             # <<<<<<<<<<<<<<
  *     """
  *     Usage:
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8assimpcy_3all_1aiImportFile, NULL, __pyx_n_s_assimpcy_all); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8assimpcy_3all_1aiImportFile, NULL, __pyx_n_s_assimpcy_all); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 506, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_aiImportFile, __pyx_t_2) < 0) __PYX_ERR(0, 494, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_aiImportFile, __pyx_t_2) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "assimpcy/all.pyx":530
+  /* "assimpcy/all.pyx":542
  * 
  * 
  * def aiReleaseImport(aiScene pScene):             # <<<<<<<<<<<<<<
  *      warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed since it is handled by '
  *                              '\'aiImportFile\'.'))
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8assimpcy_3all_3aiReleaseImport, NULL, __pyx_n_s_assimpcy_all); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 530, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8assimpcy_3all_3aiReleaseImport, NULL, __pyx_n_s_assimpcy_all); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 542, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_aiReleaseImport, __pyx_t_2) < 0) __PYX_ERR(0, 530, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_aiReleaseImport, __pyx_t_2) < 0) __PYX_ERR(0, 542, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "assimpcy/all.pyx":534
+  /* "assimpcy/all.pyx":546
  *                              '\'aiImportFile\'.'))
  * 
  * class AssimpError(Exception):             # <<<<<<<<<<<<<<
  *     pass
  * 
  */
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 534, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 546, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   __Pyx_GIVEREF(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
   PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
-  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 534, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 546, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_AssimpError, __pyx_n_s_AssimpError, (PyObject *) NULL, __pyx_n_s_assimpcy_all, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 534, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_AssimpError, __pyx_n_s_AssimpError, (PyObject *) NULL, __pyx_n_s_assimpcy_all, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_AssimpError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 534, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_AssimpError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 546, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AssimpError, __pyx_t_4) < 0) __PYX_ERR(0, 534, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AssimpError, __pyx_t_4) < 0) __PYX_ERR(0, 546, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "assimpcy/all.pyx":581
+  /* "assimpcy/all.pyx":593
  * 
  * 
  * class aiPostProcessSteps:             # <<<<<<<<<<<<<<
  *     aiProcess_CalcTangentSpace = cPostprocess.aiProcess_CalcTangentSpace
  *     aiProcess_JoinIdenticalVertices = cPostprocess.aiProcess_JoinIdenticalVertices
  */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_aiPostProcessSteps, __pyx_n_s_aiPostProcessSteps, (PyObject *) NULL, __pyx_n_s_assimpcy_all, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 581, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_aiPostProcessSteps, __pyx_n_s_aiPostProcessSteps, (PyObject *) NULL, __pyx_n_s_assimpcy_all, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 593, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "assimpcy/all.pyx":582
+  /* "assimpcy/all.pyx":594
  * 
  * class aiPostProcessSteps:
  *     aiProcess_CalcTangentSpace = cPostprocess.aiProcess_CalcTangentSpace             # <<<<<<<<<<<<<<
  *     aiProcess_JoinIdenticalVertices = cPostprocess.aiProcess_JoinIdenticalVertices
  *     aiProcess_MakeLeftHanded = cPostprocess.aiProcess_MakeLeftHanded
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_CalcTangentSpace); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_CalcTangentSpace); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 594, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_CalcTangentSpace, __pyx_t_1) < 0) __PYX_ERR(0, 582, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_CalcTangentSpace, __pyx_t_1) < 0) __PYX_ERR(0, 594, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":583
+  /* "assimpcy/all.pyx":595
  * class aiPostProcessSteps:
  *     aiProcess_CalcTangentSpace = cPostprocess.aiProcess_CalcTangentSpace
  *     aiProcess_JoinIdenticalVertices = cPostprocess.aiProcess_JoinIdenticalVertices             # <<<<<<<<<<<<<<
  *     aiProcess_MakeLeftHanded = cPostprocess.aiProcess_MakeLeftHanded
  *     aiProcess_Triangulate = cPostprocess.aiProcess_Triangulate
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_JoinIdenticalVertices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 583, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_JoinIdenticalVertices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 595, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_JoinIdenticalVertices, __pyx_t_1) < 0) __PYX_ERR(0, 583, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_JoinIdenticalVertices, __pyx_t_1) < 0) __PYX_ERR(0, 595, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":584
+  /* "assimpcy/all.pyx":596
  *     aiProcess_CalcTangentSpace = cPostprocess.aiProcess_CalcTangentSpace
  *     aiProcess_JoinIdenticalVertices = cPostprocess.aiProcess_JoinIdenticalVertices
  *     aiProcess_MakeLeftHanded = cPostprocess.aiProcess_MakeLeftHanded             # <<<<<<<<<<<<<<
  *     aiProcess_Triangulate = cPostprocess.aiProcess_Triangulate
  *     aiProcess_RemoveComponent = cPostprocess.aiProcess_RemoveComponent
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_MakeLeftHanded); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 584, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_MakeLeftHanded); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 596, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_MakeLeftHanded, __pyx_t_1) < 0) __PYX_ERR(0, 584, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_MakeLeftHanded, __pyx_t_1) < 0) __PYX_ERR(0, 596, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":585
+  /* "assimpcy/all.pyx":597
  *     aiProcess_JoinIdenticalVertices = cPostprocess.aiProcess_JoinIdenticalVertices
  *     aiProcess_MakeLeftHanded = cPostprocess.aiProcess_MakeLeftHanded
  *     aiProcess_Triangulate = cPostprocess.aiProcess_Triangulate             # <<<<<<<<<<<<<<
  *     aiProcess_RemoveComponent = cPostprocess.aiProcess_RemoveComponent
  *     aiProcess_GenNormals = cPostprocess.aiProcess_GenNormals
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_Triangulate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 585, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_Triangulate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 597, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_Triangulate, __pyx_t_1) < 0) __PYX_ERR(0, 585, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_Triangulate, __pyx_t_1) < 0) __PYX_ERR(0, 597, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":586
+  /* "assimpcy/all.pyx":598
  *     aiProcess_MakeLeftHanded = cPostprocess.aiProcess_MakeLeftHanded
  *     aiProcess_Triangulate = cPostprocess.aiProcess_Triangulate
  *     aiProcess_RemoveComponent = cPostprocess.aiProcess_RemoveComponent             # <<<<<<<<<<<<<<
  *     aiProcess_GenNormals = cPostprocess.aiProcess_GenNormals
  *     aiProcess_GenSmoothNormals = cPostprocess.aiProcess_GenSmoothNormals
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_RemoveComponent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 586, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_RemoveComponent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_RemoveComponent, __pyx_t_1) < 0) __PYX_ERR(0, 586, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_RemoveComponent, __pyx_t_1) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":587
+  /* "assimpcy/all.pyx":599
  *     aiProcess_Triangulate = cPostprocess.aiProcess_Triangulate
  *     aiProcess_RemoveComponent = cPostprocess.aiProcess_RemoveComponent
  *     aiProcess_GenNormals = cPostprocess.aiProcess_GenNormals             # <<<<<<<<<<<<<<
  *     aiProcess_GenSmoothNormals = cPostprocess.aiProcess_GenSmoothNormals
  *     aiProcess_SplitLargeMeshes = cPostprocess.aiProcess_SplitLargeMeshes
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_GenNormals); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_GenNormals); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_GenNormals, __pyx_t_1) < 0) __PYX_ERR(0, 587, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_GenNormals, __pyx_t_1) < 0) __PYX_ERR(0, 599, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":588
+  /* "assimpcy/all.pyx":600
  *     aiProcess_RemoveComponent = cPostprocess.aiProcess_RemoveComponent
  *     aiProcess_GenNormals = cPostprocess.aiProcess_GenNormals
  *     aiProcess_GenSmoothNormals = cPostprocess.aiProcess_GenSmoothNormals             # <<<<<<<<<<<<<<
  *     aiProcess_SplitLargeMeshes = cPostprocess.aiProcess_SplitLargeMeshes
  *     aiProcess_PreTransformVertices = cPostprocess.aiProcess_PreTransformVertices
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_GenSmoothNormals); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 588, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_GenSmoothNormals); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 600, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_GenSmoothNormals, __pyx_t_1) < 0) __PYX_ERR(0, 588, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_GenSmoothNormals, __pyx_t_1) < 0) __PYX_ERR(0, 600, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":589
+  /* "assimpcy/all.pyx":601
  *     aiProcess_GenNormals = cPostprocess.aiProcess_GenNormals
  *     aiProcess_GenSmoothNormals = cPostprocess.aiProcess_GenSmoothNormals
  *     aiProcess_SplitLargeMeshes = cPostprocess.aiProcess_SplitLargeMeshes             # <<<<<<<<<<<<<<
  *     aiProcess_PreTransformVertices = cPostprocess.aiProcess_PreTransformVertices
  *     aiProcess_LimitBoneWeights = cPostprocess.aiProcess_LimitBoneWeights
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_SplitLargeMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 589, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_SplitLargeMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_SplitLargeMeshes, __pyx_t_1) < 0) __PYX_ERR(0, 589, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_SplitLargeMeshes, __pyx_t_1) < 0) __PYX_ERR(0, 601, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":590
+  /* "assimpcy/all.pyx":602
  *     aiProcess_GenSmoothNormals = cPostprocess.aiProcess_GenSmoothNormals
  *     aiProcess_SplitLargeMeshes = cPostprocess.aiProcess_SplitLargeMeshes
  *     aiProcess_PreTransformVertices = cPostprocess.aiProcess_PreTransformVertices             # <<<<<<<<<<<<<<
  *     aiProcess_LimitBoneWeights = cPostprocess.aiProcess_LimitBoneWeights
  *     aiProcess_ValidateDataStructure = cPostprocess.aiProcess_ValidateDataStructure
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_PreTransformVertices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 590, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_PreTransformVertices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 602, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_PreTransformVertices, __pyx_t_1) < 0) __PYX_ERR(0, 590, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_PreTransformVertices, __pyx_t_1) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":591
+  /* "assimpcy/all.pyx":603
  *     aiProcess_SplitLargeMeshes = cPostprocess.aiProcess_SplitLargeMeshes
  *     aiProcess_PreTransformVertices = cPostprocess.aiProcess_PreTransformVertices
  *     aiProcess_LimitBoneWeights = cPostprocess.aiProcess_LimitBoneWeights             # <<<<<<<<<<<<<<
  *     aiProcess_ValidateDataStructure = cPostprocess.aiProcess_ValidateDataStructure
  *     aiProcess_ImproveCacheLocality = cPostprocess.aiProcess_ImproveCacheLocality
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_LimitBoneWeights); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 591, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_LimitBoneWeights); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 603, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_LimitBoneWeights, __pyx_t_1) < 0) __PYX_ERR(0, 591, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_LimitBoneWeights, __pyx_t_1) < 0) __PYX_ERR(0, 603, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":592
+  /* "assimpcy/all.pyx":604
  *     aiProcess_PreTransformVertices = cPostprocess.aiProcess_PreTransformVertices
  *     aiProcess_LimitBoneWeights = cPostprocess.aiProcess_LimitBoneWeights
  *     aiProcess_ValidateDataStructure = cPostprocess.aiProcess_ValidateDataStructure             # <<<<<<<<<<<<<<
  *     aiProcess_ImproveCacheLocality = cPostprocess.aiProcess_ImproveCacheLocality
  *     aiProcess_RemoveRedundantMaterials = cPostprocess.aiProcess_RemoveRedundantMaterials
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_ValidateDataStructure); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 592, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_ValidateDataStructure); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_ValidateDataStructure, __pyx_t_1) < 0) __PYX_ERR(0, 592, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_ValidateDataStructure, __pyx_t_1) < 0) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":593
+  /* "assimpcy/all.pyx":605
  *     aiProcess_LimitBoneWeights = cPostprocess.aiProcess_LimitBoneWeights
  *     aiProcess_ValidateDataStructure = cPostprocess.aiProcess_ValidateDataStructure
  *     aiProcess_ImproveCacheLocality = cPostprocess.aiProcess_ImproveCacheLocality             # <<<<<<<<<<<<<<
  *     aiProcess_RemoveRedundantMaterials = cPostprocess.aiProcess_RemoveRedundantMaterials
  *     aiProcess_FixInfacingNormals = cPostprocess.aiProcess_FixInfacingNormals
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_ImproveCacheLocality); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 593, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_ImproveCacheLocality); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_ImproveCacheLocality, __pyx_t_1) < 0) __PYX_ERR(0, 593, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_ImproveCacheLocality, __pyx_t_1) < 0) __PYX_ERR(0, 605, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":594
+  /* "assimpcy/all.pyx":606
  *     aiProcess_ValidateDataStructure = cPostprocess.aiProcess_ValidateDataStructure
  *     aiProcess_ImproveCacheLocality = cPostprocess.aiProcess_ImproveCacheLocality
  *     aiProcess_RemoveRedundantMaterials = cPostprocess.aiProcess_RemoveRedundantMaterials             # <<<<<<<<<<<<<<
  *     aiProcess_FixInfacingNormals = cPostprocess.aiProcess_FixInfacingNormals
  *     aiProcess_SortByPType = cPostprocess.aiProcess_SortByPType
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_RemoveRedundantMaterials); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 594, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_RemoveRedundantMaterials); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 606, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_RemoveRedundantMateria, __pyx_t_1) < 0) __PYX_ERR(0, 594, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_RemoveRedundantMateria, __pyx_t_1) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":595
+  /* "assimpcy/all.pyx":607
  *     aiProcess_ImproveCacheLocality = cPostprocess.aiProcess_ImproveCacheLocality
  *     aiProcess_RemoveRedundantMaterials = cPostprocess.aiProcess_RemoveRedundantMaterials
  *     aiProcess_FixInfacingNormals = cPostprocess.aiProcess_FixInfacingNormals             # <<<<<<<<<<<<<<
  *     aiProcess_SortByPType = cPostprocess.aiProcess_SortByPType
  *     aiProcess_FindDegenerates = cPostprocess.aiProcess_FindDegenerates
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FixInfacingNormals); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 595, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FixInfacingNormals); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 607, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FixInfacingNormals, __pyx_t_1) < 0) __PYX_ERR(0, 595, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FixInfacingNormals, __pyx_t_1) < 0) __PYX_ERR(0, 607, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":596
+  /* "assimpcy/all.pyx":608
  *     aiProcess_RemoveRedundantMaterials = cPostprocess.aiProcess_RemoveRedundantMaterials
  *     aiProcess_FixInfacingNormals = cPostprocess.aiProcess_FixInfacingNormals
  *     aiProcess_SortByPType = cPostprocess.aiProcess_SortByPType             # <<<<<<<<<<<<<<
  *     aiProcess_FindDegenerates = cPostprocess.aiProcess_FindDegenerates
  *     aiProcess_FindInvalidData = cPostprocess.aiProcess_FindInvalidData
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_SortByPType); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 596, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_SortByPType); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 608, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_SortByPType, __pyx_t_1) < 0) __PYX_ERR(0, 596, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_SortByPType, __pyx_t_1) < 0) __PYX_ERR(0, 608, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":597
+  /* "assimpcy/all.pyx":609
  *     aiProcess_FixInfacingNormals = cPostprocess.aiProcess_FixInfacingNormals
  *     aiProcess_SortByPType = cPostprocess.aiProcess_SortByPType
  *     aiProcess_FindDegenerates = cPostprocess.aiProcess_FindDegenerates             # <<<<<<<<<<<<<<
  *     aiProcess_FindInvalidData = cPostprocess.aiProcess_FindInvalidData
  *     aiProcess_GenUVCoords = cPostprocess.aiProcess_GenUVCoords
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FindDegenerates); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 597, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FindDegenerates); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 609, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FindDegenerates, __pyx_t_1) < 0) __PYX_ERR(0, 597, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FindDegenerates, __pyx_t_1) < 0) __PYX_ERR(0, 609, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":598
+  /* "assimpcy/all.pyx":610
  *     aiProcess_SortByPType = cPostprocess.aiProcess_SortByPType
  *     aiProcess_FindDegenerates = cPostprocess.aiProcess_FindDegenerates
  *     aiProcess_FindInvalidData = cPostprocess.aiProcess_FindInvalidData             # <<<<<<<<<<<<<<
  *     aiProcess_GenUVCoords = cPostprocess.aiProcess_GenUVCoords
  *     aiProcess_TransformUVCoords = cPostprocess.aiProcess_TransformUVCoords
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FindInvalidData); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FindInvalidData); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 610, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FindInvalidData, __pyx_t_1) < 0) __PYX_ERR(0, 598, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FindInvalidData, __pyx_t_1) < 0) __PYX_ERR(0, 610, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":599
+  /* "assimpcy/all.pyx":611
  *     aiProcess_FindDegenerates = cPostprocess.aiProcess_FindDegenerates
  *     aiProcess_FindInvalidData = cPostprocess.aiProcess_FindInvalidData
  *     aiProcess_GenUVCoords = cPostprocess.aiProcess_GenUVCoords             # <<<<<<<<<<<<<<
  *     aiProcess_TransformUVCoords = cPostprocess.aiProcess_TransformUVCoords
  *     aiProcess_FindInstances = cPostprocess.aiProcess_FindInstances
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_GenUVCoords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 599, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_GenUVCoords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 611, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_GenUVCoords, __pyx_t_1) < 0) __PYX_ERR(0, 599, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_GenUVCoords, __pyx_t_1) < 0) __PYX_ERR(0, 611, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":600
+  /* "assimpcy/all.pyx":612
  *     aiProcess_FindInvalidData = cPostprocess.aiProcess_FindInvalidData
  *     aiProcess_GenUVCoords = cPostprocess.aiProcess_GenUVCoords
  *     aiProcess_TransformUVCoords = cPostprocess.aiProcess_TransformUVCoords             # <<<<<<<<<<<<<<
  *     aiProcess_FindInstances = cPostprocess.aiProcess_FindInstances
  *     aiProcess_OptimizeMeshes = cPostprocess.aiProcess_OptimizeMeshes
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_TransformUVCoords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 600, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_TransformUVCoords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_TransformUVCoords, __pyx_t_1) < 0) __PYX_ERR(0, 600, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_TransformUVCoords, __pyx_t_1) < 0) __PYX_ERR(0, 612, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":601
+  /* "assimpcy/all.pyx":613
  *     aiProcess_GenUVCoords = cPostprocess.aiProcess_GenUVCoords
  *     aiProcess_TransformUVCoords = cPostprocess.aiProcess_TransformUVCoords
  *     aiProcess_FindInstances = cPostprocess.aiProcess_FindInstances             # <<<<<<<<<<<<<<
  *     aiProcess_OptimizeMeshes = cPostprocess.aiProcess_OptimizeMeshes
  *     aiProcess_OptimizeGraph = cPostprocess.aiProcess_OptimizeGraph
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FindInstances); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FindInstances); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 613, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FindInstances, __pyx_t_1) < 0) __PYX_ERR(0, 601, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FindInstances, __pyx_t_1) < 0) __PYX_ERR(0, 613, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":602
+  /* "assimpcy/all.pyx":614
  *     aiProcess_TransformUVCoords = cPostprocess.aiProcess_TransformUVCoords
  *     aiProcess_FindInstances = cPostprocess.aiProcess_FindInstances
  *     aiProcess_OptimizeMeshes = cPostprocess.aiProcess_OptimizeMeshes             # <<<<<<<<<<<<<<
  *     aiProcess_OptimizeGraph = cPostprocess.aiProcess_OptimizeGraph
  *     aiProcess_FlipUVs = cPostprocess.aiProcess_FlipUVs
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_OptimizeMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 602, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_OptimizeMeshes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_OptimizeMeshes, __pyx_t_1) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_OptimizeMeshes, __pyx_t_1) < 0) __PYX_ERR(0, 614, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":603
+  /* "assimpcy/all.pyx":615
  *     aiProcess_FindInstances = cPostprocess.aiProcess_FindInstances
  *     aiProcess_OptimizeMeshes = cPostprocess.aiProcess_OptimizeMeshes
  *     aiProcess_OptimizeGraph = cPostprocess.aiProcess_OptimizeGraph             # <<<<<<<<<<<<<<
  *     aiProcess_FlipUVs = cPostprocess.aiProcess_FlipUVs
  *     aiProcess_FlipWindingOrder = cPostprocess.aiProcess_FlipWindingOrder
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_OptimizeGraph); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 603, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_OptimizeGraph); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_OptimizeGraph, __pyx_t_1) < 0) __PYX_ERR(0, 603, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_OptimizeGraph, __pyx_t_1) < 0) __PYX_ERR(0, 615, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":604
+  /* "assimpcy/all.pyx":616
  *     aiProcess_OptimizeMeshes = cPostprocess.aiProcess_OptimizeMeshes
  *     aiProcess_OptimizeGraph = cPostprocess.aiProcess_OptimizeGraph
  *     aiProcess_FlipUVs = cPostprocess.aiProcess_FlipUVs             # <<<<<<<<<<<<<<
  *     aiProcess_FlipWindingOrder = cPostprocess.aiProcess_FlipWindingOrder
  *     aiProcess_SplitByBoneCount = cPostprocess.aiProcess_SplitByBoneCount
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FlipUVs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 604, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FlipUVs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 616, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FlipUVs, __pyx_t_1) < 0) __PYX_ERR(0, 604, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FlipUVs, __pyx_t_1) < 0) __PYX_ERR(0, 616, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":605
+  /* "assimpcy/all.pyx":617
  *     aiProcess_OptimizeGraph = cPostprocess.aiProcess_OptimizeGraph
  *     aiProcess_FlipUVs = cPostprocess.aiProcess_FlipUVs
  *     aiProcess_FlipWindingOrder = cPostprocess.aiProcess_FlipWindingOrder             # <<<<<<<<<<<<<<
  *     aiProcess_SplitByBoneCount = cPostprocess.aiProcess_SplitByBoneCount
  *     aiProcess_Debone = cPostprocess.aiProcess_Debone
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FlipWindingOrder); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 605, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_FlipWindingOrder); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 617, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FlipWindingOrder, __pyx_t_1) < 0) __PYX_ERR(0, 605, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_FlipWindingOrder, __pyx_t_1) < 0) __PYX_ERR(0, 617, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":606
+  /* "assimpcy/all.pyx":618
  *     aiProcess_FlipUVs = cPostprocess.aiProcess_FlipUVs
  *     aiProcess_FlipWindingOrder = cPostprocess.aiProcess_FlipWindingOrder
  *     aiProcess_SplitByBoneCount = cPostprocess.aiProcess_SplitByBoneCount             # <<<<<<<<<<<<<<
  *     aiProcess_Debone = cPostprocess.aiProcess_Debone
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_SplitByBoneCount); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 606, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_SplitByBoneCount); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 618, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_SplitByBoneCount, __pyx_t_1) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_SplitByBoneCount, __pyx_t_1) < 0) __PYX_ERR(0, 618, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":607
+  /* "assimpcy/all.pyx":619
  *     aiProcess_FlipWindingOrder = cPostprocess.aiProcess_FlipWindingOrder
  *     aiProcess_SplitByBoneCount = cPostprocess.aiProcess_SplitByBoneCount
  *     aiProcess_Debone = cPostprocess.aiProcess_Debone             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_Debone); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 607, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_enum__aiPostProcessSteps(aiProcess_Debone); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 619, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_Debone, __pyx_t_1) < 0) __PYX_ERR(0, 607, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_aiProcess_Debone, __pyx_t_1) < 0) __PYX_ERR(0, 619, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "assimpcy/all.pyx":581
+  /* "assimpcy/all.pyx":593
  * 
  * 
  * class aiPostProcessSteps:             # <<<<<<<<<<<<<<
  *     aiProcess_CalcTangentSpace = cPostprocess.aiProcess_CalcTangentSpace
  *     aiProcess_JoinIdenticalVertices = cPostprocess.aiProcess_JoinIdenticalVertices
  */
-  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_aiPostProcessSteps, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 581, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_aiPostProcessSteps, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 593, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_aiPostProcessSteps, __pyx_t_1) < 0) __PYX_ERR(0, 581, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_aiPostProcessSteps, __pyx_t_1) < 0) __PYX_ERR(0, 593, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
