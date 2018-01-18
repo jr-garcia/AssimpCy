@@ -1,4 +1,6 @@
-# AssimpCy
+# AssimpCy 
+[![Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=test_CI)](https://travis-ci.org/jr-garcia/AssimpCy)
+
 Faster (than PyAssimp) Python bindings for [Assimp](http://assimp.sourceforge.net/), Cython-based, BSD3 license.
 
 It uses the same naming as the original library, so examples from the official docs can be used directly (minus C sintaxis, of course).
