@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from setuptools import Extension, setup, command
 from sys import platform
 from numpy import get_include
