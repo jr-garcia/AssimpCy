@@ -1,7 +1,5 @@
 /assimp_include
 /libs
-**/*.cpp
-**/*.c
 **/build/
 .idea/
 __pycache__/

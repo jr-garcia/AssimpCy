@@ -1,5 +1,4 @@
 from setuptools import Extension, setup, command
-from Cython.Build import cythonize
 from sys import platform
 from numpy import get_include
 
@@ -26,13 +25,13 @@ else:
 setup(
     name="AssimpCy",
     packages=["assimpcy"],
-    ext_modules=cythonize([
+    ext_modules=[
         Extension('assimpcy.all', ["./assimpcy/all.pyx"],
                   libraries=["assimp"],
                   include_dirs=incl,
                   runtime_library_dirs=rldirs,
                   extra_compile_args=extrac,
                   language="c++")
-    ]),
+    ],
     requires=['numpy']
 )

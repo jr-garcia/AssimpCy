@@ -1,5 +1,5 @@
 # AssimpCy
-Faster (than PyAssimp, at least acording to me) and almost complete Python bindings for [Assimp](http://assimp.sourceforge.net/), Cython-based, BSD3 license.
+Faster (than PyAssimp) Python bindings for [Assimp](http://assimp.sourceforge.net/), Cython-based, BSD3 license.
 
 It uses the same naming as the original library, so examples from the official docs can be used directly (minus C sintaxis, of course).
     
@@ -11,7 +11,7 @@ It uses the same naming as the original library, so examples from the official d
 from assimpcy import aiImportFile, aiPostProcessSteps as pp 
 flags = pp.aiProcess_JoinIdenticalVertices | pp.aiProcess_Triangulate 
 scene = aiImportFile('model.x', flags)
-print('\tHas {} meshes, {} textures, {} materials, {} animations.'.format(scene.mNumMeshes,                                                                                 scene.mNumTextures,                                                                                  scene.mNumMaterials,                                                                                  scene.mNumAnimations)) 
+print('\tHas {} meshes, {} textures, {} materials, {} animations.'.format(scene.mNumMeshes, scene.mNumTextures, scene.mNumMaterials, scene.mNumAnimations)) 
 
 # Check mesh.Has* before extracting corresponding mesh.m* (Vertices, Normals, etc)
 if scene.HasMeshes and scene.mMeshes[0].HasPositions:
@@ -19,25 +19,20 @@ if scene.HasMeshes and scene.mMeshes[0].HasPositions:
     print('Vertex {} = {}'.format(v, scene.mMeshes[0].mVertices[v]))
 ```
 
-Matrices, quaternions and vectors are returned as numpy arrays, as usual.
+Matrices, quaternions and vectors are returned as Numpy arrays.
 
-It has been tested with **Python 2.7** and **Python 3.4**.
+It has been tested with:
+* Python 2.7
+* Python 3.4 +
 
 ---
 
 #### Requirements:
 
-To compile:
-
-* Assimp >= 3.1.1 headers and compiled shared (dynamic) library
-* Cython >= 0.23
+* Assimp >= 3.1.1
 * Numpy >= 1.9.2
 
-
-To run:
-
-* Assimp >= 3.1.1 compiled shared (dynamic) library
-* Numpy >= 1.9.2
+To compile, the Assimp headers are also needed.
 
 ---
 
@@ -46,16 +41,23 @@ To run:
 If you have installed Assimp library in the default location for you o.s., you can run:
 
 ```sh
-python setup.py build
-python setup.py install
-```	
-
-Otherwise you'll have to pass the paths to library headers and compiled files as extra arguments:
-
-```sh
-python setup.py build_ext -I 'path/to/assimp/headers' -L 'path/to/library/libassimp.a_or_.so'
+python setup.py build_ext
 python setup.py install
 ```
+
+Otherwise you'll have to pass the paths to library headers as extra arguments:
+
+```sh
+python setup.py build_ext -I'path/to/assimp/headers' -L'path/to/library/'
+python setup.py install
+```
+Cython is only necessary to rebuild the .cpp files.
+Do
+```sh
+python setup.py build_ext --force
+``` 
+in such case.
+
 ---
 
 #### Missing:
@@ -65,11 +67,5 @@ python setup.py install
 * Export functionality
 
 Those might be added in the future.
-
-#### Warning:
-
-No checks for memory leaks have been made.
-
----
 
 And what about the name? Well, [cyassimp](https://github.com/menpo/cyassimp) was already taken :smirk:.

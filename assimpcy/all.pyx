@@ -25,8 +25,8 @@ ctypedef fused i_f:
     dataStorageI
     dataStorageF
 
-AI_MAX_NUMBER_OF_TEXTURECOORDS = cMesh._AI_MAX_NUMBER_OF_TEXTURECOORDS
-AI_MAX_NUMBER_OF_COLOR_SETS = cMesh._AI_MAX_NUMBER_OF_COLOR_SETS
+cdef int AI_MAX_NUMBER_OF_TEXTURECOORDS = cMesh._AI_MAX_NUMBER_OF_TEXTURECOORDS
+cdef int AI_MAX_NUMBER_OF_COLOR_SETS = cMesh._AI_MAX_NUMBER_OF_COLOR_SETS
 
 propertyNames = {
 '?mat.name': 'NAME',
@@ -122,7 +122,7 @@ cdef class aiMesh:
 @cython.nonecheck(False)
 cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
     cdef bint val, hasanycoord, hasanycolor = 0
-    cdef unsigned int i, j = 0
+    cdef unsigned int i, j = 0, k
     cdef aiBone bone
     cdef aiVertexWeight vertW
     cdef aiMesh rMesh = aiMesh()
@@ -138,14 +138,16 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
     rMesh.HasTangentsAndBitangents = mesh.HasTangentsAndBitangents()
 
     rMesh.HasVertexColors = []
-    for i in range(AI_MAX_NUMBER_OF_COLOR_SETS):
+    k = AI_MAX_NUMBER_OF_COLOR_SETS
+    for i in range(k):
         val = mesh.HasVertexColors(i)
         if val:
             hasanycolor = val
         rMesh.HasVertexColors.append(val)
 
     rMesh.HasTextureCoords = []
-    for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+    k = AI_MAX_NUMBER_OF_TEXTURECOORDS
+    for i in range(k):
         val = mesh.HasTextureCoords(i)
         if val:
             hasanycoord = val
@@ -170,7 +172,7 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
                 bone.mWeights.append(vertW)
             rMesh.mBones.append(bone)
 
-    for i in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+    for i in range(k):
         rMesh.mNumUVComponents[i] = mesh.mNumUVComponents[i]
 
     if rMesh.HasPositions:
@@ -197,7 +199,7 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
                 rMesh.mFaces[i][j] = mesh.mFaces[i].mIndices[j]
 
     if hasanycoord:
-        for j in range(AI_MAX_NUMBER_OF_TEXTURECOORDS):
+        for j in range(k):
             if rMesh.HasTextureCoords[j]:
                 # tempnd = np.empty((mesh.mNumVertices, rMesh.mNumUVComponents[j]), dtype=NUMPYFLOAT)
                 tempnd = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
@@ -207,7 +209,8 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
                 rMesh.mTextureCoords[j] = tempnd[:,:rMesh.mNumUVComponents[j]]
 
     if hasanycolor:
-        for j in range(AI_MAX_NUMBER_OF_COLOR_SETS):
+        k = AI_MAX_NUMBER_OF_COLOR_SETS
+        for j in range(k):
             if rMesh.HasVertexColors[j]:
                 tempnd = np.empty((mesh.mNumVertices, 4), dtype=NUMPYFLOAT)
                 with nogil:
@@ -240,7 +243,7 @@ cdef class aiNode:
 
 cdef aiNode buildNode(cScene.aiNode* node, aiNode parent):
     cdef aiNode rNode = aiNode()
-    cdef unsigned int i = 0
+    cdef unsigned int i = 0, j
     rNode.mParent = parent
     rNode.mNumMeshes = node.mNumMeshes
     rNode.mName = str(node.mName.data)
@@ -249,10 +252,12 @@ cdef aiNode buildNode(cScene.aiNode* node, aiNode parent):
     with nogil:
         memcpy(<void*>rNode.mTransformation.data, <void*>&node.mTransformation, sizeof(NUMPYFLOAT_t) * 16)
 
-    for i in range(rNode.mNumChildren):
+    j = rNode.mNumChildren
+    for i in range(j):
         rNode.mChildren.append(buildNode(node.mChildren[i], rNode))
 
-    for i in range(rNode.mNumMeshes):
+    j = rNode.mNumMeshes
+    for i in range(j):
         rNode.mMeshes.append(node.mMeshes[i])
     return rNode
 
@@ -360,20 +365,23 @@ cdef class aiNodeAnim:
 @cython.wraparound(False)
 @cython.nonecheck(False)
 cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):
-    cdef int i = 0
+    cdef int i = 0, j
     cdef cAnim.aiVectorKey vkey
     cdef cAnim.aiQuatKey qkey
     cdef aiNodeAnim node = aiNodeAnim()
     node.mNodeName = str(channel.mNodeName.data)
-    for i in range(channel.mNumPositionKeys):
+    j = channel.mNumPositionKeys
+    for i in range(j):
         vkey = channel.mPositionKeys[i]
         node.mPositionKeys.append(buildKey(&vkey))
 
-    for i in range(channel.mNumRotationKeys):
+    j = channel.mNumRotationKeys
+    for i in range(j):
         rkey = channel.mRotationKeys[i]
         node.mRotationKeys.append(buildKey(&rkey))
 
-    for i in range(channel.mNumScalingKeys):
+    j = channel.mNumScalingKeys
+    for i in range(j):
         vkey = channel.mScalingKeys[i]
         node.mScalingKeys.append(buildKey(&vkey))
 
@@ -414,11 +422,12 @@ cdef class aiAnimation:
 @cython.nonecheck(False)
 cdef aiAnimation buildAnimation(cAnim.aiAnimation* anim):
     cdef aiAnimation nAnim = aiAnimation()
-    cdef int i = 0
+    cdef int i = 0, j
     nAnim.mName = str(anim.mName.data)
     nAnim.mDuration = anim.mDuration
     nAnim.mTicksPerSecond = anim.mTicksPerSecond
-    for i in range(anim.mNumChannels):
+    j = anim.mNumChannels
+    for i in range(j):
         nAnim.mChannels.append(buildAnimNode(anim.mChannels[i]))
     return nAnim
 
@@ -457,7 +466,7 @@ cdef class aiScene:
 @cython.nonecheck(False)
 cdef aiScene buildScene(const cScene.aiScene *cs):
     cdef aiScene scene = aiScene()
-    cdef unsigned int i
+    cdef unsigned int i, j
     # scene.mFlags
     scene.mRootNode  = buildNode(cs.mRootNode, None)
     scene.mNumMeshes = cs.mNumMeshes
@@ -477,13 +486,16 @@ cdef aiScene buildScene(const cScene.aiScene *cs):
     scene.HasCameras = scene.mNumCameras
     scene.HasAnimations = scene.mNumAnimations
 
-    for i in range(scene.mNumMeshes):
+    j = scene.mNumMeshes
+    for i in range(j):
         scene.mMeshes.append(buildMesh(cs.mMeshes[i]))
 
-    for i in range(scene.mNumMaterials):
+    j = scene.mNumMaterials
+    for i in range(j):
         scene.mMaterials.append(buildMaterial(cs.mMaterials[i]))
 
-    for i in range(scene.mNumAnimations):
+    j = scene.mNumAnimations
+    for i in range(j):
         scene.mAnimations.append(buildAnimation(cs.mAnimations[i]))
 
     return scene
