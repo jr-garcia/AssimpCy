@@ -3,6 +3,8 @@ sudo: false
 
 addons:
   apt:
+    source:
+      - precise
     packages:
       - libassimp3v5
       - libassimp-dev
