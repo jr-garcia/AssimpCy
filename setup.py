@@ -1,9 +1,19 @@
 from setuptools import Extension, setup, command
 from sys import platform
 from numpy import get_include
-
 from distutils.sysconfig import get_config_vars
 import os
+
+
+def getVersion():
+    dir = os.path.dirname(__file__)
+    init_path = os.path.join(dir, 'assimpcy', '__init__.py')
+    with open(init_path) as verFile:
+        lines = verFile.readlines()
+        for l in lines:
+            if l.startswith('__version__'):
+                return l.split('=')[1].strip()
+            
 
 (opt,) = get_config_vars('OPT')
 if opt:
@@ -24,6 +34,7 @@ else:
 
 setup(
     name="AssimpCy",
+    version=getVersion(),
     packages=["assimpcy"],
     ext_modules=[
         Extension('assimpcy.all', ["./assimpcy/all.pyx"],
