@@ -1,5 +1,5 @@
 # AssimpCy 
-[![Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=test_CI)](https://travis-ci.org/jr-garcia/AssimpCy)
+[![Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master)](https://travis-ci.org/jr-garcia/AssimpCy)
 
 Faster (than PyAssimp) Python bindings for [Assimp](http://assimp.sourceforge.net/), Cython-based, BSD3 license.
 
