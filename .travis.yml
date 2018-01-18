@@ -4,7 +4,7 @@ sudo: false
 addons:
   apt:
     source:
-      - lucid
+      - r-packages-trusty
     packages:
       - libassimp3v5
       - libassimp-dev
