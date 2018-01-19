@@ -69,6 +69,7 @@ setup(
             'Programming Language :: Python :: 3.5',
             'Programming Language :: Python :: 3.6'],
     keywords='load 3d model geometry assimp',
+    install_requires=['numpy'],
     packages=["assimpcy"],
     ext_modules=[
         Extension('assimpcy.all', ["./assimpcy/all.pyx"],
