@@ -35,8 +35,6 @@ def main():
     if scene.HasMeshes and scene.mMeshes[0].HasPositions:
         v = int(scene.mMeshes[0].mNumVertices / 2)
         print('\tVertex {} = {}'.format(v, scene.mMeshes[0].mVertices[v]))
-        # print()
-        # print(scene.mRootNode.mChildren[0].mTransformation)
 
     print('Took {:0.4f} seconds.'.format(secs))
 

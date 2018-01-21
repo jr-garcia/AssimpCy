@@ -13,8 +13,16 @@ def getVersion():
         lines = verFile.readlines()
         for l in lines:
             if l.startswith('__version__'):
-                return l.split('=')[1].strip()
-            
+                return l.split('=')[1].strip(' \'\n\r\t-')
+
+
+def getLongDescription():
+    dir = os.path.dirname(__file__)
+    init_path = os.path.join(dir, '_longDesc.md')
+    with open(init_path) as descFile:
+        all = descFile.read()
+        return all
+
 
 (opt,) = get_config_vars('OPT')
 if opt:
@@ -38,25 +46,7 @@ setup(
     author='Javier R. García',
     version=getVersion(),
     description='Faster Python bindings for Assimp.',
-    long_description=
-    '''
-    It uses the same naming as the original library, so examples from the official docs can be used directly (minus C 
-    sintaxis, of course).
-
-    Example usage:
-    
-    from assimpcy import aiImportFile, aiPostProcessSteps as pp 
-    flags = pp.aiProcess_JoinIdenticalVertices | pp.aiProcess_Triangulate 
-    scene = aiImportFile('model.x', flags)
-    print('\tHas {} meshes, {} textures, {} materials, {} animations.'.format(scene.mNumMeshes, scene.mNumTextures, 
-    scene.mNumMaterials, scene.mNumAnimations)) 
-    
-    # Check mesh.Has* before extracting corresponding mesh.m* (Vertices, Normals, etc)
-    if scene.HasMeshes and scene.mMeshes[0].HasPositions:
-        v = scene.mMeshes[0].mNumVertices / 2
-        print('Vertex {} = {}'.format(v, scene.mMeshes[0].mVertices[v]))
-    Matrices, quaternions and vectors are returned as Numpy arrays.
-    ''',
+    long_description=getLongDescription(),
     url='https://github.com/jr-garcia/AssimpCy',
     license='BSD3',
     classifiers=[
