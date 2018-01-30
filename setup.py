@@ -18,7 +18,7 @@ def getVersion():
 
 def getLongDescription():
     dir = os.path.dirname(__file__)
-    init_path = os.path.join(dir, '_longDesc.md')
+    init_path = os.path.join(dir, 'readme.md')
     with open(init_path) as descFile:
         all = descFile.read()
         return all
