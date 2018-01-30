@@ -29,10 +29,13 @@ if opt:
     os.environ['OPT'] = " ".join(flag for flag in opt.split() if flag != '-Wstrict-prototypes')
 
 incl = [get_include()]
+libs = []
 extrac = []
 
 if platform == 'win32':
     rldirs = []
+    incl.append('C:\Program Files (x86)\Assimp\include\assimp')
+    libs.append('C:\Program Files (x86)\Assimp\lib')
     extrac.append('/EHsc')
 elif platform == 'darwin':
     rldirs = []
@@ -65,6 +68,7 @@ setup(
         Extension('assimpcy.all', ["./assimpcy/all.pyx"],
                   libraries=["assimp"],
                   include_dirs=incl,
+                  library_dirs=libs,
                   runtime_library_dirs=rldirs,
                   extra_compile_args=extrac,
                   language="c++")
