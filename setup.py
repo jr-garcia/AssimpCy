@@ -34,15 +34,19 @@ extrac = []
 
 if platform == 'win32':
     rldirs = []
-    incl.append('C:\Program Files (x86)\Assimp\include\assimp')
-    libs.append('C:\Program Files (x86)\Assimp\lib')
-    extrac.append('/EHsc')
+    incl.append('C:\\Program Files (x86)\\Assimp\\include\\assimp')
+    libs.append('C:\\Program Files (x86)\\Assimp\\lib')
+    extrac.extend(['/EHsc', '/openmp'])
+    extraLink = []
 elif platform == 'darwin':
     rldirs = []
+    extrac.append('-fopenmp')
+    extraLink = ['-fopenmp']
 else:
     incl.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
     rldirs = ["$ORIGIN"]
-    extrac.extend(["-w", "-O3"])
+    extrac.extend(["-w", "-O3", '-fopenmp'])
+    extraLink = ['-fopenmp']
 
 setup(
     name="AssimpCy",

@@ -6,6 +6,8 @@ import numpy as np
 cimport numpy as np
 cimport cython
 
+from cython.parallel cimport prange
+
 from libc.string cimport memcpy
 from warnings import warn
 
@@ -122,7 +124,7 @@ cdef class aiMesh:
 @cython.nonecheck(False)
 cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
     cdef bint val, hasanycoord, hasanycolor = 0
-    cdef unsigned int i, j = 0, k
+    cdef int i, j = 0, k
     cdef aiBone bone
     cdef aiVertexWeight vertW
     cdef aiMesh rMesh = aiMesh()
@@ -192,11 +194,14 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
             memcpy(<void*>rMesh.mTangents.data, <void*>&mesh.mTangents[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
             memcpy(<void*>rMesh.mBitangents.data, <void*>&mesh.mBitangents[0], sizeof(NUMPYFLOAT_t) * mesh.mNumVertices * 3)
 
+    cdef NUMPYINT_t [:,:] facememview
     if rMesh.HasFaces:
         rMesh.mFaces = np.empty((rMesh.mNumFaces, mesh.mFaces.mNumIndices), dtype=NUMPYINT)
-        for i in range(mesh.mNumFaces):
-            for j in range(mesh.mFaces.mNumIndices):
-                rMesh.mFaces[i][j] = mesh.mFaces[i].mIndices[j]
+        facememview = rMesh.mFaces
+        with nogil:
+            for i in prange(<int>(mesh.mNumFaces), schedule='static'):
+                for j in range(mesh.mFaces.mNumIndices):
+                    facememview[i][j] = mesh.mFaces[i].mIndices[j]
 
     if hasanycoord:
         for j in range(k):
@@ -367,7 +372,7 @@ cdef class aiNodeAnim:
 cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):
     cdef int i = 0, j
     cdef cAnim.aiVectorKey vkey
-    cdef cAnim.aiQuatKey qkey
+    cdef cAnim.aiQuatKey rkey
     cdef aiNodeAnim node = aiNodeAnim()
     node.mNodeName = str(channel.mNodeName.data)
     j = channel.mNumPositionKeys
@@ -393,14 +398,13 @@ cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):
 cdef aiKey buildKey(anykey* key):
     cdef aiKey pykey = aiKey()
     cdef int kl
-    with nogil:
-        pykey.mTime = key.mTime
-        if anykey == cAnim.aiVectorKey:
-            kl = 3
-        else:
-            kl = 4
+    if anykey  == cAnim.aiVectorKey:
+        kl = 3
+    else:
+        kl = 4
     pykey.mValue = np.empty((kl), dtype=NUMPYFLOAT)
     with nogil:
+        pykey.mTime = key.mTime
         memcpy(<void*>pykey.mValue.data, <void*>&key.mValue, kl * sizeof(NUMPYFLOAT_t))
     return pykey
 
@@ -540,8 +544,7 @@ def aiImportFile(str path, unsigned int flags=0):
 
 
 def aiReleaseImport(aiScene pScene):
-     warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed since it is handled by '
-                             '\'aiImportFile\'.'))
+     warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed.'))
 
 class AssimpError(Exception):
     pass
@@ -549,13 +552,13 @@ class AssimpError(Exception):
 
 cdef cppclass dataStorageF nogil:
     NUMPYFLOAT_t data[16]
-    unsigned int validLenght
+    int validLenght
     dataStorageF():
         validLenght = 0
 
 cdef cppclass dataStorageI nogil:
     NUMPYINT_t data[16]
-    unsigned int validLenght
+    int validLenght
     dataStorageI():
         validLenght = 0
 
@@ -563,7 +566,7 @@ cdef cppclass dataStorageI nogil:
 @cython.wraparound(False)
 @cython.nonecheck(False)
 cdef np.ndarray asNumpyArray(i_f* ds):
-    cdef unsigned int i
+    cdef int i
     cdef np.ndarray[NUMPYFLOAT_t, ndim=1] retF
     cdef np.ndarray[NUMPYINT_t, ndim=1] retI
 
@@ -577,7 +580,7 @@ cdef np.ndarray asNumpyArray(i_f* ds):
         dsiarr_view = ds.data
         iarr_view =  retI
         with nogil:
-            for i in range(ds.validLenght):
+            for i in prange(ds.validLenght):
                 iarr_view[i] = dsiarr_view[i]
         return retI
     else:
@@ -585,7 +588,7 @@ cdef np.ndarray asNumpyArray(i_f* ds):
         dsfarr_view = ds.data
         farr_view = retF
         with nogil:
-            for i in range(ds.validLenght):
+            for i in prange(ds.validLenght):
                 farr_view[i] = dsfarr_view[i]
         return retF
 
