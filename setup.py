@@ -46,7 +46,7 @@ else:
     incl.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
     rldirs = ["$ORIGIN"]
     extrac.extend(["-w", "-O3", '-fopenmp'])
-    extraLink = ['-fopenmp']
+    extraLink = ['-fopenmp', '-lgomp']
 
 setup(
     name="AssimpCy",
@@ -75,6 +75,7 @@ setup(
                   library_dirs=libs,
                   runtime_library_dirs=rldirs,
                   extra_compile_args=extrac,
+                  extra_link_args=extraLink,
                   language="c++")
     ],
     requires=['numpy']
