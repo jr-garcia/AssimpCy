@@ -2,7 +2,7 @@ language: python
 python:
   - "2.7"
   - "3.6"
-  
+
 sudo: false
 
 addons:
@@ -20,3 +20,14 @@ install:
 
 script:
   - pushd tests && python -m unittest test_simple && popd
+
+deploy:
+  skip_cleanup: true
+  provider: pypi
+  user: jr-garcia
+  on:
+    branch: master
+  distributions: "sdist bdist_wheel"
+  server: https://test.pypi.org/legacy/
+  password:
+    secure: I/+nNkbtgYbsjzT9rxvKHW1ncUnv+OB/XU9lE8xd4Fq15mu9fSFrp8lgV/5NY8x9zETB6CpT+H5ZxrbbH+UMC0icw7HhsLdeU6+eDOl2PmLNaevpSFfFkkF8pVVJCzW8YeKITXnyDGpZVrjP1Itv/8d7YWbXTz7MnP+RFs90cPao7werWXILl49Odrcqfx0UmEU2YCtD/lkgCyjsj8zaO0AZItVtQJMQ1O7hzZpFHRzfVm2Y8rretHdHmVlV3oW1n7vR3m5QjwQYI44cey/rGCc2neRilrCT/vAiyoVz79ECZpXQi4t/C25nomSFwxj5N/q5zy8LxMqDQBdQDkeYkdX4vYDc5V1QgwmO3XUci4sWxvoiF7tmZQfOBo9gSENIpb3K5rnJA6wY9O+TgRC9Z3n9SlKSuw0xpEVU+zUAn/N/CsOsDmUzWOstp7pPXQTX2XvcfnJyS+YZl2uHb7cSdzXicQDeUpGtQuw2sfhCXeKm9PcIVkYhVPbd3LJtuHAuP1avRXLTWphs80aiQ/+AUNEGlesexMEU0r9RkXiXb2hUFn5ehxqkHVu2RDZno3CRsHly0oCg5W6PrIVtfVmPKmQP2b1rzGnTZZomxq5PqPLa9b3gMegq+WBi+cZjV/d8pDLHzQVwaO7xW6lASPWdZ3e9QMCNSLZlIa/lgJ8oy+I=
