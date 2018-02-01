@@ -40,7 +40,7 @@ The easiest way is:
 pip install assimpcy
 ```
 
-If that does not work for you, please check [read](http://readthedocs/) for instructions. 
+If that does not work for you, please check [Isntallation](http://assimpcy.readthedocs.io/en/latest/installation) for instructions. 
 
 #### Missing:
 

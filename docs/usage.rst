@@ -1,4 +1,4 @@
-USAGE
+Usage
 =====
 
 Todo.

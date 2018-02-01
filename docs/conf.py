@@ -47,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'AssimpCy'
-copyright = '2018, Javier R. García'
-author = 'Javier R. García'
+copyright = u'2018, Javier R. García'
+author = u'Javier R. García'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

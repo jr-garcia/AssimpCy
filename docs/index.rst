@@ -10,6 +10,9 @@ Welcome to AssimpCy's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   install
+   usage
+   about
 
 The simples way to start using AssimpCy is to do::
 
