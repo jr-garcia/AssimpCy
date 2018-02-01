@@ -1,9 +1,9 @@
 # AssimpCy 
-[![Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master)](https://travis-ci.org/jr-garcia/AssimpCy)
 [![PyPI version](https://badge.fury.io/py/AssimpCy.svg)](https://badge.fury.io/py/AssimpCy)
-https://readthedocs.org/projects/pip/badge/
+[![Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master)](https://travis-ci.org/jr-garcia/AssimpCy)
+[![Documentation Status](https://readthedocs.org/projects/assimpcy/badge/?version=latest)](http://assimpcy.readthedocs.io/en/latest/?badge=latest)
              
-Faster (than PyAssimp) Python bindings for [Assimp](http://assimp.sourceforge.net/), Cython-based, BSD3 license.
+Faster (than PyAssimp) Python bindings for , Cython-based, BSD3 license.
 
 It uses the same naming as the original library, so examples from the official docs can be used directly (minus C sintaxis, of course).
     
@@ -41,7 +41,7 @@ The easiest way is:
 pip install assimpcy
 ```
 
-If that does not work for you, please check [Isntallation](http://assimpcy.readthedocs.io/en/latest/installation) for instructions. 
+If that does not work for you, please check [Isntallation](http://assimpcy.readthedocs.io/en/latest/install.html) for instructions. 
 
 #### Missing:
 
@@ -50,5 +50,11 @@ If that does not work for you, please check [Isntallation](http://assimpcy.readt
 * Export functionality
 
 Those might be added in the future.
+
+#### Documentation
+
+[Read The Docs](http://assimpcy.readthedocs.io/)
+
+-----------------
 
 And what about the name? Well, [cyassimp](https://github.com/menpo/cyassimp) was already taken :smirk:.
