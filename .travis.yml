@@ -20,15 +20,3 @@ install:
 
 script:
   - pushd tests && python -m unittest test_simple && popd
-
-deploy:
-  skip_cleanup: true
-  provider: pypi
-  user: jr-garcia
-  on:
-    branch: master
-  distributions: "sdist bdist_wheel"
-  server: https://test.pypi.org/legacy/
-  password:
-    secure: "TxF7+n0cQvQ0RAM+4Da4mAVMJEmbXfMKAMknZ0UUw++2jNaT3fbsIyozxhKAXy46veq1efXKaX+zW1ikML4yt4FK4X+/9uVIrmEgrG6RLFWoPXwBGogKpxyKJ19UidqGL5Uqd7WrBdnTJUJTtFdeE4zmAW2a7NXet/QK+5KkxICjh2hs2J99QDz/iOiAH61UiqzSaEiHMTB3uM49oYjaHuRiVH/pTPxj61U101D6PqNVFIwKutgDoD4cczQPPBJs76/vR3iXGdgmARoB/Ufmfe3KfUd3xL7vqDtbACPrNkOaa5JUL3WJjPRh1nYgbUloxyZZZPOEE7zOeanpAzyKtybt1CDQr2v6iyLi1/wOXQ2s+msFEwBbEomvp/7AOBNiaLoiTTJMe+9eTKOODwkhCtVRztKsfZeFRQwWzSzxkStH3F1MJx/O/PqGg2rEP4CNwF7xtsUzYqv3QhtzuSuf6qzp20qYibhmedk1iMPY4nH6JbzrZkOpi0UOa+rjxsO5pOb0wMUd6bPk8pFKXiEM32n3i3kWzdDfKRvg/e/v4XZ5ZFXj1j0VKv8YMfq39wtu1OK/q5Q1ooA3I/r/VbUj1EhhiuIlAvXToLGTeoXO4AjgwvfQ7DzeOZGraF41YfJbvZpN2lL8zD/0aafywjrnKJvQN4XIt0bpmMIvx4GDFPw="
-
