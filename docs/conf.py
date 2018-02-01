@@ -140,7 +140,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'AssimpCy.tex', 'AssimpCy Documentation',
-     'Javier R. García', 'manual'),
+     u'Javier R. García', 'manual'),
 ]
 
 
