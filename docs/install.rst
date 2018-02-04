@@ -7,7 +7,11 @@ Installation
 
   You'll need Cmake, and Microsoft Visual Studio for Windows or Gcc for Linux and Mac (optionally, Mingw-w64).
 
-* Second, download the zip package from
+* Second, install `Numpy <http://www.numpy.org/>`_ with::
+
+      pip install numpy
+
+* Third, download the zip package from
 
   https://github.com/jr-garcia/AssimpCy
 
@@ -27,7 +31,7 @@ Installation
 
     Be sure that the path to headers ends with '\\assimp'
 
-Cython is only necessary to rebuild the .cpp files, wich you can do with::
+Cython is only necessary to rebuild the .cpp files, which you can do with::
 
     python setup.py build_ext --force
 
