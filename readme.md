@@ -21,6 +21,7 @@ print('Vertex {} = {}'.format(v, scene.mMeshes[0].mVertices[0]))
 Matrices, quaternions and vectors are returned as Numpy arrays.
 
 It has been tested with:
+
 * Python 2.7
 * Python 3.4 +
 

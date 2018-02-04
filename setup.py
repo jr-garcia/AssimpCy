@@ -21,7 +21,7 @@ def getLongDescription():
     dir = os.path.dirname(__file__)
     init_path = os.path.join(dir, 'readme.md')
     try:
-        rst = check_output('pandolc {} -f markdown -t rst'.format(init_path).split())
+        rst = check_output('pandoc {} -f markdown -t rst'.format(init_path).split())
         return rst
     except CalledProcessError:
         raise
