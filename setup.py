@@ -17,10 +17,17 @@ def getVersion():
 
 
 def getLongDescription():
+    from subprocess import check_output, CalledProcessError
     dir = os.path.dirname(__file__)
     init_path = os.path.join(dir, 'readme.md')
-    with open(init_path) as descFile:
-        all = descFile.read()
+    try:
+        rst = check_output('pandolc {} -f markdown -t rst'.format(init_path).split())
+        return rst
+    except CalledProcessError:
+        raise
+    except OSError:
+        with open(init_path) as descFile:
+            all = descFile.read()
         return all
 
 
