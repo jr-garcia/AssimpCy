@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from setuptools import Extension, setup, command
-from sys import platform
+from sys import platform, maxsize
 from numpy import get_include
 from distutils.sysconfig import get_config_vars
 import os
@@ -26,6 +26,8 @@ def getLongDescription():
     except CalledProcessError:
         raise
     except OSError:
+        from warnings import warn
+        warn('error converting Readme to rst. Is Pandoc installed?')
         with open(init_path) as descFile:
             all = descFile.read()
         return all
@@ -35,24 +37,28 @@ def getLongDescription():
 if opt:
     os.environ['OPT'] = " ".join(flag for flag in opt.split() if flag != '-Wstrict-prototypes')
 
-incl = [get_include()]
+includes = [get_include()]
 libs = []
-extrac = []
+extraCompile = []
 
 if platform == 'win32':
     rldirs = []
-    incl.append('C:\\Program Files (x86)\\Assimp\\include\\assimp')
-    libs.append('C:\\Program Files (x86)\\Assimp\\lib')
-    extrac.extend(['/EHsc', '/openmp'])
+    archString = '' if (maxsize > 2 ** 32) else ' (x86)'
+    base = 'C:\\Program Files{}\\Assimp'.format(archString)
+    includePath = base + '\\include'
+    libPath = base + '\\lib'
+    includes.extend([includePath, includePath + "\\assimp"])
+    libs.append(libPath)
+    extraCompile.extend(['/EHsc', '/openmp'])
     extraLink = []
 elif platform == 'darwin':
     rldirs = []
-    extrac.append('-fopenmp')
+    extraCompile.append('-fopenmp')
     extraLink = ['-fopenmp']
 else:
-    incl.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
+    includes.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
     rldirs = ["$ORIGIN"]
-    extrac.extend(["-w", "-O3", '-fopenmp'])
+    extraCompile.extend(["-w", "-O3", '-fopenmp'])
     extraLink = ['-fopenmp', '-lgomp']
 
 setup(
@@ -65,7 +71,7 @@ setup(
     license='BSD3',
     classifiers=[
             'Development Status :: 5 - Production/Stable',
-            'Intended Audience :: Developers', 
+            'Intended Audience :: Developers',
             'Topic :: Multimedia :: Graphics :: 3D Rendering',
             'License :: OSI Approved :: BSD License',
             'Programming Language :: Python :: 2.7',
@@ -76,12 +82,12 @@ setup(
     install_requires=['numpy'],
     packages=["assimpcy"],
     ext_modules=[
-        Extension('assimpcy.all', ["./assimpcy/all.pyx"],
+        Extension('assimpcy.all', [os.path.join(os.path.curdir, "assimpcy", "all.pyx")],
                   libraries=["assimp"],
-                  include_dirs=incl,
+                  include_dirs=includes,
                   library_dirs=libs,
                   runtime_library_dirs=rldirs,
-                  extra_compile_args=extrac,
+                  extra_compile_args=extraCompile,
                   extra_link_args=extraLink,
                   language="c++")
     ],
