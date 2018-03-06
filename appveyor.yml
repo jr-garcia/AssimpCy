@@ -1,6 +1,6 @@
-#branches:
-#  only:
-#    - appveyor
+branches:
+  only:
+    - master
 
 init:
   - ps: $env:APPVEYOR_SAVE_CACHE_ON_ERROR = "true"
