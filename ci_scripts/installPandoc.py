@@ -1,8 +1,9 @@
 from os import environ as env
 import os
 from subprocess import call
+import sys
 
-PYTHON = env.get("PYTHON", 'python3')
+PYTHON = env.get("PYTHON", sys.executable)
 call("{} -m pip install pypandoc -f downloads --cache-dir downloads".format(PYTHON).split())
 
 from pypandoc.pandoc_download import download_pandoc

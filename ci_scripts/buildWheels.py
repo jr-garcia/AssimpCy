@@ -1,7 +1,7 @@
 import os
 from os import environ as env
 from subprocess import call, check_output
-from sys import argv
+from sys import argv, executable
 
 # https://stackoverflow.com/a/3357357
 command = 'git log --format=%B -n 1 {}'.format(env.get("APPVEYOR_REPO_COMMIT", '')).split(' ')
@@ -15,7 +15,7 @@ import installPandoc
 
 print('Building wheels...', end='')
 
-PYTHON = env.get("PYTHON", 'python3')
+PYTHON = env.get("PYTHON", executable)
 
 call("{} -m pip install wheel -f downloads --cache-dir downloads".format(PYTHON).split())
 call("{} setup.py bdist_wheel".format(PYTHON).split())
