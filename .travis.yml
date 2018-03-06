@@ -20,3 +20,5 @@ install:
 
 script:
   - pushd tests && python -m unittest test_simple && popd
+  - pip install cibuildwheel==0.7.0
+  - cibuildwheel --output-dir wheelhouse
