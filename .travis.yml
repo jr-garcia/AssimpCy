@@ -4,7 +4,7 @@ python:
 #  - "3.6"
 
 sudo: required
-env: CIBW_BEFORE_BUILD=yum install -y libssimp-dev && {pip} install numpy
+env: CIBW_BEFORE_BUILD="yum install -y libssimp-dev && {pip} install numpy"
 services:
   - docker
 
