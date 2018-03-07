@@ -23,10 +23,10 @@ for iPath in includes:
 
 print('compiled assimp not found. Building...')
 
-import installPandoc
-
 if not path.exists('downloads'):
     mkdir('downloads')
+
+import installPandoc
 
 PYTHON = env.get("PYTHON", sys.executable)
 
