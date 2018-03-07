@@ -6,7 +6,7 @@ python:
 cache: pip
 
 sudo: required
-env: CIBW_BEFORE_BUILD="yum install -y assimp-devel && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
+env: CIBW_BEFORE_BUILD="{python} assimpDownload.py && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
 services:
   - docker
 
