@@ -20,7 +20,7 @@ for iPath in includes:
     if path.exists(iPath):
         exit(0)
 
-print('compiled assimp not found. Building...')
+print('compiled assimp not found. Starting process...')
 
 if not path.exists('downloads'):
     mkdir('downloads')
@@ -53,15 +53,12 @@ if not path.exists('assimp_unzipped'):
     zip_ref.extractall('assimp_unzipped')
     zip_ref.close()
 
+print('calling build script...')
+
 if platform == 'win32':
     pass
 else:
     try:
-        env['GENERATOR'] = 'Unix Makefiles'
-        # import stat
-        # import os
-        # st = os.stat('ci_scripts/buildAssimp.sh')
-        # os.chmod('ci_scripts/buildAssimp.sh', st.st_mode | stat.S_IEXEC)
         check_output('bash ci_scripts/buildAssimp.sh'.split())
     except CalledProcessError as err:
         raise RuntimeError(str(err.output))
