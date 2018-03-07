@@ -47,8 +47,6 @@ if not path.exists('assimp_unzipped'):
     zip_ref.extractall('assimp_unzipped')
     zip_ref.close()
 
-
-
 if platform == 'win32':
     pass
 else:
