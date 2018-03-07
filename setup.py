@@ -18,14 +18,13 @@ def getVersion():
 
 def getLongDescription():
     from subprocess import check_output, CalledProcessError
-    dir = os.path.dirname(__file__)
-    init_path = os.path.join(dir, 'readme.md')
+    directory = os.path.dirname(__file__)
+    init_path = os.path.join(directory, 'readme.md')
     try:
-        rst = check_output('pandoc {} -f markdown -t rst'.format(init_path).split())
+        import pypandoc
+        rst = pypandoc.convert_file(init_path, 'rst')
         return rst
-    except CalledProcessError:
-        raise
-    except OSError:
+    except ImportError as err:
         from warnings import warn
         warn('error converting Readme to rst. Is Pandoc installed?')
         with open(init_path) as descFile:
