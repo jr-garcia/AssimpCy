@@ -13,10 +13,10 @@
 <td> Linux </td><td align=center><a href=https://travis-ci.org/jr-garcia/AssimpCy> <img src="https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master" alt="Linux Build Status"></a> </td>
 </tr>
 <tr>
-<td> Windows </td><td align=center><a href=http://assimpcy.readthedocs.io/en/latest/?badge=latest> <img src="https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true" alt="Windows Build Status"></a> </td>
+<td> Windows </td><td align=center><a href=https://ci.appveyor.com/project/jr-garcia/assimpcy> <img src="https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true" alt="Windows Build Status"></a> </td>
 </tr>
 <tr>
-<td> Docs </td><td align=center><a href=https://ci.appveyor.com/project/jr-garcia/assimpcy> <img src="https://readthedocs.org/projects/assimpcy/badge/?version=latest" alt="Documentation Build Status"></a> </td>
+<td> Docs </td><td align=center><a href=http://assimpcy.readthedocs.io/en/latest/?badge=latest> <img src="https://readthedocs.org/projects/assimpcy/badge/?version=latest" alt="Documentation Build Status"></a> </td>
 </tr>
 </table>
 </center>
