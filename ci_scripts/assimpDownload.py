@@ -38,8 +38,7 @@ if not path.exists(dest):
     print('assimp zip not found. Downloading...')
     try:
         res = check_output("{} -m pip install requests -f downloads --cache-dir downloads".format(PYTHON).split())
-        if res != 0:
-            exit(res)
+        print(res)
     except CalledProcessError as err:
         raise RuntimeError(str(err.output))
 
@@ -62,6 +61,6 @@ if platform == 'win32':
 else:
     try:
         res = check_output('bash ci_scripts/buildAssimp.sh'.split())
-        exit(res)
+        print(res)
     except CalledProcessError as err:
         raise RuntimeError(str(err.output))
