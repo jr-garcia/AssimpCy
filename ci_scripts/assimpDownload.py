@@ -42,6 +42,7 @@ if localCMake is not None:
 try:
     import pypandoc
 except ImportError:
+    print('Pandoc missing. Installing...')
     import installPandoc
 
 PYTHON = env.get("PYTHON", sys.executable)
