@@ -1,7 +1,7 @@
 import sys
 import zipfile
 from os import environ as env, mkdir, path
-from subprocess import CalledProcessError, check_output
+from subprocess import CalledProcessError, check_call
 
 platform = sys.platform
 includes = []
@@ -30,16 +30,14 @@ localCMake = env.get('LOCAL_CMAKE', None)
 if localCMake is not None:
     print('Cmake not found. Downloading...')
     try:
-        res = check_output("wget --no-check-certificate https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.sh".split())
-        print(res)
+        check_call("wget --no-check-certificate https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.sh".split())
     except CalledProcessError as err:
-        raise RuntimeError(str(err.output))
+        raise RuntimeError(str(err))
     print('cmake not found. Installing...')
     try:
-        res = check_output("bash ./cmake-3.10.2-Linux-x86_64.sh --skip-license --prefix='./'".split())
-        print(res)
+        check_call("bash ./cmake-3.10.2-Linux-x86_64.sh --skip-license --prefix='./'".split())
     except CalledProcessError as err:
-        raise RuntimeError(str(err.output))
+        raise RuntimeError(str(err))
 
 try:
     import pypandoc
@@ -53,10 +51,9 @@ dest = path.join('downloads', 'assimp.zip')
 if not path.exists(dest):
     print('assimp zip not found. Downloading...')
     try:
-        res = check_output("{} -m pip install requests -f downloads --cache-dir downloads".format(PYTHON).split())
-        print(res)
+        check_call("{} -m pip install requests -f downloads --cache-dir downloads".format(PYTHON).split())
     except CalledProcessError as err:
-        raise RuntimeError(str(err.output))
+        raise RuntimeError(str(err))
 
     from requests import get
 
@@ -76,11 +73,10 @@ if platform == 'win32':
     pass
 else:
     try:
-        if localCMake:
-            local=' --local'
+        if localCMake is not None:
+            local = ' --local'
         else:
             local = ''
-        res = check_output('bash ci_scripts/buildAssimp.sh{}'.format(local).split())
-        print(res)
+        check_call('bash ci_scripts/buildAssimp.sh{}'.format(local).split())
     except CalledProcessError as err:
-        raise RuntimeError(str(err.output))
+        raise RuntimeError(str(err))
