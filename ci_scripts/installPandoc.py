@@ -13,5 +13,5 @@ except OSError:
 
     cudir = os.path.abspath(os.curdir)
     os.chdir('downloads')
-    download_pandoc(version='1.19.1')
+    download_pandoc(version='1.19.1', targetfolder=os.path.abspath(os.path.curdir))
     os.chdir(cudir)
