@@ -21,10 +21,11 @@ def getLongDescription():
     directory = os.path.dirname(__file__)
     init_path = os.path.join(directory, 'readme.md')
     try:
-        import pypandoc
-        rst = pypandoc.convert_file(init_path, 'rst')
+        rst = check_output('pandoc {} -f markdown -t rst'.format(init_path).split())
         return rst
-    except ImportError as err:
+    except CalledProcessError:
+        raise
+    except OSError:
         from warnings import warn
         warn('error converting Readme to rst. Is Pandoc installed?')
         with open(init_path) as descFile:

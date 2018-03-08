@@ -4,23 +4,12 @@
 [![PyPI - Satus](https://img.shields.io/pypi/status/AssimpCy.svg)](https://img.shields.io)
 [![PyPI - License](https://img.shields.io/pypi/l/AssimpCy.svg)](https://img.shields.io)
 
-<center>
-<table width=300 align=center>
-<tr>
-<th colspan="2">BUILD STATUS</th>
-</tr>
-<tr>
-<td> Linux </td><td align=center><a href=https://travis-ci.org/jr-garcia/AssimpCy> <img src="https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master" alt="Linux Build Status"></a> </td>
-</tr>
-<tr>
-<td> Windows </td><td align=center><a href=https://ci.appveyor.com/project/jr-garcia/assimpcy> <img src="https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true" alt="Windows Build Status"></a> </td>
-</tr>
-<tr>
-<td> Docs </td><td align=center><a href=http://assimpcy.readthedocs.io/en/latest/?badge=latest> <img src="https://readthedocs.org/projects/assimpcy/badge/?version=latest" alt="Documentation Build Status"></a> </td>
-</tr>
-</table>
-</center>
-
+##### BUILD STATUS 
+|           |                |
+|-----------|:--------------:|
+| Linux     | [![Linux Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master)](https://travis-ci.org/jr-garcia/AssimpCy) |
+| Windows   | [![Windows Build Status](https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true)](https://ci.appveyor.com/project/jr-garcia/assimpcy)  |
+| Docs      | [![Documentation Build Status](https://readthedocs.org/projects/assimpcy/badge/?version=latest)](http://assimpcy.readthedocs.io/en/latest/?badge=latest)  |
         
 Faster (than PyAssimp) Python bindings for [Assimp](http://assimp.org/), Cython-based, BSD3 license.
 
@@ -77,4 +66,4 @@ Those might be added in the future.
 
 -----------------
 
-And what about the name? Well, [cyassimp](https://github.com/menpo/cyassimp) was already taken :smirk:.
+And what about the name? Well, [cyassimp](https://github.com/menpo/cyassimp) was already taken 😞.
