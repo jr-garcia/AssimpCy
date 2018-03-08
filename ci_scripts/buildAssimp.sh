@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo 'building assimp...'
 cd assimp_unzipped
 cd assimp-4.1.0

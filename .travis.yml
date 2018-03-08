@@ -6,7 +6,7 @@ python:
 cache: pip
 
 sudo: required
-env: CIBW_BEFORE_BUILD="yum -y install cmake && yum -y install pandoc && {python} ci_scripts/assimpDownload.py && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
+env: CIBW_BEFORE_BUILD="yum install -y 'ftp://ftp.is.co.za/mirror/unity/cooker/repository/x86_64/contrib/release/assimp-3.0.1270-1-omv2013.0.x86_64.rpm' && yum -y install 'ftp://ftp.icm.edu.pl/vol/rzm6/linux-tld-linux/devel/main/x86_64/RPMS/pandoc-1.12.2.1-1.x86_64.rpm' && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
 services:
   - docker
 
