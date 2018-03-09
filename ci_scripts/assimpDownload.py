@@ -35,7 +35,7 @@ if localCMake is not None:
         raise RuntimeError(str(err))
     print('cmake not found. Installing...')
     try:
-        check_call("bash ./cmake-3.10.2-Linux-x86_64.sh --skip-license --prefix='{}'".format('.').split())
+        check_call("bash ./cmake-3.10.2-Linux-x86_64.sh --skip-license".format('.').split())
     except CalledProcessError as err:
         raise RuntimeError(str(err))
 
