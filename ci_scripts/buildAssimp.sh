@@ -3,7 +3,7 @@ if [ -z $1 ]
 then
   path=cmake
 else
-  path=.cmake
+  path=./cmake
 fi
 echo 'Building assimp...'
 cd assimp_unzipped

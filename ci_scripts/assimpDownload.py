@@ -34,8 +34,9 @@ if localCMake is not None:
     except CalledProcessError as err:
         raise RuntimeError(str(err))
     print('cmake not found. Installing...')
+    prefix = path.abspath(path.curdir)
     try:
-        check_call("bash ./cmake-3.10.2-Linux-x86_64.sh --skip-license --prefix='./'".split())
+        check_call("bash ./cmake-3.10.2-Linux-x86_64.sh --skip-license --prefix='{}'".format(prefix).split())
     except CalledProcessError as err:
         raise RuntimeError(str(err))
 
