@@ -33,19 +33,19 @@ sys.stdout.flush()
 
 chdir(unpackedPath)
 try:
-    print('bootstrapping...')
+    print('\tbootstrapping...')
     sys.stdout.flush()
     check_output('bash ./bootstrap'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err.output[-200:]))
 try:
-    print('\nMaking...')
+    print('\tMaking...')
     sys.stdout.flush()
-    check_call('make -s'.split())
+    check_call('make --quiet'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err))
 try:
-    print('\nInstalling...')
+    print('\tInstalling...')
     sys.stdout.flush()
     check_call('make install'.split())
 except CalledProcessError as err:
