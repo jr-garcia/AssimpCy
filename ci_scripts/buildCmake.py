@@ -28,8 +28,16 @@ if not path.exists(unpackedPath):
 
 print('calling build script...')
 
+chdir(unpackedPath)
 try:
-    chdir(unpackedPath)
-    check_call('bash ./bootstrap && make && make install'.split())
+    check_call('bash ./bootstrap'.split())
+except CalledProcessError as err:
+    raise RuntimeError(str(err))
+try:
+    check_call('bash make'.split())
+except CalledProcessError as err:
+    raise RuntimeError(str(err))
+try:
+    check_call('bash make install'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err))
