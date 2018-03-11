@@ -62,10 +62,6 @@ if platform == 'win32':
     pass
 else:
     try:
-        if localCMake is not None:
-            local = ' --local'
-        else:
-            local = ''
-        check_call('bash ci_scripts/buildAssimp.sh{}'.format(local).split())
+        check_call('bash ci_scripts/buildAssimp.sh'.split())
     except CalledProcessError as err:
         raise RuntimeError(str(err))
