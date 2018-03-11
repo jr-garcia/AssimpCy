@@ -58,7 +58,7 @@ elif platform == 'darwin':
 else:
     includes.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
     rldirs = ["$ORIGIN"]
-    extraCompile.extend(["-w", "-O3", '-fopenmp'])
+    extraCompile.extend(["-w", "-O3", '-fopenmp', '-std=c++0x'])
     extraLink = ['-fopenmp', '-lgomp']
 
 setup(
