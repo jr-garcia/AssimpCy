@@ -67,7 +67,7 @@ after_test:
   # install dropbox for uploads
   - "%PYTHON% -m pip install dropbox -f downloads --cache-dir downloads"
   # build wheels.
-  - "%PYTHON% ci_scripts\\buildWheels.py dist dist"
+  - "%PYTHON% ci_scripts\\buildWindowsWheels.py dist dist"
   # upload 32bits dlls.
   - "%PYTHON% ci_scripts\\dropboxUpload.py dll_amd64_x86 dlls32"
   # upload 64bits dlls.

@@ -1,7 +1,14 @@
 language: python
 python:
   - "2.7"
-#  - "3.6"
+  env: BUILDWHEELS='False'
+  - "3.4"
+  env: BUILDWHEELS='False'
+  - "3.6"
+  env: BUILDWHEELS='True'
+
+matrix:
+  fast_finish: true
 
 cache: pip
 
@@ -10,6 +17,9 @@ env:
   global:
     - CIBW_ENVIRONMENT="PYPANDOC_PANDOC='/root/bin/pandoc' LOCAL_CMAKE='True'"
     - CIBW_BEFORE_BUILD="{python} ci_scripts/assimpDownload.py && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
+    - CIBW_SKIP="cp33-*"
+    - CIBW_TEST_COMMAND="{python} -m unittest {project}/tests/test_simple"
+
 services:
   - docker
 
@@ -28,5 +38,4 @@ install:
 
 script:
   - pushd tests && python -m unittest test_simple && popd
-  - pip install cibuildwheel==0.7.0
-  - cibuildwheel --output-dir wheelhouse
+  - buildLinuxWheels.sh
