@@ -34,10 +34,10 @@ try:
 except CalledProcessError as err:
     raise RuntimeError(str(err))
 try:
-    check_call('bash make'.split())
+    check_call('make'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err))
 try:
-    check_call('bash make install'.split())
+    check_call('make install'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err))
