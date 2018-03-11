@@ -24,9 +24,9 @@ if not path.exists(unpackedPath):
     print('\nunpacked cmake not found. Unpacking...')
     sys.stdout.flush()
     try:
-        check_call('tar -zxvf {}'.format(cmakeSrc).split())
+        check_output('tar -zxvf {}'.format(cmakeSrc).split())
     except CalledProcessError as err:
-        raise RuntimeError(str(err))
+        raise RuntimeError(str(err.output[-200:]))
 
 print('\ncalling build script...')
 sys.stdout.flush()
@@ -41,7 +41,7 @@ except CalledProcessError as err:
 try:
     print('\nMaking...')
     sys.stdout.flush()
-    check_call('make'.split())
+    check_call('make -s'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err))
 try:
@@ -50,3 +50,4 @@ try:
     check_call('make install'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err))
+chdir('..')
