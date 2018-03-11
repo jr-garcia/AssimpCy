@@ -25,19 +25,7 @@ print('compiled assimp not found. Starting process...')
 if not path.exists('downloads'):
     mkdir('downloads')
 
-localCMake = env.get('LOCAL_CMAKE', None)
-
-if localCMake is not None:
-    print('Cmake not found. Downloading...')
-    try:
-        check_call("wget --no-check-certificate https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.sh".split())
-    except CalledProcessError as err:
-        raise RuntimeError(str(err))
-    print('cmake not found. Installing...')
-    try:
-        check_call("bash ./cmake-3.10.2-Linux-x86_64.sh --skip-license --prefix='./'".split())
-    except CalledProcessError as err:
-        raise RuntimeError(str(err))
+import buildCmake
 
 try:
     import pypandoc
