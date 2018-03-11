@@ -41,13 +41,13 @@ except CalledProcessError as err:
 try:
     print('\tMaking...')
     sys.stdout.flush()
-    check_call('make --quiet'.split())
+    check_output('make --quiet'.split())
 except CalledProcessError as err:
-    raise RuntimeError(str(err))
+    raise RuntimeError(str(err.output[-200:]))
 try:
     print('\tInstalling...')
     sys.stdout.flush()
-    check_call('make install'.split())
+    check_output('make install'.split())
 except CalledProcessError as err:
-    raise RuntimeError(str(err))
+    raise RuntimeError(str(err.output[-200:]))
 chdir('..')
