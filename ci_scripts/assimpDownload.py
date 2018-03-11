@@ -20,7 +20,8 @@ for iPath in includes:
     if path.exists(iPath):
         exit(0)
 
-print('compiled assimp not found. Starting process...')
+print('\ncompiled assimp not found. Starting process...')
+sys.stdout.flush()
 
 if not path.exists('downloads'):
     mkdir('downloads')
@@ -30,7 +31,8 @@ import buildCmake
 try:
     import pypandoc
 except ImportError:
-    print('Pandoc missing. Installing...')
+    print('\nPandoc missing. Installing...')
+    sys.stdout.flush()
     import installPandoc
 
 PYTHON = env.get("PYTHON", sys.executable)
@@ -38,7 +40,8 @@ PYTHON = env.get("PYTHON", sys.executable)
 dest = path.join('downloads', 'assimp.zip')
 
 if not path.exists(dest):
-    print('assimp zip not found. Downloading...')
+    print('\nassimp zip not found. Downloading...')
+    sys.stdout.flush()
     try:
         check_call("{} -m pip install requests -f downloads --cache-dir downloads".format(PYTHON).split())
     except CalledProcessError as err:
@@ -51,12 +54,14 @@ if not path.exists(dest):
         file.write(response.content)
 
 if not path.exists('assimp_unzipped'):
-    print('unpacked assimp not found. Unpacking...')
+    print('\nunpacked assimp not found. Unpacking...')
+    sys.stdout.flush()
     zip_ref = zipfile.ZipFile(dest, 'r')
     zip_ref.extractall('assimp_unzipped')
     zip_ref.close()
 
-print('calling build script...')
+print('\ncalling build script...')
+sys.stdout.flush()
 
 if platform == 'win32':
     pass
