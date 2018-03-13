@@ -1,11 +1,7 @@
 language: python
 python:
   - "2.7"
-  env: BUILDWHEELS='False'
-  - "3.4"
-  env: BUILDWHEELS='False'
   - "3.6"
-  env: BUILDWHEELS='True'
 
 matrix:
   fast_finish: true
