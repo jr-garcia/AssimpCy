@@ -34,4 +34,4 @@ install:
 
 script:
   - pushd tests && python -m unittest test_simple && popd
-  - buildLinuxWheels.py
+  - buildLinuxWheels.py wheelhouse dist
