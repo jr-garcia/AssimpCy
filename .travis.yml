@@ -34,4 +34,4 @@ install:
 
 script:
   - pushd tests && python -m unittest test_simple && popd
-  - buildLinuxWheels.sh
+  - buildLinuxWheels.py
