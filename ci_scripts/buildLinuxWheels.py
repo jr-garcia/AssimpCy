@@ -15,6 +15,7 @@ path = os.path.abspath(sys.argv[1])
 call('pip install cibuildwheel==0.7.0'.split())
 call('cibuildwheel --output-dir {}'.format(sys.argv[1]).split())
 
+call('pip install dropbox'.split())
 from dropboxUpload import uploadAll
 
 uploadAll(path)
