@@ -11,10 +11,10 @@ cache: pip
 sudo: required
 env:
   global:
-    - CIBW_ENVIRONMENT="PYPANDOC_PANDOC='/root/bin/pandoc' LOCAL_CMAKE='True'"
+    - CIBW_ENVIRONMENT="PYPANDOC_PANDOC='/root/bin/pandoc'"
     - CIBW_BEFORE_BUILD="{python} ci_scripts/assimpDownload.py && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
     - CIBW_SKIP="cp33-*"
-    - CIBW_TEST_COMMAND="{python} -m unittest {project}/tests/test_simple"
+#    - CIBW_TEST_COMMAND="{python} -m unittest {project}/tests/test_simple"
 
 services:
   - docker
