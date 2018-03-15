@@ -11,9 +11,9 @@ out = check_output(command)
 if b'build wheels' not in out.lower() or not isPython3:
     exit(0)
 
-path = os.path.abspath(argv[1])
+path = os.path.abspath(sys.argv[1])
 call('pip install cibuildwheel==0.7.0'.split())
-call('cibuildwheel --output-dir {}'.format(path).split())
+call('cibuildwheel --output-dir {}'.format(sys.argv[1]).split())
 
 from dropboxUpload import uploadAll
 
