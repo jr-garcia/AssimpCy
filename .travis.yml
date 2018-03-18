@@ -12,7 +12,6 @@ sudo: required
 env:
   global:
     - secure: TQvlKF3BeDVxfcXU17McVSwYFxHlGi7fAvPBvOcw4SAZDJ45hVBriOVWOnPwwWFvDyUmG2hkPZ5NVKThlGHhgO8twFTiVRyRM8+dwcn5Ar+OLHg2uv+fwjWRNBsWI6QAKGioZn2RvYwaenQ4fFY3F7xIq/Si1xHWmVfqq5UGflJJj9agIa8uqDIAh3tQLkfZ4kY7RViIabsDu4L20At8WVSOCb0W7eCoD9piM4i1PXGrGdKD/CiSPNr4FeYG0yC/0MH9RwgA9B1kkMn184SCpFOxEvBySbV8ZeAGMCRsc9t3pZsVldC6enpF5M4BHPQO8/PMi2jonE1dBJJnburyzIO99VMQkZopFmjz0sW5ez0sfRZhlINvJOZZ5NtPQoUW62gyjLQ6AT89xUK89bmE5Dkl2TVML/bu6yuvTb/fJF2PtErlbkWfcGBMNRXWvUnESeHwkCfelM0ahuEf21LDYR3DLklWofalngPLzWHwe7GGkbowU7Lvxcsuc3pNoNafRpzVYxovxX3gTOCZkJQgdP5QEojIGeTNQzmX7Pi9hDjbwSTwfwhl9mkP6OEU4wGrDNUv7a8uTV8OD3omq3CGVQfxUTBXDyuaUC2C1Gfj8NhX4+/+oEeTPxLgG85xFgGSC9a7osiXLHjIv75GwejmEd7PWrFu1GFXBDMbA83UapA=
-    - CIBW_ENVIRONMENT="PYPANDOC_PANDOC='/root/downloads/bin/pandoc'"
     - CIBW_BEFORE_BUILD="{python} ci_scripts/assimpDownload.py && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
     - CIBW_SKIP="cp33-* cp27-manylinux1_x86_64 cp34-manylinux1_x86_64 cp35-manylinux1_x86_64 cp36-manylinux1_x86_64"
 #    - CIBW_TEST_COMMAND="{python} -m unittest {project}/tests/test_simple"
