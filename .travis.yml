@@ -11,7 +11,7 @@ cache: pip
 sudo: required
 env:
   global:
-    - secure: W6pM9s7ESkYPON+w5/9/m190f00YtGuTHM5jkqxnPVZnXkP7kmMD6e6r6UDdPuREHLnOASUPDuoTnY0JcQkQA6mV/L0gRLWnm5SB4HUN/5Rw0wSeViTbdZ9o2d7jvxl/R4/JXgXZbKWpJJOIzQI4eBSAoM4WBUG0PxHs7vhPuHMHvu2HcJ1+d+RXT4KJ/yXB5i3HCduLifQSgQsmeVTXRJhYiLeAWgNWG0rnqDrC/h5J9iaBNO55E+gk3vLvxG6KUp/kzMDkGHMSDmbdKdxCoTYrdllXMLRtlz3Cz95zhFmVrgevrb/aE1uesaMWwuHTTdHCYEO2NzkigIeLMy0LaJpAvfz0iJghZLjaMNlSqORikk9fD76LnEKX1H8sYO7bBajh27bUKAn9nX5XYqJD6TpIfbWopkbLp98AaRlSYayHa1co9zQJrh362VYmrgmCqdomXbroMpM6VXggCWGvI2PB/hD55dQ2De58Z2IZFjZOUPfI4hXmFpe3oQVLowGKCWoJeY5juN+CQBNf0zZ8ij8f8TdMk8NeMbIMbSGkedmxn0MzubQ/q5MpPFl32MzA6pMFfwK5ExFLOmGQHut6hgJcJ1mMZQLsddXAyz60zmw6riRqS1TLnfgyd5jvOLgGV/Yzkxc4vVd0w55i24Xgl+ENBYP9JTMRypJ96zgYjGM=
+    - secure: TQvlKF3BeDVxfcXU17McVSwYFxHlGi7fAvPBvOcw4SAZDJ45hVBriOVWOnPwwWFvDyUmG2hkPZ5NVKThlGHhgO8twFTiVRyRM8+dwcn5Ar+OLHg2uv+fwjWRNBsWI6QAKGioZn2RvYwaenQ4fFY3F7xIq/Si1xHWmVfqq5UGflJJj9agIa8uqDIAh3tQLkfZ4kY7RViIabsDu4L20At8WVSOCb0W7eCoD9piM4i1PXGrGdKD/CiSPNr4FeYG0yC/0MH9RwgA9B1kkMn184SCpFOxEvBySbV8ZeAGMCRsc9t3pZsVldC6enpF5M4BHPQO8/PMi2jonE1dBJJnburyzIO99VMQkZopFmjz0sW5ez0sfRZhlINvJOZZ5NtPQoUW62gyjLQ6AT89xUK89bmE5Dkl2TVML/bu6yuvTb/fJF2PtErlbkWfcGBMNRXWvUnESeHwkCfelM0ahuEf21LDYR3DLklWofalngPLzWHwe7GGkbowU7Lvxcsuc3pNoNafRpzVYxovxX3gTOCZkJQgdP5QEojIGeTNQzmX7Pi9hDjbwSTwfwhl9mkP6OEU4wGrDNUv7a8uTV8OD3omq3CGVQfxUTBXDyuaUC2C1Gfj8NhX4+/+oEeTPxLgG85xFgGSC9a7osiXLHjIv75GwejmEd7PWrFu1GFXBDMbA83UapA=
     - CIBW_ENVIRONMENT="PYPANDOC_PANDOC='/root/bin/pandoc'"
     - CIBW_BEFORE_BUILD="{python} ci_scripts/assimpDownload.py && {pip} install numpy && {pip} install cython && {python} setup.py build_ext --force"
     - CIBW_SKIP="cp33-*"
@@ -31,6 +31,7 @@ before_install:
 
 install:
   - python setup.py build_ext
+  - python ci_scripts/dropboxUpload.py build build
   - python setup.py install
 
 script:
