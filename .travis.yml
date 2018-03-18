@@ -31,6 +31,7 @@ before_install:
 
 install:
   - python setup.py build_ext
+  - pip install dropbox
   - python ci_scripts/dropboxUpload.py build build
   - python setup.py install
 
