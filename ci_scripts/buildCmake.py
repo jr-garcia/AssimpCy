@@ -35,7 +35,7 @@ chdir(unpackedPath)
 try:
     print('\tbootstrapping...')
     sys.stdout.flush()
-    check_output('bash ./bootstrap'.split())
+    check_output('bash ./bootstrap --system-curl'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err.output[-200:]))
 try:
