@@ -10,16 +10,16 @@ try:
 except OSError as err:
     pass
 
-cmakeSrc = 'downloads/cmake-3.9.6.tar.gz'
+cmakeSrc = 'downloads/cmake-3.10.3.tar.gz'
 if not path.exists(cmakeSrc):
     print('\nCmake 3 not found. Downloading...')
     sys.stdout.flush()
     try:
-        check_call("wget -nv --no-check-certificate https://cmake.org/files/v3.9/cmake-3.9.6.tar.gz -O {}".format(cmakeSrc).split())
+        check_call("wget -nv --no-check-certificate https://cmake.org/files/v3.10/cmake-3.10.3.tar.gz -O {}".format(cmakeSrc).split())
     except CalledProcessError as err:
         raise RuntimeError(str(err))
 
-unpackedPath = 'cmake-3.9.6'
+unpackedPath = 'cmake-3.10.3'
 if not path.exists(unpackedPath):
     print('\nunpacked cmake not found. Unpacking...')
     sys.stdout.flush()
