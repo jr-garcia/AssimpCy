@@ -10,9 +10,6 @@ out = check_output(command)
 if b'build wheels' not in out.lower():
     exit(0)
 
-print('Install pandoc...')
-import installPandoc
-
 print('Building wheels...', end='')
 
 PYTHON = env.get("PYTHON", executable)

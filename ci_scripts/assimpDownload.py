@@ -28,13 +28,6 @@ if not path.exists('downloads'):
 
 import buildCmake
 
-try:
-    import pypandoc
-except ImportError:
-    print('\nPandoc missing. Installing...')
-    sys.stdout.flush()
-    import installPandoc
-
 PYTHON = env.get("PYTHON", sys.executable)
 
 dest = path.join('downloads', 'assimp.zip')
