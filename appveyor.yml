@@ -6,7 +6,6 @@ init:
   - ps: $env:APPVEYOR_SAVE_CACHE_ON_ERROR = "true"
 
 cache:
-#  - downloads
   - C:\Program Files (x86)\Assimp
   - C:\Program Files\Assimp
 
@@ -45,10 +44,6 @@ build_script:
   - ps: if ($env:IS_BUILT -eq $False){Expand-Archive downloads\assimp.zip -DestinationPath assimp_unzipped}
   - IF %IS_BUILT%==False (ci_scripts\buildAssimp.cmd)
 
-  # save compilation results
-#  - 7z a release.zip code\Release
-#  - ps: Push-AppveyorArtifact release.zip
-
   # build module and install"
   - "%PYTHON% setup.py build_ext"
   - "%PYTHON% setup.py install"
@@ -72,17 +67,3 @@ after_test:
   - "%PYTHON% ci_scripts\\dropboxUpload.py dll_amd64_x86 dlls32"
   # upload 64bits dlls.
   - "%PYTHON% ci_scripts\\dropboxUpload.py dll_amd64 dlls64"
-
-#artifacts:
-#  - path: dll_amd64_x86\*
-#    name: dlls32
-#  - path: dll_amd64\*
-#    name: dlls64
-#   bdist_wheel puts your built wheel in the dist directory
-#  - path: dist\*
-#    name: mydist
-
-#on_success:
-#  You can use this step to upload your artifacts to a public website.
-#  See Appveyor's documentation for more details. Or you can simply
-#  access your wheels from the Appveyor "artifacts" tab for your build.
