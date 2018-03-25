@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from os import environ as env
 from subprocess import call, check_output
