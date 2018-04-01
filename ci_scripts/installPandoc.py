@@ -10,8 +10,6 @@ def checkAndInstall():
     try:
         check_output('pandoc -v'.split())
     except OSError:
-        cudir = os.path.abspath(os.curdir)
-        os.chdir(os.path.abspath(os.path.join(os.path.pardir, 'downloads')))
 
         def getFile():
             from requests import get
@@ -31,8 +29,6 @@ def checkAndInstall():
             call("tar -xvzf {}".format(pandocFile).split())
             copy2('./pandoc-2.1.3/bin/pandoc', '/usr/local/bin')
             copy2('./pandoc-2.1.3/bin/pandoc-citeproc', '/usr/local/bin')
-
-        os.chdir(cudir)
 
 
 if __name__ == '__main__':
