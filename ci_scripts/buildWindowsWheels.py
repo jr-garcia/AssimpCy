@@ -11,9 +11,6 @@ out = check_output(command)
 if b'build wheels' not in out.lower():
     exit(0)
 
-from installPandoc import checkAndInstall
-checkAndInstall()
-
 print('Building wheels...', end='')
 
 PYTHON = executable

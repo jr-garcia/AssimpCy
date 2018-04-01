@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from setuptools import Extension, setup, command
-from sys import platform, maxsize
+from sys import platform, maxsize, version_info
 from numpy import get_include
 from distutils.sysconfig import get_config_vars
 import os
@@ -20,17 +20,30 @@ def getLongDescription():
     from subprocess import check_output, CalledProcessError
     directory = os.path.dirname(__file__)
     init_path = os.path.join(directory, 'readme.md')
+    pyver = version_info.major
     try:
         rst = check_output('pandoc {} -f markdown -t rst'.format(init_path).split())
+        if pyver == 3:
+            rst = rst.decode()
         return rst
     except CalledProcessError:
         raise
     except OSError:
         from warnings import warn
-        warn('error converting Readme to rst. Is Pandoc installed?')
-        with open(init_path) as descFile:
-            all = descFile.read()
-        return all
+        warn('error converting Readme to rst. Trying online Pandoc')
+        try:
+            from ipandoc import convert
+            with open(init_path) as doc:
+                markdowntext = doc.read()
+            rst = convert(text=markdowntext, fromformat="markdown", toformat="rst")
+            if pyver == 3:
+                rst = rst.decode()
+            return rst
+        except Exception as err:
+            warn('online Pandoc failed: ' + str(err))
+            with open(init_path) as descFile:
+                all = descFile.read()
+            return all
 
 
 (opt,) = get_config_vars('OPT')
