@@ -9,6 +9,9 @@ out = check_output(command)
 if b'build wheels' not in out.lower():
     exit(0)
 
+from installPandoc import checkAndInstall
+checkAndInstall()
+
 path = os.path.abspath(sys.argv[1])
 call('pip install cibuildwheel==0.7.0'.split())
 call('cibuildwheel --output-dir {}'.format(sys.argv[1]).split())

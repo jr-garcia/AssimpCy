@@ -11,9 +11,12 @@ out = check_output(command)
 if b'build wheels' not in out.lower():
     exit(0)
 
+from installPandoc import checkAndInstall
+checkAndInstall()
+
 print('Building wheels...', end='')
 
-PYTHON = env.get("PYTHON", executable)
+PYTHON = executable
 
 call("{} -m pip install wheel -f downloads --cache-dir downloads".format(PYTHON).split())
 call("{} setup.py bdist_wheel".format(PYTHON).split())
