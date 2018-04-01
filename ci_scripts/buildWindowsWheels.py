@@ -2,13 +2,16 @@ from __future__ import print_function
 import os
 from os import environ as env
 from subprocess import call, check_output
-from sys import argv, executable
+from sys import argv, executable, version_info
 
 # https://stackoverflow.com/a/3357357
 command = 'git log --format=%B -n 1 {}'.format(env.get("APPVEYOR_REPO_COMMIT", '')).split(' ')
 out = check_output(command)
+pyver = version_info.major
+if pyver == 3:
+    out = out.decode()
 
-if b'build wheels' not in out.lower():
+if 'build wheels' not in out.lower():
     exit(0)
 
 print('Building wheels...', end='')
