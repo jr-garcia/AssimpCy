@@ -5,11 +5,13 @@
 [![PyPI - License](https://img.shields.io/pypi/l/AssimpCy.svg)](https://img.shields.io)
 
 ##### BUILD STATUS 
-|           |                |
-|-----------|:--------------:|
-| Linux     | [![Linux Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master)](https://travis-ci.org/jr-garcia/AssimpCy) |
-| Windows   | [![Windows Build Status](https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true)](https://ci.appveyor.com/project/jr-garcia/assimpcy)  |
-| Docs      | [![Documentation Build Status](https://readthedocs.org/projects/assimpcy/badge/?version=latest)](http://assimpcy.readthedocs.io/en/latest/?badge=latest)  |
+
+#### `Linux   ` [![Linux Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master)](https://travis-ci.org/jr-garcia/AssimpCy) 
+
+#### `Windows ` [![Windows Build Status](https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true)](https://ci.appveyor.com/project/jr-garcia/assimpcy)  
+
+#### `Docs    ` [![Documentation Build Status](https://readthedocs.org/projects/assimpcy/badge/?version=latest)](http://assimpcy.readthedocs.io/en/latest/?badge=latest) 
+        
         
 Faster (than PyAssimp) Python bindings for [Assimp](http://assimp.org/), Cython-based, BSD3 license.
 
