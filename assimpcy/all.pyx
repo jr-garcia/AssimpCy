@@ -2,6 +2,7 @@
 # cython: c_string_encoding=utf8
 
 cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess
+cimport cPropertyStore, cConfig, cComponent
 import numpy as np
 cimport numpy as np
 cimport cython
@@ -543,6 +544,66 @@ def aiImportFile(str path, unsigned int flags=0):
         raise AssimpError(cImporter.aiGetErrorString())
 
 
+cdef class aiPropertyStore:
+    cdef cPropertyStore.aiPropertyStore* _props
+
+    def __cinit__(self):
+        self._props = cPropertyStore.aiCreatePropertyStore()
+
+    def __dealloc__(self):
+        if self._props is not NULL:
+            cPropertyStore.aiReleasePropertyStore(self._props)
+            self._props = NULL
+
+    def SetImportPropertyInteger(self, str name, int value):
+        bname = name.encode()
+        cdef const char* cname = bname
+        cPropertyStore.aiSetImportPropertyInteger(self._props, cname, value)
+
+    def SetImportPropertyFloat(self, str name, float value):
+        bname = name.encode()
+        cdef const char* cname = bname
+        cPropertyStore.aiSetImportPropertyFloat(self._props, cname, value)
+
+
+def aiImportFileFromMemoryWithProperties(buf, unsigned int length, unsigned int flags, str hint, aiPropertyStore properties):
+    """
+    Usage:
+        scene = aiImportFileFromMemoryWithProperties(buffer, flags, hint, properties)
+    There is no need to use 'aiReleaseImport' after.
+
+    :param buf: A bytes-like object containing the model
+    :type path: bytes-like object
+    :param length: number of bytes to read from buf
+    :type length: int
+    :param flags: Any "or'ed" combination of aiPostrocessStep flags.
+    :type flags: int
+    :param hint: A string defining which importer to use, or empty string for autodetection
+    :param properties: Import properties
+    :type properties: aiPropertyStore
+    :rtype: aiScene
+    """
+    cdef const cScene.aiScene* csc
+    cdef const char* cbuf = buf
+    cdef const cPropertyStore.aiPropertyStore* props = properties._props
+    bhint = hint.encode()
+    cdef const char* chint = bhint
+
+    with nogil:
+        csc = cImporter.aiImportFileFromMemoryWithProperties(cbuf, length, flags, chint, props)
+    if csc:
+        try:
+            return buildScene(csc)
+        finally:
+            with nogil:
+                cImporter.aiReleaseImport(csc)
+                csc = NULL
+                del csc
+    else:
+        csc = NULL
+        del csc
+        raise AssimpError(cImporter.aiGetErrorString())
+
 def aiReleaseImport(aiScene pScene):
      warn(RuntimeWarning('Releasing the scene in \'AssimpCy\' is not needed.'))
 
@@ -620,3 +681,87 @@ class aiPostProcessSteps:
     aiProcess_FlipWindingOrder = cPostprocess.aiProcess_FlipWindingOrder
     aiProcess_SplitByBoneCount = cPostprocess.aiProcess_SplitByBoneCount
     aiProcess_Debone = cPostprocess.aiProcess_Debone
+
+
+class aiComponent:
+    aiComponent_NORMALS = cComponent.aiComponent_NORMALS
+    aiComponent_TANGENTS_AND_BITANGENTS = cComponent.aiComponent_TANGENTS_AND_BITANGENTS
+    aiComponent_COLORS = cComponent.aiComponent_COLORS
+    aiComponent_TEXCOORDS = cComponent.aiComponent_TEXCOORDS
+    aiComponent_BONEWEIGHTS = cComponent.aiComponent_BONEWEIGHTS
+    aiComponent_ANIMATIONS = cComponent.aiComponent_ANIMATIONS
+    aiComponent_TEXTURES = cComponent.aiComponent_TEXTURES
+    aiComponent_LIGHTS = cComponent.aiComponent_LIGHTS
+    aiComponent_CAMERAS = cComponent.aiComponent_CAMERAS
+    aiComponent_MESHES = cComponent.aiComponent_MESHES
+    aiComponent_MATERIALS = cComponent.aiComponent_MATERIALS
+
+    @staticmethod
+    def aiComponent_COLORSn(n):
+        return 1 << (n + 20)
+
+    @staticmethod
+    def aiComponent_TEXCOORDSn(n):
+        return 1 << (n + 25)
+
+AI_CONFIG_GLOB_MEASURE_TIME = cConfig.AI_CONFIG_GLOB_MEASURE_TIME.decode()
+AI_CONFIG_IMPORT_NO_SKELETON_MESHES = cConfig.AI_CONFIG_IMPORT_NO_SKELETON_MESHES.decode()
+AI_CONFIG_PP_SBBC_MAX_BONES = cConfig.AI_CONFIG_PP_SBBC_MAX_BONES.decode()
+AI_CONFIG_PP_CT_MAX_SMOOTHING_ANGLE = cConfig.AI_CONFIG_PP_CT_MAX_SMOOTHING_ANGLE.decode()
+AI_CONFIG_PP_CT_TEXTURE_CHANNEL_INDEX = cConfig.AI_CONFIG_PP_CT_TEXTURE_CHANNEL_INDEX.decode()
+AI_CONFIG_PP_GSN_MAX_SMOOTHING_ANGLE = cConfig.AI_CONFIG_PP_GSN_MAX_SMOOTHING_ANGLE.decode()
+AI_CONFIG_IMPORT_MDL_COLORMAP = cConfig.AI_CONFIG_IMPORT_MDL_COLORMAP.decode()
+AI_CONFIG_PP_RRM_EXCLUDE_LIST = cConfig.AI_CONFIG_PP_RRM_EXCLUDE_LIST.decode()
+AI_CONFIG_PP_PTV_KEEP_HIERARCHY = cConfig.AI_CONFIG_PP_PTV_KEEP_HIERARCHY.decode()
+AI_CONFIG_PP_PTV_NORMALIZE = cConfig.AI_CONFIG_PP_PTV_NORMALIZE.decode()
+AI_CONFIG_PP_PTV_ADD_ROOT_TRANSFORMATION = cConfig.AI_CONFIG_PP_PTV_ADD_ROOT_TRANSFORMATION.decode()
+AI_CONFIG_PP_PTV_ROOT_TRANSFORMATION = cConfig.AI_CONFIG_PP_PTV_ROOT_TRANSFORMATION.decode()
+AI_CONFIG_PP_FD_REMOVE = cConfig.AI_CONFIG_PP_FD_REMOVE.decode()
+AI_CONFIG_PP_OG_EXCLUDE_LIST = cConfig.AI_CONFIG_PP_OG_EXCLUDE_LIST.decode()
+AI_CONFIG_PP_SLM_TRIANGLE_LIMIT = cConfig.AI_CONFIG_PP_SLM_TRIANGLE_LIMIT.decode()
+AI_CONFIG_PP_SLM_VERTEX_LIMIT = cConfig.AI_CONFIG_PP_SLM_VERTEX_LIMIT.decode()
+AI_CONFIG_PP_LBW_MAX_WEIGHTS = cConfig.AI_CONFIG_PP_LBW_MAX_WEIGHTS.decode()
+AI_CONFIG_PP_DB_THRESHOLD = cConfig.AI_CONFIG_PP_DB_THRESHOLD.decode()
+AI_CONFIG_PP_DB_ALL_OR_NONE = cConfig.AI_CONFIG_PP_DB_ALL_OR_NONE.decode()
+AI_CONFIG_PP_ICL_PTCACHE_SIZE = cConfig.AI_CONFIG_PP_ICL_PTCACHE_SIZE.decode()
+AI_CONFIG_PP_RVC_FLAGS = cConfig.AI_CONFIG_PP_RVC_FLAGS.decode()
+AI_CONFIG_PP_SBP_REMOVE = cConfig.AI_CONFIG_PP_SBP_REMOVE.decode()
+AI_CONFIG_PP_FID_ANIM_ACCURACY = cConfig.AI_CONFIG_PP_FID_ANIM_ACCURACY.decode()
+AI_CONFIG_PP_TUV_EVALUATE = cConfig.AI_CONFIG_PP_TUV_EVALUATE.decode()
+AI_CONFIG_FAVOUR_SPEED = cConfig.AI_CONFIG_FAVOUR_SPEED.decode()
+AI_CONFIG_IMPORT_FBX_READ_ALL_GEOMETRY_LAYERS = cConfig.AI_CONFIG_IMPORT_FBX_READ_ALL_GEOMETRY_LAYERS.decode()
+AI_CONFIG_IMPORT_FBX_READ_ALL_MATERIALS = cConfig.AI_CONFIG_IMPORT_FBX_READ_ALL_MATERIALS.decode()
+AI_CONFIG_IMPORT_FBX_READ_MATERIALS = cConfig.AI_CONFIG_IMPORT_FBX_READ_MATERIALS.decode()
+AI_CONFIG_IMPORT_FBX_READ_CAMERAS = cConfig.AI_CONFIG_IMPORT_FBX_READ_CAMERAS.decode()
+AI_CONFIG_IMPORT_FBX_READ_LIGHTS = cConfig.AI_CONFIG_IMPORT_FBX_READ_LIGHTS.decode()
+AI_CONFIG_IMPORT_FBX_READ_ANIMATIONS = cConfig.AI_CONFIG_IMPORT_FBX_READ_ANIMATIONS.decode()
+AI_CONFIG_IMPORT_FBX_STRICT_MODE = cConfig.AI_CONFIG_IMPORT_FBX_STRICT_MODE.decode()
+AI_CONFIG_IMPORT_FBX_PRESERVE_PIVOTS = cConfig.AI_CONFIG_IMPORT_FBX_PRESERVE_PIVOTS.decode()
+AI_CONFIG_IMPORT_FBX_OPTIMIZE_EMPTY_ANIMATION_CURVES = cConfig.AI_CONFIG_IMPORT_FBX_OPTIMIZE_EMPTY_ANIMATION_CURVES.decode()
+AI_CONFIG_IMPORT_GLOBAL_KEYFRAME = cConfig.AI_CONFIG_IMPORT_GLOBAL_KEYFRAME.decode()
+AI_CONFIG_IMPORT_MD3_KEYFRAME = cConfig.AI_CONFIG_IMPORT_MD3_KEYFRAME.decode()
+AI_CONFIG_IMPORT_MD2_KEYFRAME = cConfig.AI_CONFIG_IMPORT_MD2_KEYFRAME.decode()
+AI_CONFIG_IMPORT_MDL_KEYFRAME = cConfig.AI_CONFIG_IMPORT_MDL_KEYFRAME.decode()
+AI_CONFIG_IMPORT_MDC_KEYFRAME = cConfig.AI_CONFIG_IMPORT_MDC_KEYFRAME.decode()
+AI_CONFIG_IMPORT_SMD_KEYFRAME = cConfig.AI_CONFIG_IMPORT_SMD_KEYFRAME.decode()
+AI_CONFIG_IMPORT_UNREAL_KEYFRAME = cConfig.AI_CONFIG_IMPORT_UNREAL_KEYFRAME.decode()
+AI_CONFIG_IMPORT_AC_SEPARATE_BFCULL = cConfig.AI_CONFIG_IMPORT_AC_SEPARATE_BFCULL.decode()
+AI_CONFIG_IMPORT_AC_EVAL_SUBDIVISION = cConfig.AI_CONFIG_IMPORT_AC_EVAL_SUBDIVISION.decode()
+AI_CONFIG_IMPORT_UNREAL_HANDLE_FLAGS = cConfig.AI_CONFIG_IMPORT_UNREAL_HANDLE_FLAGS.decode()
+AI_CONFIG_IMPORT_TER_MAKE_UVS = cConfig.AI_CONFIG_IMPORT_TER_MAKE_UVS.decode()
+AI_CONFIG_IMPORT_ASE_RECONSTRUCT_NORMALS = cConfig.AI_CONFIG_IMPORT_ASE_RECONSTRUCT_NORMALS.decode()
+AI_CONFIG_IMPORT_MD3_HANDLE_MULTIPART = cConfig.AI_CONFIG_IMPORT_MD3_HANDLE_MULTIPART.decode()
+AI_CONFIG_IMPORT_MD3_SKIN_NAME = cConfig.AI_CONFIG_IMPORT_MD3_SKIN_NAME.decode()
+AI_CONFIG_IMPORT_MD3_SHADER_SRC = cConfig.AI_CONFIG_IMPORT_MD3_SHADER_SRC.decode()
+AI_CONFIG_IMPORT_LWO_ONE_LAYER_ONLY = cConfig.AI_CONFIG_IMPORT_LWO_ONE_LAYER_ONLY.decode()
+AI_CONFIG_IMPORT_MD5_NO_ANIM_AUTOLOAD = cConfig.AI_CONFIG_IMPORT_MD5_NO_ANIM_AUTOLOAD.decode()
+AI_CONFIG_IMPORT_LWS_ANIM_START = cConfig.AI_CONFIG_IMPORT_LWS_ANIM_START.decode()
+AI_CONFIG_IMPORT_LWS_ANIM_END = cConfig.AI_CONFIG_IMPORT_LWS_ANIM_END.decode()
+AI_CONFIG_IMPORT_IRR_ANIM_FPS = cConfig.AI_CONFIG_IMPORT_IRR_ANIM_FPS.decode()
+AI_CONFIG_IMPORT_OGRE_MATERIAL_FILE = cConfig.AI_CONFIG_IMPORT_OGRE_MATERIAL_FILE.decode()
+AI_CONFIG_IMPORT_OGRE_TEXTURETYPE_FROM_FILENAME = cConfig.AI_CONFIG_IMPORT_OGRE_TEXTURETYPE_FROM_FILENAME.decode()
+AI_CONFIG_ANDROID_JNI_ASSIMP_MANAGER_SUPPORT = cConfig.AI_CONFIG_ANDROID_JNI_ASSIMP_MANAGER_SUPPORT.decode()
+AI_CONFIG_IMPORT_IFC_SKIP_SPACE_REPRESENTATIONS = cConfig.AI_CONFIG_IMPORT_IFC_SKIP_SPACE_REPRESENTATIONS.decode()
+AI_CONFIG_IMPORT_IFC_CUSTOM_TRIANGULATION = cConfig.AI_CONFIG_IMPORT_IFC_CUSTOM_TRIANGULATION.decode()
+AI_CONFIG_IMPORT_COLLADA_IGNORE_UP_DIRECTION = cConfig.AI_CONFIG_IMPORT_COLLADA_IGNORE_UP_DIRECTION.decode()
+AI_CONFIG_EXPORT_XFILE_64BIT = cConfig.AI_CONFIG_EXPORT_XFILE_64BIT.decode()
