@@ -16,5 +16,5 @@ REM in assimp_unzipped
 cd ..
 REM in project's root
 
-%PYTHON% appveyor_scripts\\rename_lib.py
+%PYTHON% ci_scripts\\rename_lib.py
 IF %ERRORLEVEL% NEQ 0 (EXIT /B %ERRORLEVEL%)
