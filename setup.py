@@ -77,8 +77,8 @@ elif platform == 'darwin':
         print('Using compiler', clang[-1])
         os.environ["CC"] = os.environ["CXX"] = clang[-1]
         if 'Cellar' in clang[-1]:
-            includes.extend(glob('/usr/local/opt/llvm/include"'))
-            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1"'))
+            includes.extend(glob('/usr/local/opt/llvm/include'))
+            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
 
             lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
             os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
@@ -87,8 +87,8 @@ elif platform == 'darwin':
             libs.append('/opt/local/lib')
             includes.extend(glob('/opt/local/libexec/llvm*/include/c++/v1'))
         else:
-            includes.extend(glob('/usr/local/opt/llvm/include"'))
-            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1"'))
+            includes.extend(glob('/usr/local/opt/llvm/include'))
+            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
             libs.append('/usr/local/lib')
 
     # macports and homebrew locations
