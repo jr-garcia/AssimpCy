@@ -76,15 +76,19 @@ elif platform == 'darwin':
     if 'CC' not in os.environ and 'CXX' not in os.environ and clang:
         print('Using compiler', clang[-1])
         os.environ["CC"] = os.environ["CXX"] = clang[-1]
-        includes.extend(glob('/usr/local/opt/llvm/include"'))
-        includes.extend(glob('/usr/local/opt/llvm/include/c++/v1"'))
         if 'Cellar' in clang[-1]:
+            includes.extend(glob('/usr/local/opt/llvm/include"'))
+            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1"'))
+
             lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
             os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
             extraLink.append('-stdlib=libc++')
         elif 'opt' in clang[-1]:
             libs.append('/opt/local/lib')
+            includes.extend(glob('/opt/local/opt/llvm*/include/c++/v1"'))
         else:
+            includes.extend(glob('/usr/local/opt/llvm/include"'))
+            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1"'))
             libs.append('/usr/local/lib')
 
     # macports and homebrew locations
@@ -99,10 +103,13 @@ elif platform == 'darwin':
             assimp_lib = sorted(glob('/usr/local/Cellar/assimp/*/lib'))[-1]
         elif 'opt' in assimp_head[-1]:
             assimp_lib = '/opt/local/lib'
+            includes.append('/opt/local/include/')
         else:
             assimp_lib = '/usr/local/lib'
+            includes.append('/usr/local/include/')
         
         libs.append(assimp_lib)
+        includes.extend(['/usr/include/', '/usr/local/include/'])
         print('Using assimp headers:', assimp_head[-1])
         print('Using assimp lib:', assimp_lib)
 
