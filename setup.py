@@ -81,6 +81,7 @@ elif platform == 'darwin':
         if 'Cellar' in clang[-1]:
             lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
             os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
+            extraLink.append('-stdlib=libc++')
         elif 'opt' in clang[-1]:
             libs.append('/opt/local/lib')
         else:
@@ -106,7 +107,7 @@ elif platform == 'darwin':
         print('Using assimp lib:', assimp_lib)
 
     extraCompile.append('-fopenmp')
-    extraLink = ['-fopenmp']
+    extraLink.append('-fopenmp')
 else:
     includes.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
     libs.extend(['/usr/lib/', '/usr/local/lib'])
