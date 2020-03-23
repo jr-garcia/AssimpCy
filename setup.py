@@ -85,7 +85,7 @@ elif platform == 'darwin':
             extraLink.append('-stdlib=libc++')
         elif 'opt' in clang[-1]:
             libs.append('/opt/local/lib')
-            includes.extend(glob('/opt/local/opt/llvm*/include/c++/v1"'))
+            includes.extend(glob('/opt/local/libexec/llvm*/include/c++/v1"'))
         else:
             includes.extend(glob('/usr/local/opt/llvm/include"'))
             includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1"'))
