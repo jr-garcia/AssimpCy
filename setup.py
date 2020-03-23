@@ -3,6 +3,7 @@ from setuptools import Extension, setup, command
 from sys import platform, maxsize, version_info
 from numpy import get_include
 from distutils.sysconfig import get_config_vars
+from glob import glob
 import os
 
 
@@ -53,6 +54,7 @@ if opt:
 includes = [get_include()]
 libs = []
 extraCompile = []
+extraLink = []
 
 if platform == 'win32':
     rldirs = []
@@ -66,10 +68,46 @@ if platform == 'win32':
     extraLink = []
 elif platform == 'darwin':
     rldirs = []
+    # look for suitable llvm compiler, default compiler does not compile nore support openmp
+    local_clang = sorted(glob('/usr/local/bin/clang++*')) 
+    port_clang = sorted(glob('/opt/local/bin/clang++*'))
+    brew_clang = sorted(glob('/usr/local/Cellar/llvm/*/bin/clang++*'))
+    clang = local_clang + port_clang + brew_clang
+    if 'CC' not in os.environ and 'CXX' not in os.environ and clang:
+        print('Using compiler', clang[-1])
+        os.environ["CC"] = os.environ["CXX"] = clang[-1]
+        if 'Cellar' in clang[-1]:
+            lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
+            os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
+        elif 'opt' in clang[-1]:
+            libs.append('/opt/local/lib')
+        else:
+            libs.append('/usr/local/lib')
+
+    # macports and homebrew locations
+    local_assimp_head = sorted(glob('/usr/local/include/assimp'))
+    port_assimp_head = sorted(glob('/opt/local/include/assimp'))
+    brew_assimp_head = sorted(glob('/usr/local/Cellar/assimp/*/include/assimp'))
+    assimp_head = local_assimp_head + port_assimp_head + brew_assimp_head
+    if assimp_head:
+        includes.append(assimp_head[-1])
+        assimp_lib = ''
+        if 'Cellar' in assimp_head[-1]:
+            assimp_lib = sorted(glob('/usr/local/Cellar/assimp/*/lib'))[-1]
+        elif 'opt' in assimp_head[-1]:
+            assimp_lib = '/opt/local/lib'
+        else:
+            assimp_lib = '/usr/local/lib'
+        
+        libs.append(assimp_lib)
+        print('Using assimp headers:', assimp_head[-1])
+        print('Using assimp lib:', assimp_lib)
+
     extraCompile.append('-fopenmp')
     extraLink = ['-fopenmp']
 else:
     includes.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
+    libs.extend(['/usr/lib/', '/usr/local/lib'])
     rldirs = ["$ORIGIN"]
     extraCompile.extend(["-w", "-O3", '-fopenmp', '-std=c++0x'])
     extraLink = ['-fopenmp', '-lgomp']
