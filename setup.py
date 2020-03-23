@@ -91,6 +91,7 @@ elif platform == 'darwin':
     assimp_head = local_assimp_head + port_assimp_head + brew_assimp_head
     if assimp_head:
         includes.append(assimp_head[-1])
+        includes.extend(glob('/usr/local/opt/llvm/include"'))
         assimp_lib = ''
         if 'Cellar' in assimp_head[-1]:
             assimp_lib = sorted(glob('/usr/local/Cellar/assimp/*/lib'))[-1]
