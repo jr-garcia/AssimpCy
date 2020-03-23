@@ -76,6 +76,8 @@ elif platform == 'darwin':
     if 'CC' not in os.environ and 'CXX' not in os.environ and clang:
         print('Using compiler', clang[-1])
         os.environ["CC"] = os.environ["CXX"] = clang[-1]
+        includes.extend(glob('/usr/local/opt/llvm/include"'))
+        includes.extend(glob('/usr/local/opt/llvm/include/c++/v1"'))
         if 'Cellar' in clang[-1]:
             lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
             os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
@@ -91,7 +93,6 @@ elif platform == 'darwin':
     assimp_head = local_assimp_head + port_assimp_head + brew_assimp_head
     if assimp_head:
         includes.append(assimp_head[-1])
-        includes.extend(glob('/usr/local/opt/llvm/include"'))
         assimp_lib = ''
         if 'Cellar' in assimp_head[-1]:
             assimp_lib = sorted(glob('/usr/local/Cellar/assimp/*/lib'))[-1]
