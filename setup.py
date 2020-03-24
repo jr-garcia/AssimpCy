@@ -68,6 +68,8 @@ if platform == 'win32':
     extraLink = []
 elif platform == 'darwin':
     rldirs = []
+    extraLink.append('-stdlib=libc++')
+    extraCompile.append('-stdlib=libc++')
     # look for suitable llvm compiler, default compiler does not compile nore support openmp
     local_clang = sorted(glob('/usr/local/bin/clang++*')) 
     port_clang = sorted(glob('/opt/local/bin/clang++*'))
@@ -82,7 +84,6 @@ elif platform == 'darwin':
 
             lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
             os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
-            extraLink.append('-stdlib=libc++')
         elif 'opt' in clang[-1]:
             libs.append('/opt/local/lib')
             includes.extend(glob('/opt/local/libexec/llvm*/include/c++/v1'))
