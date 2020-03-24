@@ -90,18 +90,20 @@ elif platform == 'darwin':
         else:
             includes.extend(glob('/usr/local/opt/llvm/include'))
             includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
+            libs.extend(glob('/usr/local/opt/llvm/lib'))
             libs.append('/usr/local/lib')
 
     # macports and homebrew locations
     local_assimp_head = sorted(glob('/usr/local/include/assimp'))
     port_assimp_head = sorted(glob('/opt/local/include/assimp'))
-    brew_assimp_head = sorted(glob('/usr/local/Cellar/assimp/*/include/assimp'))
+    brew_assimp_head = sorted(glob('/usr/local/Cellar/assimp/*/include'))
     assimp_head = local_assimp_head + port_assimp_head + brew_assimp_head
     if assimp_head:
         includes.append(assimp_head[-1])
         assimp_lib = ''
         if 'Cellar' in assimp_head[-1]:
             assimp_lib = sorted(glob('/usr/local/Cellar/assimp/*/lib'))[-1]
+            includes.append(assimp_head[-1] + '/assimp')
         elif 'opt' in assimp_head[-1]:
             assimp_lib = '/opt/local/lib'
             includes.append('/opt/local/include/')
