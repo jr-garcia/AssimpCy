@@ -1,8 +1,9 @@
 # AssimpCy 
-[![PyPI - version](https://badge.fury.io/py/AssimpCy.svg)](https://badge.fury.io/py/AssimpCy)
+[![PyPI - version](https://badge.fury.io/py/AssimpCy.svg)](https://pypi.org/project/AssimpCy/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/AssimpCy.svg)](https://img.shields.io)
 [![PyPI - Satus](https://img.shields.io/pypi/status/AssimpCy.svg)](https://img.shields.io)
 [![PyPI - License](https://img.shields.io/pypi/l/AssimpCy.svg)](https://img.shields.io)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/assimpcy)](https://pypi.org/project/AssimpCy/)
 
 ##### BUILD STATUS 
 
