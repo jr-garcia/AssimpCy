@@ -18,13 +18,13 @@ The simples way to start using AssimpCy is to do::
 
     pip install AssimpCy
 
-If this does not work, please refer to :doc:`/install` for alternate methods and info.
+If this does not work, please refer to :doc:`/install` for alternative methods.
 
 =====
 USAGE
 =====
 
-Check ***basic_demo.py*** for a simple example or read :doc:`/usage`.
+Please read :doc:`/usage`.
 
 .. note::
    There is no need to release the scene. This job is performed by :py:func:`aiImportFile`
