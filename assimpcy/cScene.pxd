@@ -2,6 +2,7 @@ from cTypes cimport aiString, aiMatrix4x4
 from cMesh cimport aiMesh
 from cMaterial cimport aiMaterial
 from cAnim cimport aiAnimation
+from cTexture cimport aiTexture
 ctypedef int bool
 
 cdef extern from "scene.h" nogil:
@@ -27,7 +28,7 @@ cdef extern from "scene.h" nogil:
         unsigned int mNumAnimations;
         aiAnimation** mAnimations;
         unsigned int mNumTextures;
-        #aiTexture** mTextures;
+        aiTexture** mTextures;
         unsigned int mNumLights;
         #aiLight** mLights;
         unsigned int mNumCameras;

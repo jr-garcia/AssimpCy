@@ -1,7 +1,7 @@
 # cython: c_string_type=bytes
 # cython: c_string_encoding=utf8
 
-cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess
+cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess, cTexture
 import numpy as np
 cimport numpy as np
 cimport cython
@@ -18,6 +18,9 @@ ctypedef np.uint32_t NUMPYINT_t
 
 NUMPYFLOAT = np.float32
 ctypedef np.float32_t NUMPYFLOAT_t
+
+NUMPYBYTE = np.uint8
+ctypedef np.uint8_t NUMPYBYTE_t
 
 ctypedef fused anykey:
     cAnim.aiVectorKey
@@ -339,6 +342,43 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
 
     return nMat
 
+
+# -----------------------------------------------------
+
+cdef class aiTexture:
+    cdef readonly unsigned int mWidth
+    cdef readonly unsigned int mHeight
+    cdef readonly char achFormatHint[9]
+    cdef readonly np.ndarray pcData
+    cdef readonly str mFilename
+
+    def __init__(self):
+        pass
+
+    def __repr__(self):
+        return f"texture {self.mWidth} x {self.mHeight}"
+        
+@cython.boundscheck(False)
+@cython.wraparound(False)
+@cython.nonecheck(False)
+cdef aiTexture buildTexture(cTexture.aiTexture* tex):
+    cdef aiTexture nTex = aiTexture()
+    nTex.mWidth=tex.mWidth
+    nTex.mHeight=tex.mHeight
+    nTex.achFormatHint=tex.achFormatHint
+    nTex.mFilename = str(tex.mFilename.data)
+    if nTex.mHeight==0 and nTex.mWidth>0:
+        nTex.pcData = np.empty(nTex.mWidth, dtype=NUMPYBYTE)
+        with nogil:
+            memcpy(<void*>nTex.pcData.data, <void*>&tex.pcData[0],  nTex.mWidth * sizeof(NUMPYBYTE_t))
+    elif nTex.mHeight>0 and nTex.mWidth>0:
+        nTex.pcData = np.empty(nTex.mWidth*nTex.mHeight*4, dtype=NUMPYBYTE)
+        with nogil:
+            memcpy(<void*>nTex.pcData.data, <void*>&tex.pcData[0],  nTex.mWidth*nTex.mHeight * 4 * sizeof(NUMPYBYTE_t))
+
+    return nTex
+
+
 # -----------------------------------------------------
 cdef class aiKey:
     cdef readonly double mTime
@@ -447,7 +487,7 @@ cdef class aiScene:
     cdef readonly int mNumAnimations
     cdef readonly list mAnimations
     cdef readonly int mNumTextures
-    # cdef readonly list mTextures
+    cdef readonly list mTextures
     cdef readonly int mNumLights
     # cdef readonly list mLights
     cdef readonly int mNumCameras
@@ -464,6 +504,7 @@ cdef class aiScene:
         self.mMeshes = []
         self.mMaterials = []
         self.mAnimations = []
+        self.mTextures = []
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -477,7 +518,6 @@ cdef aiScene buildScene(const cScene.aiScene *cs):
     scene.mNumMaterials = cs.mNumMaterials
     scene.mNumAnimations = cs.mNumAnimations
     scene.mNumTextures = cs.mNumTextures
-    #scene.mTextures
     scene.mNumLights = cs.mNumLights
     #scene.mLights
     scene.mNumCameras = cs.mNumCameras
@@ -501,6 +541,10 @@ cdef aiScene buildScene(const cScene.aiScene *cs):
     j = scene.mNumAnimations
     for i in range(j):
         scene.mAnimations.append(buildAnimation(cs.mAnimations[i]))
+        
+    j = scene.mNumTextures
+    for i in range(j):
+        scene.mTextures.append(buildTexture(cs.mTextures[i]))
 
     return scene
 
