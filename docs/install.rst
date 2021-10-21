@@ -1,25 +1,32 @@
 Installation
 ------------
 
-* First, be sure to download, compile and install Assimp, from the official page:
+If installing with Pip fails or if you want to make changes to the code,
+you'll need to compile from the sources.
+
+* First, download, compile and install Assimp, from the official page:
 
   http://www.assimp.org/
 
-  You'll need Cmake, and Microsoft Visual Studio for Windows or Gcc for Linux and Mac (optionally, Mingw-w64).
+  You'll need Cmake, and Microsoft Visual Studio for Windows
+  or Gcc for Linux and Mac (optionally, Mingw-w64).
+  On Linux, you can install Assimp from your system's repositories.
 
-* Second, install `Numpy <http://www.numpy.org/>`_ with::
+* Second, install `Cython <https://cython.org/>`_ and `Numpy <http://www.numpy.org/>`_ with::
 
-      pip install numpy
+      pip install numpy cython
 
-* Third, download the zip package from
+* Third, download and extract the zip package from
 
   https://github.com/jr-garcia/AssimpCy
 
-  If you placed the headers and libraries in the dafault locations, extract the file and run::
+  or clone the repository with Git.
+
+  If you placed the Assimp headers and libraries in the default locations, run::
 
       python setup.py build_ext
 
-  If setup can't find the headers or you placed them somewhere else, run::
+  If setup.py can't find the headers, specify them manually::
 
       python setup.py build_ext -I'path/to/assimp/headers' -L'path/to/library/'
 
@@ -29,14 +36,11 @@ Installation
 
         Cannot open include file: 'types.h':
 
-    Be sure that the path to headers ends with '\\assimp'
+    Make sure that the path to headers ends with '\\assimp'
 
-Cython is only necessary to rebuild the .cpp files, which you can do with::
-
-    python setup.py build_ext --force
-
-Finally, run::
+Finally, to install the package, run::
 
     python setup.py install
 
-To install the package. Check ***basic_demo.py*** for a simple example or read :doc:`/usage`.
+
+Check ***examples/basic_demo.py*** in Assimpcy folder for a simple example or read :doc:`/usage`.
