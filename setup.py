@@ -1,50 +1,33 @@
 # -*- coding: utf-8 -*-
 from setuptools import Extension, setup, command
-from sys import platform, maxsize, version_info
+from sys import platform, maxsize
 from numpy import get_include
 from distutils.sysconfig import get_config_vars
 from glob import glob
 import os
 
+base_folder = os.path.dirname(__file__)
+
 
 def getVersion():
-    dir = os.path.dirname(__file__)
-    init_path = os.path.join(dir, 'assimpcy', '__init__.py')
+    init_path = os.path.join(base_folder, 'assimpcy', '__init__.py')
     with open(init_path) as verFile:
         lines = verFile.readlines()
-        for l in lines:
-            if l.startswith('__version__'):
-                return l.split('=')[1].strip(' \'\n\r\t-')
+    for line in lines:
+        if line.startswith('__version__'):
+            return line.split('=')[1].strip(' \'\n\r\t-')
 
 
 def getLongDescription():
-    from subprocess import check_output, CalledProcessError
-    directory = os.path.dirname(__file__)
-    init_path = os.path.join(directory, 'readme.md')
-    pyver = version_info.major
+    desc_path = os.path.join(base_folder, 'docs/_desc.rst')
     try:
-        rst = check_output('pandoc {} -f markdown -t rst'.format(init_path).split())
-        if pyver == 3:
-            rst = rst.decode()
+        with open(desc_path) as doc:
+            rst = doc.read()
         return rst
-    except CalledProcessError:
-        raise
-    except OSError:
+    except Exception as err:
         from warnings import warn
-        warn('error converting Readme to rst. Trying online Pandoc')
-        try:
-            from ipandoc import convert
-            with open(init_path) as doc:
-                markdowntext = doc.read()
-            rst = convert(text=markdowntext, fromformat="markdown", toformat="rst")
-            if pyver == 3:
-                rst = rst.decode()
-            return rst
-        except Exception as err:
-            warn('online Pandoc failed: ' + str(err))
-            with open(init_path) as descFile:
-                all = descFile.read()
-            return all
+        warn('Rst description failed: ' + str(err))
+        return 'Assympcy'
 
 
 (opt,) = get_config_vars('OPT')
@@ -55,9 +38,9 @@ includes = [get_include()]
 libs = []
 extraCompile = []
 extraLink = []
+rldirs = []
 
 if platform == 'win32':
-    rldirs = []
     archString = '' if (maxsize > 2 ** 32) else ' (x86)'
     base = 'C:\\Program Files{}\\Assimp'.format(archString)
     includePath = base + '\\include'
@@ -65,9 +48,7 @@ if platform == 'win32':
     includes.extend([includePath, includePath + "\\assimp"])
     libs.append(libPath)
     extraCompile.extend(['/EHsc', '/openmp'])
-    extraLink = []
 elif platform == 'darwin':
-    rldirs = []
     extraLink.append('-stdlib=libc++')
     extraCompile.append('-stdlib=libc++')
     # look for suitable llvm compiler, default compiler does not compile nore support openmp
@@ -121,7 +102,7 @@ elif platform == 'darwin':
 else:
     includes.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
     libs.extend(['/usr/lib/', '/usr/local/lib'])
-    rldirs = ["$ORIGIN"]
+    rldirs.append("$ORIGIN")
     extraCompile.extend(["-w", "-O3", '-fopenmp', '-std=c++0x'])
     extraLink = ['-fopenmp', '-lgomp']
 
@@ -129,7 +110,7 @@ setup(
     name="AssimpCy",
     author='Javier R. García',
     version=getVersion(),
-    description='Faster Python bindings for Assimp.',
+    description='Fast Python bindings for Assimp.',
     long_description=getLongDescription(),
     url='https://github.com/jr-garcia/AssimpCy',
     license='BSD3',
