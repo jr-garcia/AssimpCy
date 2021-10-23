@@ -1,5 +1,6 @@
 # cython: c_string_type=bytes
 # cython: c_string_encoding=utf8
+# cython: language_level=2
 
 cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess, cTexture
 import numpy as np
