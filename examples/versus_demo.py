@@ -1,42 +1,35 @@
-from __future__ import print_function
 from timeit import Timer
 from os import path as pt
 
+from assimpcy import aiImportFile, aiPostProcessSteps as pp
 from pyassimp import postprocess as pp2, release, load
 
-import _setpath
-_setpath.setAssimpPath()
-from assimpcy import aiImportFile, aiPostProcessSteps as pp
-
 home = pt.dirname(__file__)
-path = 'models/cil/cil.x'
-path = pt.join(home, path)
+model_path = pt.join(home, 'models', 'cilly', 'cilly.x')
 
 scene = None
-flags1 = pp.aiProcess_JoinIdenticalVertices | pp.aiProcess_Triangulate | pp.aiProcess_CalcTangentSpace | \
-         pp.aiProcess_OptimizeGraph | pp.aiProcess_OptimizeMeshes | \
-         pp.aiProcess_FixInfacingNormals | pp.aiProcess_GenUVCoords | \
-         pp.aiProcess_LimitBoneWeights | pp.aiProcess_SortByPType | pp.aiProcess_RemoveRedundantMaterials
-
-flags2 = pp2.aiProcess_JoinIdenticalVertices | pp2.aiProcess_Triangulate | pp2.aiProcess_CalcTangentSpace | \
-         pp2.aiProcess_OptimizeGraph | pp2.aiProcess_OptimizeMeshes | \
-         pp2.aiProcess_FixInfacingNormals | pp2.aiProcess_GenUVCoords | \
-         pp2.aiProcess_LimitBoneWeights | pp2.aiProcess_SortByPType | pp2.aiProcess_RemoveRedundantMaterials
 
 
 def doImport():
-    global path, scene
-    scene = aiImportFile(path, flags1)
+    global scene
+    flags1 = pp.aiProcess_JoinIdenticalVertices | pp.aiProcess_Triangulate | pp.aiProcess_CalcTangentSpace | \
+             pp.aiProcess_OptimizeGraph | pp.aiProcess_OptimizeMeshes | \
+             pp.aiProcess_FixInfacingNormals | pp.aiProcess_GenUVCoords | \
+             pp.aiProcess_LimitBoneWeights | pp.aiProcess_SortByPType | pp.aiProcess_RemoveRedundantMaterials
+    scene = aiImportFile(model_path, flags1)
 
 
 def doImportPy():
-    global path, scene
-    scene = load(pt.join(home, path), processing=flags2)
+    global scene
+    flags2 = pp2.aiProcess_JoinIdenticalVertices | pp2.aiProcess_Triangulate | pp2.aiProcess_CalcTangentSpace | \
+         pp2.aiProcess_OptimizeGraph | pp2.aiProcess_OptimizeMeshes | \
+         pp2.aiProcess_FixInfacingNormals | pp2.aiProcess_GenUVCoords | \
+         pp2.aiProcess_LimitBoneWeights | pp2.aiProcess_SortByPType | pp2.aiProcess_RemoveRedundantMaterials
+    scene = load(pt.join(home, model_path), processing=flags2)
 
 
 def main():
-    global scene
-    print('Reading \'{}\'...'.format(path))
+    print('Reading \'{}\'...'.format(model_path))
     t = Timer(doImport)
     secs = t.timeit(1)
     print('> On AssimpCy Took {:0.4f} seconds.'.format(secs))
@@ -50,7 +43,6 @@ def main():
         v = int(scene.mMeshes[0].mNumVertices / 2)
         print('\tVertex {} = {}'.format(v, scene.mMeshes[0].mVertices[v]))
         print()
-        # print(scene.mRootNode.mTransformation)
 
     t = Timer(doImportPy)
     secs = t.timeit(1)

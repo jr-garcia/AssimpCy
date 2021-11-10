@@ -13,7 +13,7 @@ class SimpleTest(unittest.TestCase):
                 pp.aiProcess_GenUVCoords | pp.aiProcess_LimitBoneWeights | pp.aiProcess_SortByPType | \
                 pp.aiProcess_RemoveRedundantMaterials
 
-        self.scene = aiImportFile(path.join(path.dirname(__file__), path.pardir, 'examples', 'models', 'cil', 'cil.x'),
+        self.scene = aiImportFile(path.join(path.dirname(__file__), path.pardir, 'examples', 'models', 'cilly', 'cilly.x'),
                                   flags)
 
     def test_vertexCount(self):

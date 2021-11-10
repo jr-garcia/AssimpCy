@@ -1,29 +1,25 @@
-from __future__ import print_function
 from timeit import Timer
 from os import path as pt
 
-import _setpath
-_setpath.setAssimpPath()
 from assimpcy import aiImportFile, aiPostProcessSteps as pp
 
 home = pt.dirname(__file__)
-path = './models/cil/cil.x'
+model_path = pt.join(home, 'models', 'cilly', 'cilly.x')
 scene = None
 
 
 def doImport():
-    global path, scene
+    global scene
     flags = pp.aiProcess_JoinIdenticalVertices | pp.aiProcess_Triangulate | pp.aiProcess_CalcTangentSpace | \
             pp.aiProcess_OptimizeGraph | pp.aiProcess_OptimizeMeshes | \
             pp.aiProcess_FixInfacingNormals | pp.aiProcess_GenUVCoords | \
             pp.aiProcess_LimitBoneWeights | pp.aiProcess_SortByPType | pp.aiProcess_RemoveRedundantMaterials
 
-    scene = aiImportFile(pt.join(home, path), flags)
+    scene = aiImportFile(model_path, flags)
 
 
 def main():
-    global scene
-    print('Reading \'{}\':'.format(path))
+    print('Reading \'{}\':'.format(model_path))
     t = Timer(doImport)
     secs = t.timeit(1)
     print('\tHas {} meshes, {} textures, {} materials, {} animations.'.format(scene.mNumMeshes,
