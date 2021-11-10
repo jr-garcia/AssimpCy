@@ -1,0 +1,275 @@
+name: Build
+
+on:
+  push:
+    branches: [ ci_test , build_wheels]
+  pull_request:
+    branches: [ master ]
+
+env:
+  ASSIMPFILES: ${{ github.workspace }}{0}files
+  ASSIMPLIBS: ${{ github.workspace }}/files/lib
+  ASSIMPLIBSwin: ${{ github.workspace }}\files\lib
+  ASSIMPINCLUDES: ${{ github.workspace }}/files/include
+  ASSIMPINCLUDESwin: ${{ github.workspace }}\files\include
+  VARSARG:  "x64"
+
+jobs:
+  Download-assimp:
+    env:
+      is_windows: ${{ contains(matrix.os, 'windows') }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest,  macos-11]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Determine separator
+        uses: haya14busa/action-cond@v1
+        id: sepdet
+        with:
+          cond: ${{ env.is_windows }}
+          if_true: '\'
+          if_false: '/'
+      - name: Cache Assimp zip
+        id: zip-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-assimp5zip
+        with:
+          path: "${{ github.workspace }}${{ steps.sepdet.outputs.value }}assimp-5.0.1"
+          key: ${{ runner.os }}-assimp5unzipped
+      - name: Get Assimp5
+        if: steps.zip-cache.outputs.cache-hit != 'true'
+        run: |
+          $url = "https://github.com/assimp/assimp/archive/refs/tags/v5.0.1.zip"
+          $output = "assimp5.zip"
+
+          $wc = New-Object System.Net.WebClient
+          $wc.DownloadFile($url, $output)
+          Expand-Archive -Path assimp5.zip -DestinationPath .
+          dir
+        shell: pwsh
+
+  Compile-assimp:
+    needs: Download-assimp
+    env:
+      is_windows: ${{ contains(matrix.os, 'windows') }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest,  macos-11 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Determine separator
+        uses: haya14busa/action-cond@v1
+        id: sepdet
+        with:
+          cond: ${{ env.is_windows }}
+          if_true: '\'
+          if_false: '/'
+      - name: Checkout repo
+        uses:
+          actions/checkout@v2
+      - name: Cache Assimp zip
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-assimp5zip
+        with:
+          path: "${{ github.workspace }}${{ steps.sepdet.outputs.value }}assimp-5.0.1"
+          key: ${{ runner.os }}-assimp5unzipped
+      - name: Cache Assimp built files
+        id: files-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-assimp5build
+        with:
+          path: ${{ format(env.ASSIMPFILES, steps.sepdet.outputs.value ) }}
+          key: ${{ runner.os }}-${{ env.VARSARG }}-assimp5build
+      - name: Add msbuild to PATH
+        if: steps.files-cache.outputs.cache-hit != 'true' && env.is_windows  == 'true'
+        uses: microsoft/setup-msbuild@v1.0.3
+      - name: Compile Assimp5 with Make
+        if: steps.files-cache.outputs.cache-hit != 'true' && env.is_windows  != 'true'
+        run: |
+          mkdir ${{ format(env.ASSIMPFILES, steps.sepdet.outputs.value ) }}
+          chmod +x ${{ github.workspace }}/ci_scripts/buildAssimp.sh
+          ${{ github.workspace }}/ci_scripts/buildAssimp.sh
+      - name: Compile Assimp5 with Nmake
+        if: steps.files-cache.outputs.cache-hit != 'true' && env.is_windows  == 'true'
+        run: |
+          mkdir ${{ format(env.ASSIMPFILES, steps.sepdet.outputs.value ) }}
+          # Invokes a Cmd.exe shell script and updates the environment.
+          # https://stackoverflow.com/a/41399983
+          function Invoke-CmdScript {
+            param(
+              [String] $scriptName
+            )
+            $cmdLine = """$scriptName"" $args & set"
+            & $Env:SystemRoot\system32\cmd.exe /c $cmdLine |
+            select-string '^([^=]*)=(.*)$' | foreach-object {
+              $varName = $_.Matches[0].Groups[1].Value
+              $varValue = $_.Matches[0].Groups[2].Value
+              set-item Env:$varName $varValue
+            }
+          }
+          Invoke-CmdScript "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ env.VARSARG }}
+          ${{ github.workspace }}\ci_scripts\buildAssimp.cmd
+      - name: Rename library
+        if: steps.files-cache.outputs.cache-hit != 'true' && env.is_windows  == 'true'
+        run: |
+          Rename-Item ${{ env.ASSIMPLIBSwin }}\assimp-vc142-mt.lib assimp.lib
+
+  Build-and-test:
+    needs: Compile-assimp
+    env:
+      is_windows: ${{ contains(matrix.os, 'windows') }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.8, "3.10", "pypy-3.7" ]
+        os: [ windows-latest, ubuntu-latest, macos-11 ]
+    runs-on: ${{ matrix.os }}
+    if: ${{endsWith(github.ref,'ci_test')}}
+    steps:
+      - name: Determine separator
+        uses: haya14busa/action-cond@v1
+        id: sepdet
+        with:
+          cond: ${{ env.is_windows }}
+          if_true: '\'
+          if_false: '/'
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Cache Assimp built files
+        id: files-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-assimp5build
+        with:
+          path: ${{ format(env.ASSIMPFILES, steps.sepdet.outputs.value ) }}
+          key: ${{ runner.os }}-${{ env.VARSARG }}-assimp5build
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ env.VARSARG }}
+      - name: Update Pip
+        run: python -m pip install --upgrade pip
+      - name: Install build deps on Windows  # prevent Cython (failing) compilation
+        if: env.is_windows  == 'true'
+        run: |
+          Remove-Item ${{ github.workspace }}\pyproject.toml
+          pip install numpy==1.21.4 setuptools wheel
+          pip install Cython==0.29.24 --install-option="--no-cython-compile"
+      - name: Install project
+        run: pip install ${{ github.workspace }}
+      - name: Test
+        run:  python -m unittest test_simple
+        working-directory: ${{ github.workspace }}${{ steps.sepdet.outputs.value }}tests
+
+  Build-wheels:
+    needs: Compile-assimp
+    env:
+      is_windows: ${{ contains(matrix.os, 'windows') }}
+      is_linux: ${{ contains(matrix.os, 'ubuntu') }}
+    name: Build wheels
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest, macos-11 ]
+    if: ${{ endsWith(github.ref,'build_wheels')}}
+    steps:
+      - name: Determine separator
+        uses: haya14busa/action-cond@v1
+        id: sepdet
+        with:
+          cond: ${{ env.is_windows }}
+          if_true: '\'
+          if_false: '/'
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Cache Assimp zip
+        if: env.is_linux == 'true'
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-assimp5zip
+        with:
+          path: "${{ github.workspace }}${{ steps.sepdet.outputs.value }}assimp-5.0.1"
+          key: ${{ runner.os }}-assimp5unzipped
+      - name: Cache Assimp built files
+        if: env.is_linux != 'true'
+        id: files-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-assimp5build
+        with:
+          path: ${{ format(env.ASSIMPFILES, steps.sepdet.outputs.value ) }}
+          key: ${{ runner.os }}-${{ env.VARSARG }}-assimp5build
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Update Pip
+        run: python -m pip install --upgrade pip
+      - name: Install cibuildwheel
+        run: python -m pip install cibuildwheel==2.2.2
+      - name: Build wheels
+        env:
+          CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
+          CIBW_MANYLINUX_I686_IMAGE: manylinux2014
+          CIBW_MANYLINUX_PYPY_X86_64_IMAGE: manylinux2014
+          CIBW_MANYLINUX_PYPY_I686_IMAGE: manylinux2014
+          CIBW_ARCHS: auto64
+          CIBW_SKIP: "*-win32 *-manylinux_i686 *-musllinux_*"
+          CIBW_ENVIRONMENT_LINUX: ASSIMPINCLUDES=/project/files/include ASSIMPLIBS=/project/files/lib
+          CIBW_BEFORE_ALL_LINUX: >
+                      python {project}/ci_scripts/buildCmake.py &&
+                      mkdir {project}/files &&
+                      chmod +x {project}/ci_scripts/buildAssimp.sh &&
+                      {project}/ci_scripts/buildAssimp.sh
+          CIBW_BUILD: cp37-* cp38-* cp39-* cp310-* pp37-*
+          CIBW_TEST_COMMAND: "python -m unittest discover -f -s {project}${{ steps.sepdet.outputs.value }}tests"
+        run: python -m cibuildwheel --output-dir wheelhouse
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}${{ steps.sepdet.outputs.value }}wheelhouse${{ steps.sepdet.outputs.value }}*.whl
+
+  Build_sdist:
+    needs: Build-wheels
+    name: Build source distribution
+    runs-on: ubuntu-latest
+    if: ${{ endsWith(github.ref,'build_wheels')}}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        name: Install Python
+        with:
+          python-version: '3.8'
+      - name: Update Pip
+        run: python -m pip install --upgrade pip
+      - name: Install requirements
+        run: python -m pip install -r ${{ github.workspace }}/requirements.txt
+      - name: Build sdist
+        run: python ${{ github.workspace }}/setup.py sdist
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}/dist/*.tar.gz
+
+  Pypi-upload:
+    needs: [ Build-wheels, Build_sdist ]
+    runs-on: ubuntu-latest
+    # upload to PyPI on every tag starting with 'v'
+#    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifact
+          path: ${{ github.workspace }}/dist
+      - uses: pypa/gh-action-pypi-publish@v1.4.2
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_TOKEN }}
+#          password: ${{ secrets.TEST_PYPI_TOKEN }}
+#          repository_url: https://test.pypi.org/legacy/ #To test

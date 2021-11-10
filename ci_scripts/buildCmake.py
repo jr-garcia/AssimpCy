@@ -1,51 +1,71 @@
 import sys
-import bz2
-from os import environ as env, mkdir, path, chdir
+from os import path, chdir
 from subprocess import CalledProcessError, check_call, check_output
 
-try:
-    res = check_output('cmake --version'.split())
-    if '3.0' in str(res):
-        exit(0)
-except OSError as err:
-    pass
+base_folder = path.dirname(__file__)
 
-cmakeSrc = 'downloads/cmake-3.10.3.tar.gz'
-if not path.exists(cmakeSrc):
-    print('\nCmake 3 not found. Downloading...')
-    sys.stdout.flush()
+
+def check_version():
     try:
-        check_call("wget -nv --no-check-certificate https://cmake.org/files/v3.10/cmake-3.10.3.tar.gz -O {}".format(cmakeSrc).split())
-    except CalledProcessError as err:
-        raise RuntimeError(str(err))
+        res = check_output('cmake --version'.split())
+        ver = str(res.decode()).strip('\n').split()[2]
+        if '3.' in ver:
+            return True, ver
+    except OSError as err:
+        return False, str(err)
 
-unpackedPath = 'cmake-3.10.3'
-if not path.exists(unpackedPath):
-    print('\nunpacked cmake not found. Unpacking...')
-    sys.stdout.flush()
-    try:
-        check_output('tar -zxvf {}'.format(cmakeSrc).split())
-    except CalledProcessError as err:
-        raise RuntimeError(str(err.output[-200:]))
 
-print('\ncalling build script...')
+res, ver = check_version()
+cmake_str = '\nRequired minimum Cmake 3 {} ({})'
+
+if res:
+    print(cmake_str.format('found', ver))
+    exit(0)
+else:
+    print(cmake_str.format('not found', ver))
+
 sys.stdout.flush()
 
+cmakeSrc = path.join(base_folder, 'cmake-3.16.3.tar.gz')
+print('\nDownloading Cmake 3.10 archive...')
+sys.stdout.flush()
+try:
+    check_call("wget -nv --no-check-certificate https://cmake.org/files/v3.16/cmake-3.16.3.tar.gz -O {}".format(cmakeSrc).split())
+except CalledProcessError as err:
+    raise RuntimeError(str(err))
+
+unpackedPath = path.join(base_folder, 'cmake-3.16.3')
+print('\nUnpacking archive...')
+sys.stdout.flush()
+try:
+    check_output('tar -zxvf {}'.format(cmakeSrc).split())
+except CalledProcessError as err:
+    raise RuntimeError(str(err.output[-200:]))
+
+print('\nCalling build script...')
+sys.stdout.flush()
 chdir(unpackedPath)
 try:
-    print('\tbootstrapping...')
+    print('\t-Bootstrapping...')
     sys.stdout.flush()
     check_output('bash ./bootstrap'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err.output[-200:]))
 try:
-    print('\tMaking...')
+    print('\t-Making...')
     sys.stdout.flush()
     check_output('make --quiet'.split())
 except CalledProcessError as err:
     raise RuntimeError(str(err.output[-200:]))
 try:
-    print('\tInstalling...')
+    print('\t-Installing...')
+    sys.stdout.flush()
+    check_output('make install'.split())
+except CalledProcessError as err:
+    raise RuntimeError(str(err.output[-200:]))
+
+try:
+    print('\t-Installing...')
     sys.stdout.flush()
     check_output('make install'.split())
 except CalledProcessError as err:

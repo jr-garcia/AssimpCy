@@ -7,32 +7,31 @@
 
 #### BUILD STATUS 
 
-#### `Linux   ` [![Linux Build Status](https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master)](https://travis-ci.org/jr-garcia/AssimpCy) 
+[![Linux Build Status](https://github.com/jr-garcia/assimpcy/actions/workflows/main.yaml/badge.svg)](https://github.com/jr-garcia/assimpcy/) 
 
-#### `Windows ` [![Windows Build Status](https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true)](https://ci.appveyor.com/project/jr-garcia/assimpcy)  
-
-#### `Docs    ` [![Documentation Build Status](https://readthedocs.org/projects/assimpcy/badge/?version=latest)](http://assimpcy.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Build Status](https://readthedocs.org/projects/assimpcy/badge/?version=latest)](http://assimpcy.readthedocs.io/en/latest/?badge=latest)
 
 ---    
         
 Fast Python bindings for [Assimp](http://assimp.org/), Cython-based, BSD3 license.
 
-It uses the same naming as the original library, so examples from the official docs can be used with minor changes.
+It uses the same function names as the original library, so examples from c++ tutorials can be used with minor changes.
 
 It has been tested on:
 
-* Windows: Python 3.5+
-* Linux: Python 3.4+
+* Windows 7, 10
+* Linux
 * Mac
-
+* Python 3.7 - 3.10
+* Pypy
 ---
 #### Example usage:
 
 ```python
 from assimpcy import aiImportFile, aiPostProcessSteps as pp 
 flags = pp.aiProcess_JoinIdenticalVertices | pp.aiProcess_Triangulate 
-scene = aiImportFile('mymodel.3ds', flags)
-print('Vertex {} = {}'.format(v, scene.mMeshes[0].mVertices[0]))
+scene = aiImportFile('somemodel.3ds', flags)
+print('Vertex 0 = {}'.format(scene.mMeshes[0].mVertices[0]))
 ```
 
 Matrices, quaternions and vectors are returned as Numpy arrays.
@@ -40,8 +39,16 @@ Matrices, quaternions and vectors are returned as Numpy arrays.
 ---
 #### Requirements:
 
-* Assimp >= 5.0.1
-* Numpy >= 1.9.2
+* Numpy >= 1.21.3
+
+(Assimp 5.0.1 is included in the binary wheel)
+
+```
+Open Asset Import Library (assimp)
+
+Copyright (c) 2006-2016, assimp team
+All rights reserved.
+```
 
 ---
 #### Installation:
@@ -52,7 +59,7 @@ The easiest way is with Pip:
 pip install assimpcy
 ```
 
-If that does not work for you, please check [Installation](http://assimpcy.readthedocs.io/en/latest/install.html) for instructions. 
+If that doesn't work on your system, please check [Installation](http://assimpcy.readthedocs.io/en/latest/install.html) for instructions. 
 
 ---
 #### Missing:
@@ -71,7 +78,7 @@ Those might be added in the future.
 ---
 #### Bugs report and Contributioms
 
-Please follow the guide in the [wiki](https://github.com/jr-garcia/AssimpCy/wiki/Contributons-and-Bug-reports)
+Please follow the guide on the [wiki](https://github.com/jr-garcia/AssimpCy/wiki/Contributons-and-Bug-reports)
 
 ---
 
