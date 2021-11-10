@@ -1,31 +1,55 @@
 Installation
 ------------
 
-If installing with Pip fails or if you want to make changes to the code,
-you'll need to compile from the sources.
+Lets say you already tried::
+
+    pip install assimpcy
+
+And that failed or you want to make changes to the code or
+recompile the extension with a different version of the Assimp library, so you will compile from the sources.
+
+You will need:
+  * Cmake 3
+  * Microsoft Visual Studio 2017+ for Windows or Gcc for Linux and Mac (Clang might work too).
+
+#. Download AssimpCy from:
+
+   https://github.com/jr-garcia/AssimpCy
+
+   And extract the zip package (or clone the repository with Git).
 
 #. Download Assimp from the official page (minimum version 5.0.1):
 
    http://www.assimp.org/
 
-   Compile it and install it.
+#. Compile Assimp with the next options for cmake::
 
-   You'll need Cmake, and Microsoft Visual Studio for Windows
-   or Gcc for Linux and Mac (optionally, Mingw-w64).
+    -DBUILD_SHARED_LIBS=OFF -DASSIMP_INCLUDE_INSTALL_DIR=assimpcy_folder/files/include -DASSIMP_LIB_INSTALL_DIR=assimpcy_folder/files/lib
 
-   On Linux, you can install Assimp from your system's repositories.
+   Replace ``assimpcy_folder`` with the path where AssimpCy was extracted / cloned.
+
+   Compile and install Assimp with::
+
+        make
+        make install
+
+
+   You should end up with Assimp headers in ``assimpcy_folder/files/include`` and static versions of 3 libraries in ``assimpcy_folder/files/lib``::
+
+        libassimp, libIrrXML, libzlibstatic
+
 
 #. Install `Cython <https://cython.org/>`_ and `Numpy <http://www.numpy.org/>`_ with::
 
-      pip install numpy cython
+    pip install cython==0.29.24 numpy==1.21.4
 
-#. Download and extract the zip package from
+  .. note::
+    The versions specified are the ones used to build the wheels stored at Pypi.
 
-   https://github.com/jr-garcia/AssimpCy
+    You are free to try older or newer versions of the packages listed above,
+    if available.
 
-   or clone the repository with Git.
-
-   If you placed the Assimp headers and libraries in the default locations, run::
+#. Build AssimpCy by executing, from its folder::
 
       python setup.py build_ext
 
@@ -38,11 +62,12 @@ you'll need to compile from the sources.
 
            Cannot open include file: 'types.h':
 
-       Make sure that the path to headers ends with: **/assimp**
+       It means that setup.py is not finding the Assimp headers. Make sure that there is a folder called
+       ``include`` in the AssimpCy files folder or in a path that your compiler can find.
 
 #. Finally, to install the package, run::
 
       python setup.py install
 
 
-Check **examples/basic_demo.py** in Assimpcy folder for a simple example or read :doc:`/usage`.
+Check `basic_demo.py <https://github.com/jr-garcia/AssimpCy/blob/master/examples/basic_demo.py>`_  in AssimpCy folder for a simple example or read :doc:`/usage`.

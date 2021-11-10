@@ -14,17 +14,17 @@ Welcome to AssimpCy's documentation!
    usage
    about
 
-The simples way to start using AssimpCy is to do::
+The simplest way to start using AssimpCy is installig with Pip::
 
-    pip install AssimpCy
+    pip install assimpcy
 
-If this does not work, please refer to :doc:`/install` for alternative methods.
+That line should install the right binary wheel for your system.
+The Assimp library (version 5.0.1) is included so you dont need to download it or compile it.
+
+If that does not work, or if you want to update the Assimp library included in AssimpCy, please refer to :doc:`/install` for instructions.
 
 =====
 USAGE
 =====
 
-Please read :doc:`/usage`.
-
-.. note::
-   There is no need to release the scene. This job is performed by :py:func:`aiImportFile`
+Please read :doc:`/usage` for some examples.

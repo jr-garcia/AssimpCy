@@ -5,14 +5,15 @@ AssimpCy
 Fast Python bindings for `Assimp <http://assimp.org/>`__, Cython-based, BSD3 license.
 
 
-|PyPI - version| |PyPI - Python Version| |PyPI - Satus| |PyPI - License|
-|PyPI - Downloads|
+|PyPI - version| |PyPI - Python Version| |PyPI - Satus|
+
+|PyPI - License| |PyPI - Downloads|
 
 
 It is compatible with:
 
--  Windows: Python 3.5+
--  Linux: Python 3.4+
+-  Windows
+-  Linux
 -  Mac
 
 --------------
@@ -20,8 +21,14 @@ It is compatible with:
 Requirements:
 ^^^^^^^^^^^^^
 
--  Assimp >= 5.0.1
--  Numpy >= 1.9.2
+-  Numpy >= 1.21.3
+
+Assimp 5.0.1 is included in the binary wheel::
+
+    Open Asset Import Library (assimp)
+
+    Copyright (c) 2006-2016, assimp team
+    All rights reserved.
 
 
 Installation:
@@ -33,7 +40,7 @@ The easiest way is:
 
    pip install assimpcy
 
-If that does not work for you, please check
+If that doesn't work on your system, please check
 `Installation <http://assimpcy.readthedocs.io/en/latest/install.html>`__
 for instructions.
 
@@ -54,7 +61,7 @@ Documentation
 --------------
 
 And what about the name? Well,
-`cyassimp <https://github.com/menpo/cyassimp>`__ was already taken 😞.
+`cyassimp <https://github.com/menpo/cyassimp>`__ was already taken 😞
 
 .. |PyPI - version| image:: https://badge.fury.io/py/AssimpCy.svg
    :target: https://pypi.org/project/AssimpCy/
@@ -66,9 +73,3 @@ And what about the name? Well,
    :target: https://img.shields.io
 .. |PyPI - Downloads| image:: https://img.shields.io/pypi/dm/assimpcy
    :target: https://pypi.org/project/AssimpCy/
-.. |Linux Build Status| image:: https://travis-ci.org/jr-garcia/AssimpCy.svg?branch=master
-   :target: https://travis-ci.org/jr-garcia/AssimpCy
-.. |Windows Build Status| image:: https://ci.appveyor.com/api/projects/status/8r293a3s5x93iumw?svg=true
-   :target: https://ci.appveyor.com/project/jr-garcia/assimpcy
-.. |Documentation Build Status| image:: https://readthedocs.org/projects/assimpcy/badge/?version=latest
-   :target: http://assimpcy.readthedocs.io/en/latest/?badge=latest

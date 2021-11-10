@@ -3,25 +3,28 @@ Usage
 
 Model import
 ^^^^^^^^^^^^
+The whole work to import a model with :mod:`assimpcy` is done by :func:`aiImportFile`
+
+The package uses the same functions and parameters names of the original library, so examples from the
+official Assimp docs and other tutorials can be used with minor changes.
 
 .. code:: python
 
    from assimpcy import aiImportFile, aiPostProcessSteps as pp
    flags = pp.aiProcess_JoinIdenticalVertices | pp.aiProcess_Triangulate
-   scene = aiImportFile('mymodel.3ds', flags)
-   print('Vertex {} = {}'.format(v, scene.mMeshes[0].mVertices[0]))
+   scene = aiImportFile('somemodel.3ds', flags)
+   print('Vertex 0 = {}'.format(scene.mMeshes[0].mVertices[0]))
 
 Matrices, quaternions and vectors are returned as Numpy arrays.
 
-The package uses the same functions and parameters names of the original library, so examples from the
-official Assimp docs and other tutorials can be used with minor changes.
+.. note::
+   There is no need to release the scene. This job is performed by :py:func:`aiImportFile`
+
 
 Embedded textures
 ^^^^^^^^^^^^^^^^^
 
-When a model includes the textures in the same file, they will be located in::
-
-   scene.mTextures
+When a model includes the textures in the same file, they will be located in the :py:class:`scene.mTextures` list.
 
 To use them, you can:
 
@@ -54,15 +57,26 @@ To use them, you can:
             # or as a format compatible with the texture components
 
 
-To assign each texture to the right material, check::
+To assign each texture to the right material, check:
+
+.. code:: python
 
    scene.mMaterials[material_index].properties['TEXTURE_BASE']
 
-The **TEXTURE_BASE** property will contain the index of the texture in the **scene.mTextures** list
+The ``TEXTURE_BASE`` property will contain the index of the texture in the :py:class:`scene.mTextures` list
 that corresponds to that material::
 
    *0 equals to scene.mTextures[0]
    *1 equals to scene.mTextures[1]
 
-   Etc.
+And so on.
+
+Cilly
+^^^^^
+
+`Cilly <https://github.com/jr-garcia/AssimpCy/tree/master/examples/models/cilly>`_ is a silly cylinder
+that dances and dances.
+
+.. image:: https://raw.githubusercontent.com/jr-garcia/AssimpCy/master/examples/models/cilly/cilly.png
+    :alt: Cilly - 3D rigged and textured cylinder
 
