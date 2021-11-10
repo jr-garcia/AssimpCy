@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from setuptools import Extension, setup, command
+from setuptools import Extension, setup
 from sys import platform, maxsize
 from numpy import get_include
 from distutils.sysconfig import get_config_vars
@@ -19,7 +19,7 @@ def getVersion():
 
 
 def getLongDescription():
-    desc_path = os.path.join(base_folder, 'docs/_desc.rst')
+    desc_path = os.path.join(base_folder, 'docs/_pypi_desc.rst')
     try:
         with open(desc_path) as doc:
             rst = doc.read()
@@ -27,27 +27,30 @@ def getLongDescription():
     except Exception as err:
         from warnings import warn
         warn('Rst description failed: ' + str(err))
-        return 'Assympcy'
+        return 'Fast Python bindings for Assimp.'
 
 
 (opt,) = get_config_vars('OPT')
 if opt:
     os.environ['OPT'] = " ".join(flag for flag in opt.split() if flag != '-Wstrict-prototypes')
 
-includes = [get_include()]
-libs = []
+local_includes_path = os.path.join(base_folder, 'files', 'include')
+local_libs_path = os.path.join(base_folder, 'files', 'lib')
+include_paths = [get_include(), local_includes_path, os.path.join(local_includes_path, 'assimp')]
+lib_paths = [local_libs_path]
+runtime_lib_paths = []
+libraries = ['assimp', 'IrrXML', 'zlibstatic']
 extraCompile = []
 extraLink = []
-rldirs = []
 
 if platform == 'win32':
     archString = '' if (maxsize > 2 ** 32) else ' (x86)'
     base = 'C:\\Program Files{}\\Assimp'.format(archString)
-    includePath = base + '\\include'
+    system_include_path = base + '\\include'
     libPath = base + '\\lib'
-    includes.extend([includePath, includePath + "\\assimp"])
-    libs.append(libPath)
-    extraCompile.extend(['/EHsc', '/openmp'])
+    include_paths.extend([system_include_path, system_include_path + "\\assimp"])
+    lib_paths.append(libPath)
+    extraCompile.extend(['/d2FH4-', '/EHsc', '/openmp'])
 elif platform == 'darwin':
     extraLink.append('-stdlib=libc++')
     extraCompile.append('-stdlib=libc++')
@@ -60,19 +63,19 @@ elif platform == 'darwin':
         print('Using compiler', clang[-1])
         os.environ["CC"] = os.environ["CXX"] = clang[-1]
         if 'Cellar' in clang[-1]:
-            includes.extend(glob('/usr/local/opt/llvm/include'))
-            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
+            include_paths.extend(glob('/usr/local/opt/llvm/include'))
+            include_paths.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
 
             lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
             os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
         elif 'opt' in clang[-1]:
-            libs.append('/opt/local/lib')
-            includes.extend(glob('/opt/local/libexec/llvm*/include/c++/v1'))
+            lib_paths.append('/opt/local/lib')
+            include_paths.extend(glob('/opt/local/libexec/llvm*/include/c++/v1'))
         else:
-            includes.extend(glob('/usr/local/opt/llvm/include'))
-            includes.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
-            libs.extend(glob('/usr/local/opt/llvm/lib'))
-            libs.append('/usr/local/lib')
+            include_paths.extend(glob('/usr/local/opt/llvm/include'))
+            include_paths.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
+            lib_paths.extend(glob('/usr/local/opt/llvm/lib'))
+            lib_paths.append('/usr/local/lib')
 
     # macports and homebrew locations
     local_assimp_head = sorted(glob('/usr/local/include/assimp'))
@@ -80,30 +83,31 @@ elif platform == 'darwin':
     brew_assimp_head = sorted(glob('/usr/local/Cellar/assimp/*/include'))
     assimp_head = local_assimp_head + port_assimp_head + brew_assimp_head
     if assimp_head:
-        includes.append(assimp_head[-1])
+        include_paths.append(assimp_head[-1])
         assimp_lib = ''
         if 'Cellar' in assimp_head[-1]:
             assimp_lib = sorted(glob('/usr/local/Cellar/assimp/*/lib'))[-1]
-            includes.append(assimp_head[-1] + '/assimp')
+            include_paths.append(assimp_head[-1] + '/assimp')
         elif 'opt' in assimp_head[-1]:
             assimp_lib = '/opt/local/lib'
-            includes.append('/opt/local/include/')
+            include_paths.append('/opt/local/include/')
         else:
             assimp_lib = '/usr/local/lib'
-            includes.append('/usr/local/include/')
+            include_paths.append('/usr/local/include/')
         
-        libs.append(assimp_lib)
-        includes.extend(['/usr/include/', '/usr/local/include/'])
+        lib_paths.append(assimp_lib)
+        include_paths.extend(['/usr/include/', '/usr/local/include/'])
         print('Using assimp headers:', assimp_head[-1])
         print('Using assimp lib:', assimp_lib)
 
     extraCompile.append('-fopenmp')
     extraLink.append('-fopenmp')
 else:
-    includes.extend(['/usr/include/assimp', '/usr/local/include/assimp'])
-    libs.extend(['/usr/lib/', '/usr/local/lib'])
-    rldirs.append("$ORIGIN")
-    extraCompile.extend(["-w", "-O3", '-fopenmp', '-std=c++0x'])
+    include_paths.extend(['/usr/include', '/usr/local/include',
+                         '/usr/include/assimp', '/usr/local/include/assimp'])
+    lib_paths.extend(['/usr/lib', '/usr/local/lib'])
+    runtime_lib_paths.append("$ORIGIN")
+    extraCompile.extend(["-w", "-O3", '-fopenmp', '-std=c++11', '-pedantic'])
     extraLink = ['-fopenmp', '-lgomp']
 
 setup(
@@ -117,20 +121,27 @@ setup(
     classifiers=[
             'Development Status :: 5 - Production/Stable',
             'Intended Audience :: Developers',
-            'Topic :: Multimedia :: Graphics :: 3D Rendering',
             'License :: OSI Approved :: BSD License',
-            'Programming Language :: Python :: 3.4',
-            'Programming Language :: Python :: 3.5',
-            'Programming Language :: Python :: 3.6'],
-    keywords='load 3d model geometry assimp',
+            'Programming Language :: Cython',
+            'Programming Language :: Python :: 3.7',
+            'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.9',
+            'Programming Language :: Python :: 3.10',
+            'Programming Language :: Python :: Implementation :: CPython',
+            'Programming Language :: Python :: Implementation :: PyPy',
+            'Topic :: Games/Entertainment',
+            'Topic :: Multimedia :: Graphics :: 3D Modeling',
+            'Topic :: Multimedia :: Graphics :: 3D Rendering',
+            'Topic :: Software Development :: Libraries'],
+    keywords='3d,model,geometry,assimp,games,cython',
     install_requires=['numpy'],
     packages=["assimpcy"],
     ext_modules=[
         Extension('assimpcy.all', [os.path.join(os.path.curdir, "assimpcy", "all.pyx")],
-                  libraries=["assimp"],
-                  include_dirs=includes,
-                  library_dirs=libs,
-                  runtime_library_dirs=rldirs,
+                  libraries=libraries,
+                  include_dirs=include_paths,
+                  library_dirs=lib_paths,
+                  runtime_library_dirs=runtime_lib_paths,
                   extra_compile_args=extraCompile,
                   extra_link_args=extraLink,
                   language="c++")
