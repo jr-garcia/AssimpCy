@@ -126,6 +126,7 @@ setup(
     version=getVersion(),
     description='Fast Python bindings for Assimp.',
     long_description=getLongDescription(),
+    long_description_content_type='text/x-rst',
     url='https://github.com/jr-garcia/AssimpCy',
     license='BSD3',
     classifiers=[
