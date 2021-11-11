@@ -19,7 +19,7 @@ def getVersion():
 
 
 def getLongDescription():
-    desc_path = os.path.join(base_folder, 'docs/_pypi_desc.rst')
+    desc_path = os.path.join(base_folder, 'docs', '_pypi_desc.rst')
     try:
         with open(desc_path) as doc:
             rst = doc.read()
@@ -28,6 +28,16 @@ def getLongDescription():
         from warnings import warn
         warn('Rst description failed: ' + str(err))
         return 'Fast Python bindings for Assimp.'
+
+
+def get_extra_requirements():
+    req_path = os.path.join(base_folder, 'docs', 'requirements.txt')
+    try:
+        with open(req_path) as req:
+            cont = req.read()
+        return cont.split()
+    except Exception:
+        return []
 
 
 (opt,) = get_config_vars('OPT')
@@ -135,6 +145,9 @@ setup(
             'Topic :: Software Development :: Libraries'],
     keywords='3d,model,geometry,assimp,games,cython',
     install_requires=['numpy'],
+    extras_require={
+            'docs': get_extra_requirements()
+        },
     packages=["assimpcy"],
     ext_modules=[
         Extension('assimpcy.all', [os.path.join(os.path.curdir, "assimpcy", "all.pyx")],
