@@ -1,9 +1,9 @@
 # AssimpCy 
 [![PyPI - version](https://badge.fury.io/py/AssimpCy.svg)](https://pypi.org/project/AssimpCy/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/AssimpCy.svg)](https://img.shields.io)
-[![PyPI - Satus](https://img.shields.io/pypi/status/AssimpCy.svg)](https://img.shields.io)
-[![PyPI - License](https://img.shields.io/pypi/l/AssimpCy.svg)](https://img.shields.io)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/assimpcy)](https://pypi.org/project/AssimpCy/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/AssimpCy.svg)
+![PyPI - Satus](https://img.shields.io/pypi/status/AssimpCy.svg)
+![PyPI - License](https://img.shields.io/pypi/l/AssimpCy.svg)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/assimpcy)
 
 #### BUILD STATUS 
 
@@ -49,6 +49,8 @@ Open Asset Import Library (assimp)
 Copyright (c) 2006-2016, assimp team
 All rights reserved.
 ```
+Please visit our [docs](https://assimpcy.readthedocs.io/en/latest/about.html#the-open-asset-import-library) to read the full license and 
+to know more about your rights regarding Assimp.
 
 ---
 #### Installation:
@@ -59,7 +61,8 @@ The easiest way is with Pip:
 pip install assimpcy
 ```
 
-If that doesn't work on your system, please check [Installation](http://assimpcy.readthedocs.io/en/latest/install.html) for instructions. 
+If that doesn't work on your system or if you want to compile by yourself, 
+please check [Installation](http://assimpcy.readthedocs.io/en/latest/install.html) for instructions. 
 
 ---
 #### Missing:
