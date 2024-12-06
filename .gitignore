@@ -50,3 +50,4 @@ ENV/
 .ropeproject
 *.cpp
 /files/
+/examples/dna.txt
