@@ -1,6 +1,7 @@
 # cython: c_string_type=bytes
 # cython: c_string_encoding=utf8
 # cython: language_level=2
+# distutils: language=c++
 
 cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess, cTexture
 import numpy as np
@@ -133,7 +134,10 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
     cdef aiVertexWeight vertW
     cdef aiMesh rMesh = aiMesh()
     cdef np.ndarray tempnd
-    rMesh.mName = str(mesh.mName.data)
+    try:
+        rMesh.mName = str(mesh.mName.data.decode())
+    except UnicodeDecodeError:
+        rMesh.mName = str(mesh.mName.data)
     rMesh.mNumBones = mesh.mNumBones
     rMesh.mMaterialIndex = mesh.mMaterialIndex
     rMesh.mPrimitiveTypes = mesh.mPrimitiveTypes
@@ -318,7 +322,10 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
         elif res == cTypes.aiReturn_OUTOFMEMORY:
             raise MemoryError('Out of memory.')
 
-        sname = str(prop.mKey.data.decode())
+        try:
+            sname = str(prop.mKey.data.decode())
+        except UnicodeDecodeError:
+            sname = str(prop.mKey.data)
         if ptype == cMaterial.aiPTI_Float:
             if pvalsize == 1:
                 propval = pvalF.data[0]
@@ -332,8 +339,10 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
                 pvalI.validLenght = pvalsize
                 propval = asNumpyArray(&pvalI)
         elif ptype == cMaterial.aiPTI_String:
-            propval = str(pvalS.data.decode())
-
+            try:
+                propval = str(pvalS.data.decode())
+            except UnicodeDecodeError:
+                propval = str(pvalS.data)
         nMat.properties[propertyNames.get(sname, sname)] = propval
 
     prop = NULL
@@ -552,7 +561,7 @@ cdef aiScene buildScene(const cScene.aiScene *cs):
 
 # -----------------------------------------------------
 
-def aiImportFile(str path, unsigned int flags=0):
+def aiImportFile(str filepath, unsigned int flags=0):
     """
     Usage:
         scene = aiImportFile(path, flags)
@@ -566,25 +575,24 @@ def aiImportFile(str path, unsigned int flags=0):
     :rtype: aiScene
     """
     cdef const cScene.aiScene* csc
-    bpath = path.encode()
+    cdef bytes bpath = filepath.encode()
     cdef const char* cpath = bpath
     with nogil:
         csc = cImporter.aiImportFile(cpath, flags)
     if csc:
         try:
             return buildScene(csc)
-        # except:
-        #     raise
+        except Exception as err:
+            raise err
         finally:
             with nogil:
                 cImporter.aiReleaseImport(csc)
-                csc = NULL
-                del csc
+#                del csc
+#                csc = NULL
     else:
-        csc = NULL
-        del csc
-        # cpath = NULL
-        # del cpath  # << Error (Deletion of non-Python, non-C++ object)
+#        with nogil:
+#            del csc
+#            csc = NULL
         raise AssimpError(cImporter.aiGetErrorString())
 
 
