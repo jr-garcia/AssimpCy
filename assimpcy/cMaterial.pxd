@@ -1,4 +1,4 @@
-from cTypes cimport *
+from .cTypes cimport *
 
 cdef extern from "mesh.h" nogil:
     cdef const char* _AI_DEFAULT_MATERIAL_NAME 'AI_DEFAULT_MATERIAL_NAME'

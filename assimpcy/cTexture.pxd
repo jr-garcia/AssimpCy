@@ -1,4 +1,4 @@
-from cTypes cimport *
+from .cTypes cimport *
 
 cdef extern from "texture.h" nogil:
     cdef cppclass aiTexture:

@@ -1,4 +1,4 @@
-from cTypes cimport *
+from .cTypes cimport *
 
 cdef extern from "anim.h" nogil:
     cdef cppclass aiVectorKey:

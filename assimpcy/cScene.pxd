@@ -1,8 +1,8 @@
-from cTypes cimport aiString, aiMatrix4x4
-from cMesh cimport aiMesh
-from cMaterial cimport aiMaterial
-from cAnim cimport aiAnimation
-from cTexture cimport aiTexture
+from .cTypes cimport aiString, aiMatrix4x4
+from .cMesh cimport aiMesh
+from .cMaterial cimport aiMaterial
+from .cAnim cimport aiAnimation
+from .cTexture cimport aiTexture
 ctypedef int bool
 
 cdef extern from "scene.h" nogil:

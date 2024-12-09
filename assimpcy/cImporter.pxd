@@ -1,4 +1,4 @@
-from cScene cimport aiScene
+from .cScene cimport aiScene
 
 cdef extern from "cimport.h" nogil:
     const aiScene *aiImportFile(const char *pFile, unsigned int pFlags) except +

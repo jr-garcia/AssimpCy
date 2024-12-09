@@ -1,9 +1,9 @@
 # cython: c_string_type=bytes
 # cython: c_string_encoding=utf8
-# cython: language_level=2
+# cython: language_level=3
 # distutils: language=c++
 
-cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess, cTexture
+from . cimport cImporter, cScene, cMesh, cTypes, cMaterial, cAnim, cPostprocess, cTexture
 import numpy as np
 cimport numpy as np
 cimport cython
@@ -129,7 +129,7 @@ cdef class aiMesh:
 @cython.nonecheck(False)
 cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
     cdef bint val, hasanycoord, hasanycolor = 0
-    cdef int i, j = 0, k
+    cdef int i, j, k = 0
     cdef aiBone bone
     cdef aiVertexWeight vertW
     cdef aiMesh rMesh = aiMesh()
@@ -171,7 +171,10 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
     if rMesh.HasBones:
         for i in range(rMesh.mNumBones):
             bone = aiBone()
-            bone.mName = str(mesh.mBones[i].mName.data)
+            try:
+                bone.mName = str(mesh.mBones[i].mName.data.decode())
+            except UnicodeDecodeError:
+                bone.mName = str(mesh.mBones[i].mName.data)
             bone.mOffsetMatrix = np.empty((4, 4), dtype=NUMPYFLOAT)
             with nogil:
                 memcpy(<void*>bone.mOffsetMatrix.data, <void*>&mesh.mBones[i].mOffsetMatrix, sizeof(NUMPYFLOAT_t) * 16)
@@ -207,8 +210,8 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
         rMesh.mFaces = np.empty((rMesh.mNumFaces, mesh.mFaces.mNumIndices), dtype=NUMPYINT)
         facememview = rMesh.mFaces
         with nogil:
-            for i in prange(<int>(mesh.mNumFaces), schedule='static'):
-                for j in range(mesh.mFaces.mNumIndices):
+            for i in prange(mesh.mNumFaces, schedule='static'):
+                for j in prange(mesh.mFaces.mNumIndices, schedule='static'):
                     facememview[i][j] = mesh.mFaces[i].mIndices[j]
 
     if hasanycoord:
@@ -259,7 +262,10 @@ cdef aiNode buildNode(cScene.aiNode* node, aiNode parent):
     cdef unsigned int i = 0, j
     rNode.mParent = parent
     rNode.mNumMeshes = node.mNumMeshes
-    rNode.mName = str(node.mName.data)
+    try:
+        rNode.mName = str(node.mName.data.decode())
+    except UnicodeDecodeError:
+        rNode.mName = str(node.mName.data)
     rNode.mNumChildren = node.mNumChildren
     rNode.mTransformation = np.empty((4, 4), dtype=NUMPYFLOAT)
     with nogil:
@@ -293,7 +299,7 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
     cdef cMaterial.aiMaterialProperty* prop
     cdef dataStorageF pvalF
     cdef dataStorageI pvalI
-    cdef cTypes.aiString* pvalS
+    cdef cTypes.aiString* pvalS = NULL
     cdef unsigned int pvalsize, i, j = 0
     cdef int res = 0
     cdef object propval = None
@@ -312,6 +318,8 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
                 pvalsize = sizeof(dataStorageI)
                 res =  cMaterial.aiGetMaterialIntegerArray(mat, prop.mKey.data, -1, 0, <int*>&pvalI, &pvalsize)
             elif ptype == cMaterial.aiPTI_String:
+                if pvalS is not NULL:
+                    del pvalS
                 pvalS = new cTypes.aiString()
                 res =  cMaterial.aiGetMaterialString(mat, prop.mKey.data, -1, 0, pvalS)
             else:
@@ -345,10 +353,9 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
                 propval = str(pvalS.data)
         nMat.properties[propertyNames.get(sname, sname)] = propval
 
-    prop = NULL
-    del (prop)
-    pvalS = NULL
-    del (pvalS)
+    with nogil:
+        del pvalS
+        pvalS = NULL
 
     return nMat
 
@@ -376,7 +383,10 @@ cdef aiTexture buildTexture(cTexture.aiTexture* tex):
     nTex.mWidth=tex.mWidth
     nTex.mHeight=tex.mHeight
     nTex.achFormatHint=tex.achFormatHint
-    nTex.mFilename = str(tex.mFilename.data)
+    try:
+        nTex.mFilename = str(tex.mFilename.data.decode())
+    except UnicodeDecodeError:
+        nTex.mFilename = str(tex.mFilename.data)
     if nTex.mHeight==0 and nTex.mWidth>0:
         nTex.pcData = np.empty(nTex.mWidth, dtype=NUMPYBYTE)
         with nogil:
@@ -424,7 +434,10 @@ cdef aiNodeAnim buildAnimNode(cAnim.aiNodeAnim* channel):
     cdef cAnim.aiVectorKey vkey
     cdef cAnim.aiQuatKey rkey
     cdef aiNodeAnim node = aiNodeAnim()
-    node.mNodeName = str(channel.mNodeName.data)
+    try:
+        node.mNodeName = str(channel.mNodeName.data.decode())
+    except UnicodeDecodeError:
+        node.mNodeName = str(channel.mNodeName.data)
     j = channel.mNumPositionKeys
     for i in range(j):
         vkey = channel.mPositionKeys[i]
@@ -477,7 +490,10 @@ cdef class aiAnimation:
 cdef aiAnimation buildAnimation(cAnim.aiAnimation* anim):
     cdef aiAnimation nAnim = aiAnimation()
     cdef int i = 0, j
-    nAnim.mName = str(anim.mName.data)
+    try:
+        nAnim.mName = str(anim.mName.data.decode())
+    except UnicodeDecodeError:
+        nAnim.mName = str(anim.mName.data)
     nAnim.mDuration = anim.mDuration
     nAnim.mTicksPerSecond = anim.mTicksPerSecond
     j = anim.mNumChannels

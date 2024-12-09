@@ -1,4 +1,4 @@
-from cTypes cimport *
+from .cTypes cimport *
 cimport numpy as np
 
 ctypedef int bool
