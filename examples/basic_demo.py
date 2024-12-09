@@ -27,12 +27,19 @@ def main():
                                                                               scene.mNumMaterials,
                                                                               scene.mNumAnimations))
 
-    # Check mesh.Has* before extracting corresponding mesh.m* (Vertices, Normals, etc)
-    if scene.HasMeshes and scene.mMeshes[0].HasPositions:
-        v = int(scene.mMeshes[0].mNumVertices / 2)
-        print('\tVertex {} = {}'.format(v, scene.mMeshes[0].mVertices[v]))
-
     print('Took {:0.4f} seconds.'.format(secs))
+
+    if scene.HasMeshes:
+        print(f'Mesh 0: "{scene.mMeshes[0].mName}"')
+        if scene.mMeshes[0].HasPositions:
+            v = int(scene.mMeshes[0].mNumVertices / 2)
+            print('  Vertex {} = {}'.format(v, scene.mMeshes[0].mVertices[v]))
+
+    if scene.HasAnimations:
+        print(f'  Animation 0: "{scene.mAnimations[0].mName}"')
+
+    if scene.HasMaterials:
+        print(f'  Material  0: "{str(scene.mMaterials[0])}"')
 
 
 if __name__ == '__main__':
