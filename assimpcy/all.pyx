@@ -158,6 +158,7 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
     rMesh.HasTextureCoords = []
     k = AI_MAX_NUMBER_OF_TEXTURECOORDS
     for i in range(k):
+        rMesh.mNumUVComponents[i] = mesh.mNumUVComponents[i]
         val = mesh.HasTextureCoords(i)
         if val:
             hasanycoord = val
@@ -185,31 +186,33 @@ cdef aiMesh buildMesh(cMesh.aiMesh* mesh):
                 bone.mWeights.append(vertW)
             rMesh.mBones.append(bone)
 
-    for i in range(k):
-        rMesh.mNumUVComponents[i] = mesh.mNumUVComponents[i]
-
     if rMesh.HasPositions:
         rMesh.mVertices = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
-        with nogil:
-            memcpy(<void*>rMesh.mVertices.data, <void*>&mesh.mVertices[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
 
     if rMesh.HasNormals:
         rMesh.mNormals = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
-        with nogil:
-            memcpy(<void*>rMesh.mNormals.data, <void*>&mesh.mNormals[0],  mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
 
     if rMesh.HasTangentsAndBitangents:
         rMesh.mTangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
         rMesh.mBitangents = np.empty((mesh.mNumVertices, 3), dtype=NUMPYFLOAT)
-        with nogil:
-            memcpy(<void*>rMesh.mTangents.data, <void*>&mesh.mTangents[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
-            memcpy(<void*>rMesh.mBitangents.data, <void*>&mesh.mBitangents[0], sizeof(NUMPYFLOAT_t) * mesh.mNumVertices * 3)
 
     cdef NUMPYINT_t [:,:] facememview
     if rMesh.HasFaces:
         rMesh.mFaces = np.empty((rMesh.mNumFaces, mesh.mFaces.mNumIndices), dtype=NUMPYINT)
         facememview = rMesh.mFaces
-        with nogil:
+
+    with nogil:
+        if mesh.HasPositions():
+            memcpy(<void*>rMesh.mVertices.data, <void*>&mesh.mVertices[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
+
+        if mesh.HasNormals():
+            memcpy(<void*>rMesh.mNormals.data, <void*>&mesh.mNormals[0],  mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
+
+        if mesh.HasTangentsAndBitangents():
+            memcpy(<void*>rMesh.mTangents.data, <void*>&mesh.mTangents[0], mesh.mNumVertices * 3 * sizeof(NUMPYFLOAT_t))
+            memcpy(<void*>rMesh.mBitangents.data, <void*>&mesh.mBitangents[0], sizeof(NUMPYFLOAT_t) * mesh.mNumVertices * 3)
+
+        if mesh.HasFaces():
             for i in prange(mesh.mNumFaces, schedule='static'):
                 for j in prange(mesh.mFaces.mNumIndices, schedule='static'):
                     facememview[i][j] = mesh.mFaces[i].mIndices[j]
@@ -354,8 +357,9 @@ cdef aiMaterial buildMaterial(cMaterial.aiMaterial* mat):
         nMat.properties[propertyNames.get(sname, sname)] = propval
 
     with nogil:
-        del pvalS
-        pvalS = NULL
+        if pvalS is not NULL:
+            del pvalS
+            pvalS = NULL
 
     return nMat
 
