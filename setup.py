@@ -2,6 +2,7 @@
 from setuptools import Extension, setup
 from sys import platform, maxsize
 from numpy import get_include
+from Cython.Build import cythonize
 from distutils.sysconfig import get_config_vars
 from glob import glob
 import os
@@ -77,7 +78,7 @@ elif platform == 'darwin':
             include_paths.extend(glob('/usr/local/opt/llvm*/include/c++/v1'))
 
             lib_path = sorted(glob('/usr/local/Cellar/llvm/*/lib'))[-1]
-            os.environ['LDFLAGS']="-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
+            os.environ['LDFLAGS'] = "-L%s -Wl,-rpath,%s" % (lib_path, lib_path)
         elif 'opt' in clang[-1]:
             lib_paths.append('/opt/local/lib')
             include_paths.extend(glob('/opt/local/libexec/llvm*/include/c++/v1'))
@@ -150,7 +151,7 @@ setup(
             'docs': get_extra_requirements()
         },
     packages=["assimpcy"],
-    ext_modules=[
+    ext_modules=cythonize([
         Extension('assimpcy.all', [os.path.join(os.path.curdir, "assimpcy", "all.pyx")],
                   libraries=libraries,
                   include_dirs=include_paths,
@@ -159,6 +160,6 @@ setup(
                   extra_compile_args=extraCompile,
                   extra_link_args=extraLink,
                   language="c++")
-    ],
+    ]),
     requires=['numpy']
 )
